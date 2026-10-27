@@ -47,4 +47,11 @@ cr=$'\r'
 crlf_files="$(grep -rlIU "$cr" scripts --include='*.sh' || true)"
 [ -z "$crlf_files" ] || fail "CRLF line endings in: $crlf_files"
 
+# 7. The frontend stays on TypeScript 6.0.x: typescript-eslint 8 requires < 6.1.0.
+ts_version="$(node -p "require('./frontend/node_modules/typescript/package.json').version" 2>/dev/null)"
+case "$ts_version" in
+    6.0.*) ;;
+    *) fail "frontend TypeScript is '${ts_version:-not installed}', expected 6.0.x" ;;
+esac
+
 echo "toolchain: OK"
