@@ -40,20 +40,22 @@ Todo en Git Bash, desde la raíz del repositorio.
    cd backend && composer install && cp .env.example .env && "$PHP" artisan key:generate && "$PHP" artisan migrate
    ```
 
-3. Levantar la API (queda en `http://127.0.0.1:8000`):
+3. Levantar la API (queda en `http://127.0.0.1:8018`), desde la raíz del repositorio:
 
    ```bash
-   cd backend && "$PHP" artisan serve --port=8000
+   source scripts/lib/toolchain.sh
+   cd backend && "$PHP" artisan serve --host=127.0.0.1 --port=8018
    ```
 
-4. En otra terminal, el frontend:
+4. En otra terminal, también desde la raíz, el frontend:
 
    ```bash
    cd frontend && pnpm install && pnpm dev
    ```
 
 5. Abrir `http://localhost:5173`. Vite reenvía `/api`, `/sanctum` y `/up` a la API, así que el
-   navegador ve un solo origen.
+   navegador ve un solo origen. Si el puerto 5173 está ocupado, Vite se detiene con un error en
+   vez de cambiar de puerto en silencio.
 
 ### Puertos
 
@@ -63,9 +65,14 @@ Todo en Git Bash, desde la raíz del repositorio.
 | Redis | `6380` | `YIYI_REDIS_PORT` |
 | Mailpit SMTP | `1026` | `YIYI_MAIL_PORT` |
 | Mailpit (bandeja web) | `8026` → `http://127.0.0.1:8026` | `YIYI_MAILPIT_UI_PORT` |
+| API Laravel | `8018` | `YIYI_API_PORT` (lo lee Vite al arrancar) |
+| Frontend (Vite) | `5173` | — |
 
-Para cambiarlos, copia `.env.docker.example` a `.env` en la raíz. Si cambias PostgreSQL, Redis o
-Mailpit, ajusta también `DB_PORT`, `REDIS_PORT` y `MAIL_PORT` en `backend/.env`.
+Se evitan los puertos habituales (5432, 6379, 1025, 8025, 8000) porque otros proyectos de esta
+máquina ya los usan. Para cambiar los de Docker, copia `.env.docker.example` a `.env` en la raíz.
+Si cambias PostgreSQL, Redis o Mailpit, ajusta también `DB_PORT`, `REDIS_PORT` y `MAIL_PORT` en
+`backend/.env`. Si cambias la API, arranca `artisan serve` con ese puerto y el frontend con
+`YIYI_API_PORT=<puerto> pnpm dev`.
 
 Las bases son `yiyi` (desarrollo) y `yiyi_testing` (tests). Los tests nunca tocan `yiyi`.
 
