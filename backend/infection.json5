@@ -1,0 +1,13 @@
+{
+    "$schema": "vendor/infection/infection/resources/schema.json",
+    "source": {
+        "directories": ["app"]
+    },
+    "testFramework": "pest",
+    "logs": {
+        "text": "build/infection.log"
+    },
+    // Thresholds are set per module by the swarm (step 4): 80 for the critical modules.
+    "minMsi": 0,
+    "minCoveredMsi": 0
+}
