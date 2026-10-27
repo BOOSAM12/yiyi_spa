@@ -58,7 +58,7 @@ base de datos.
 | Modelo SaaS | Multi-tenant, single DB con `tenant_id` | [Usuario] (doc Refinación) |
 | Mercado | Colombia | [Usuario] (doc Refinación) |
 | Dinero | `BIGINT` en centavos COP | [Usuario] (doc Diseño BD) |
-| Backend | Laravel 12, PHP 8.3+ | [Usuario] |
+| Backend | Laravel 13, PHP 8.4 (Pest 5 exige 8.4) | [Usuario] (versión ajustada en el plan del esqueleto) |
 | Frontend | **SPA React + API** con Sanctum (cookie para staff) | [Usuario] |
 | Base de datos | **PostgreSQL 18** | [Usuario] |
 | Equipo | Una persona con agentes; swarm **secuencial**, un solo workspace | [Usuario] |
@@ -249,7 +249,7 @@ con menos carga ese día; empate → menor `id`).
 Una sola app para una persona sola es más barata de mantener que tres. Si el portal necesita
 SEO más adelante, se extrae a una app con SSR sin tocar el backoffice.
 
-**Stack:** React 19 + TypeScript (strict) + Vite · React Router · **TanStack Query** para estado
+**Stack:** React 19 + TypeScript 6.0 strict (typescript-eslint aún no admite TS 7) + Vite 8 · React Router · **TanStack Query** para estado
 del servidor · Zustand solo para estado de UI local · React Hook Form + **Zod** · **Tailwind 4**
 · **FullCalendar** (resource timeline, licencia premium) para la agenda · Vitest + Testing
 Library · Playwright para E2E.
@@ -289,7 +289,7 @@ commiteado difiere del generado. Errores con formato RFC 9457 (`application/prob
 
 ```
 yiyi_spa/
-├── backend/          # Laravel 12
+├── backend/          # Laravel 13
 ├── frontend/         # React + Vite
 ├── docker/           # Dockerfiles y configs (nginx, php-fpm, postgres)
 ├── docker-compose.yml
@@ -300,8 +300,8 @@ yiyi_spa/
 └── Documentacion/    # documentos fuente originales (solo lectura)
 ```
 
-**Desarrollo local (Windows):** Docker Desktop corre PostgreSQL 18, Redis y Mailpit. PHP 8.3 y
-Node 22 corren en la máquina o en contenedor, a elección del desarrollador. **Los tests usan
+**Desarrollo local (Windows):** Docker Desktop corre PostgreSQL 18, Redis y Mailpit. PHP 8.4
+(`C:/xampp3/php`) y Node 24 corren en la máquina, fijados por `scripts/lib/toolchain.sh`. **Los tests usan
 PostgreSQL real, nunca SQLite**: las restricciones de exclusión y RLS no existen en SQLite.
 
 **Producción MVP:** VPS con Docker Compose: nginx + php-fpm + worker de colas (Horizon) +
@@ -415,7 +415,7 @@ verifica que toda tabla con `tenant_id` tenga RLS activa y forzada.
 `swarm-forge` analiza las herramientas reales del proyecto, así que no se ejecuta sobre un
 repositorio vacío (generaría solo stubs). El orden es:
 
-1. **Esqueleto** — monorepo, Laravel 12 en `backend/`, Vite + React en `frontend/`,
+1. **Esqueleto** — monorepo, Laravel 13 en `backend/`, Vite + React en `frontend/`,
    `docker-compose.yml` (PG18, Redis, Mailpit), herramientas de calidad instaladas (Pint,
    Larastan, Pest, Deptrac, Infection, ESLint, Vitest, Playwright), CI mínimo en verde.
 2. **Fundaciones** — `Shared/Money`, `TenantContext` + `BelongsToTenant` + RLS, rol de BD
