@@ -1,9 +1,4 @@
-import {
-  createBrowserRouter,
-  createMemoryRouter,
-  Navigate,
-  type RouteObject,
-} from 'react-router'
+import { createBrowserRouter, createMemoryRouter, Navigate, type RouteObject } from 'react-router'
 
 // One app, three areas, each loaded on demand (spec §10).
 const routes: RouteObject[] = [
