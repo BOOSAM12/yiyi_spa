@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Barra superior</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<header style="height: 64px; box-sizing: border-box; display: flex; align-items: center; gap: 16px; padding: 0 24px; background: #ffffff; border-bottom: 1px solid #eedfe6; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: #3a2a35; font-size: 14px; flex-wrap: wrap">
+<a href="Main.dc.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #3a2a35; width: 200px">
+<span style="width: 32px; height: 32px; border-radius: 10px; background: #f4c6d4; display: inline-flex; align-items: center; justify-content: center; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 17px">Y</span>
+<span style="font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 20px">YiYi Spa</span>
+</a>
+<label style="display: flex; align-items: center; gap: 8px; height: 36px; padding: 0 12px; border: 1px solid #eedfe6; border-radius: 999px; background: #fdf8fa; font-weight: 600; font-size: 13px">
+<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#a63d64" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+<select aria-label="Sucursal" style="font: inherit; border: 0; background: transparent; color: #3a2a35; cursor: pointer">
+<option>Sede Chapinero</option>
+<option>Sede Usaquén</option>
+<option>Todas las sedes</option>
+</select>
+</label>
+<label style="flex: 1 1 240px; max-width: 420px; display: flex; align-items: center; gap: 8px; height: 38px; padding: 0 14px; border-radius: 12px; background: #f7eff3; color: #7a6672">
+<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+<input aria-label="Buscar" placeholder="Buscar cliente, cita o servicio" style="font: inherit; border: 0; background: transparent; outline: none; flex: 1; color: #3a2a35">
+</label>
+<div style="margin-left: auto; display: flex; align-items: center; gap: 12px">
+<button aria-label="Notificaciones" style="position: relative; width: 40px; height: 40px; border-radius: 12px; border: 1px solid #eedfe6; background: #ffffff; color: #7a6672; cursor: pointer; display: inline-flex; align-items: center; justify-content: center">
+<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16V11a6 6 0 1 1 12 0v5l2 2H4z"/><path d="M10 21h4"/></svg>
+<span style="position: absolute; top: 8px; right: 9px; width: 8px; height: 8px; border-radius: 50%; background: #a63d64"></span>
+</button>
+<div style="display: flex; align-items: center; gap: 10px">
+<span style="width: 36px; height: 36px; border-radius: 999px; background: #d9cdf3; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px">{{initials}}</span>
+<div style="display: flex; flex-direction: column; line-height: 16px">
+<span style="font-weight: 700; font-size: 13px">{{who}}</span>
+<span style="font-size: 12px; color: #7a6672">{{rol}}</span>
+</div>
+</div>
+</div>
+</header>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"who":{"editor":null,"default":"Yiyi Ramírez"},"rol":{"editor":null,"default":"Dueña · Admin"},"initials":{"editor":null,"default":"YR"},"$preview":{"width":1440,"height":64}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      who: this.props.who ?? 'Yiyi Ramírez',
+      rol: this.props.rol ?? 'Dueña · Admin',
+      initials: this.props.initials ?? 'YR'
+    };
+  }
+}
+</script>
+</body>
+</html>

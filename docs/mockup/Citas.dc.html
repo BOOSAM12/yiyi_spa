@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Citas · YiYi Spa</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#fdf8fa;color:#3a2a35;font-family:"Plus Jakarta Sans",system-ui,sans-serif;font-size:14px;line-height:21px}
+a{color:#a63d64;text-decoration:none}a:hover{color:#7d2a4a}
+h1,h2,h3,p{margin:0}
+.ttl{font-family:Fraunces,Georgia,serif;font-weight:600}
+.card{background:#fff;border:1px solid #eedfe6;border-radius:18px;box-shadow:0 1px 2px rgba(58,42,53,.04),0 4px 16px rgba(58,42,53,.05)}
+.btn{font:inherit;font-weight:600;height:44px;padding:0 18px;border-radius:12px;border:1px solid transparent;cursor:pointer;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;text-decoration:none;box-sizing:border-box}
+.bp{background:#e8a5bb;color:#3a2a35}.bp:hover{background:#df93ad;color:#3a2a35}
+.bs{background:#efe9fb;color:#6b52a8;border-color:#d9cdf3}.bs:hover{color:#6b52a8}
+.bg{background:#fff;color:#7a6672;border-color:#eedfe6}
+.sm{height:34px;padding:0 12px;font-size:13px;border-radius:10px}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;line-height:22px;padding:0 10px;border-radius:999px;white-space:nowrap}
+.badge:before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.b-pend{background:#fdeee2;color:#9a5418}.b-conf{background:#e8f2fb;color:#2f6a99}.b-prog{background:#efe9fb;color:#6b52a8}.b-done{background:#e6f6ee;color:#2f7a57}.b-canc{background:#fde8e6;color:#b23b34}.b-brand{background:#fbe6ed;color:#a63d64}
+.cap{font-size:11px;line-height:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7a6672}
+.mut{color:#7a6672}
+.tbl{width:100%;border-collapse:collapse}
+.tbl th{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7a6672;text-align:left;padding:12px 16px;border-bottom:1px solid #eedfe6;background:#fdf8fa;white-space:nowrap}
+.tbl td{padding:12px 16px;border-bottom:1px solid #f3e8ee;vertical-align:middle}
+.av{width:36px;height:36px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex:none;color:#3a2a35}
+.overlay{position:absolute;left:0;right:0;top:64px;bottom:0;background:rgba(58,42,53,.18);display:flex;justify-content:flex-end;z-index:20}
+.in{font:inherit;height:40px;padding:0 12px;border:1px solid #dcc6d1;border-radius:8px;background:#fff;color:#3a2a35;box-sizing:border-box}
+</style>
+</helmet>
+<div style="position: relative; min-height: 1100px; display: flex; flex-direction: column">
+<dc-import name="TopBar" hint-size="100%,64px"></dc-import>
+<div style="display: flex; flex-wrap: wrap; flex: 1; align-items: stretch">
+<dc-import name="NavNegocio" active="citas" hint-size="248px,1036px"></dc-import>
+<main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 28px 32px 48px; display: flex; flex-direction: column; gap: 20px">
+
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h1 class="ttl" style="font-size: 30px; line-height: 38px">Citas</h1>
+<p class="mut">Todas las reservas de la sede, con su estado, origen y depósito.</p>
+</div>
+<div style="margin-left: auto; display: flex; gap: 12px">
+<button class="btn bg">Exportar</button>
+<button class="btn bp" onClick="{{openNew}}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>Nueva cita</button>
+</div>
+</div>
+
+<div style="display: flex; gap: 4px; padding: 4px; background: #f7eff3; border-radius: 12px; align-self: flex-start; flex-wrap: wrap">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="2"><button onClick="{{t.pick}}" style="{{t.st}}">{{t.label}}</button></sc-for>
+</div>
+
+<sc-if value="{{isList}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center">
+<sc-for list="{{filters}}" as="f" hint-placeholder-count="7"><button onClick="{{f.pick}}" style="{{f.st}}">{{f.label}} <span style="opacity: .75">{{f.n}}</span></button></sc-for>
+<input class="in" type="date" value="2026-10-23" aria-label="Fecha" style="margin-left: auto">
+</div>
+<div class="card" style="overflow-x: auto">
+<table class="tbl" style="min-width: 980px">
+<thead><tr><th>Fecha y hora</th><th>Cliente</th><th>Servicios</th><th>Profesional</th><th>Origen</th><th>Total</th><th>Depósito</th><th>Estado</th><th></th></tr></thead>
+<tbody>
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="10">
+<tr>
+<td><div style="display: flex; flex-direction: column; line-height: 18px"><span style="font-weight: 700">{{r.time}}</span><span class="mut" style="font-size: 12px">{{r.date}}</span></div></td>
+<td><div style="display: flex; align-items: center; gap: 10px"><span class="av" style="{{r.avst}}">{{r.ini}}</span><span style="font-weight: 600">{{r.client}}</span></div></td>
+<td>{{r.svc}}</td>
+<td>{{r.tech}}</td>
+<td class="mut">{{r.src}}</td>
+<td style="font-weight: 600">{{r.total}}</td>
+<td class="mut">{{r.dep}}</td>
+<td><span class="badge" style="{{r.bst}}">{{r.status}}</span></td>
+<td><a href="Agenda.dc.html" class="btn bg sm">Abrir</a></td>
+</tr>
+</sc-for>
+</tbody>
+</table>
+</div>
+<p class="mut" style="font-size: 13px">Mostrando {{count}} citas · Los recordatorios por WhatsApp se envían 24 h y 2 h antes.</p>
+</div>
+</sc-if>
+
+<sc-if value="{{isWait}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div class="card" style="padding: 16px 18px; display: flex; gap: 14px; align-items: center; background: #e8f2fb; border-color: #c9e2f5">
+<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2f6a99" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v5h1"/></svg>
+<span>Cuando se cancela una cita, el sistema avisa automáticamente por WhatsApp al primer cliente compatible de la lista. Tiene 15 minutos para tomar el espacio.</span>
+</div>
+<div class="card" style="overflow-x: auto">
+<table class="tbl" style="min-width: 900px">
+<thead><tr><th>Cliente</th><th>Servicio deseado</th><th>Preferencia</th><th>Profesional</th><th>En espera desde</th><th>Estado</th><th></th></tr></thead>
+<tbody>
+<tr><td><div style="display: flex; align-items: center; gap: 10px"><span class="av" style="background: #fbd9bf">PC</span><span style="font-weight: 600">Patricia Cano</span></div></td><td>Manicure semipermanente</td><td>Hoy, después de 3:00 p. m.</td><td>Laura T.</td><td class="mut">22 oct · 6:10 p. m.</td><td><span class="badge b-conf">Notificada</span></td><td><button class="btn bs sm">Asignar</button></td></tr>
+<tr><td><div style="display: flex; align-items: center; gap: 10px"><span class="av" style="background: #c5ead7">MH</span><span style="font-weight: 600">Melissa Herrera</span></div></td><td>Pedicure spa</td><td>Sábado en la mañana</td><td>Cualquiera</td><td class="mut">21 oct · 9:40 a. m.</td><td><span class="badge b-pend">Esperando</span></td><td><button class="btn bs sm">Asignar</button></td></tr>
+<tr><td><div style="display: flex; align-items: center; gap: 10px"><span class="av" style="background: #d9cdf3">KV</span><span style="font-weight: 600">Karen Valencia</span></div></td><td>Masaje relajante</td><td>Cualquier día, 5:00 a 7:00 p. m.</td><td>Andrea P.</td><td class="mut">20 oct · 1:15 p. m.</td><td><span class="badge b-pend">Esperando</span></td><td><button class="btn bs sm">Asignar</button></td></tr>
+<tr><td><div style="display: flex; align-items: center; gap: 10px"><span class="av" style="background: #c9e2f5">JM</span><span style="font-weight: 600">Jimena Molina</span></div></td><td>Limpieza facial</td><td>Lunes o martes</td><td>Mariana L.</td><td class="mut">19 oct · 4:00 p. m.</td><td><span class="badge b-pend">Esperando</span></td><td><button class="btn bs sm">Asignar</button></td></tr>
+<tr><td><div style="display: flex; align-items: center; gap: 10px"><span class="av" style="background: #f4c6d4">RB</span><span style="font-weight: 600">Rosa Bernal</span></div></td><td>Uñas acrílicas</td><td>Viernes</td><td>Laura T.</td><td class="mut">18 oct · 11:20 a. m.</td><td><span class="badge b-canc">Venció</span></td><td><button class="btn bg sm">Quitar</button></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</sc-if>
+
+</main>
+</div>
+<sc-if value="{{panel}}" hint-placeholder-val="{{ false }}">
+<div class="overlay"><dc-import name="PanelNuevaCita" on-close="{{closePanel}}" hint-size="440px,100%"></dc-import></div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1100}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { tab: 'list', filter: 'all', panel: false }; }
+  renderVals() {
+    const S = {
+      pend: ['Pendiente', 'background: #fdeee2; color: #9a5418'],
+      conf: ['Confirmada', 'background: #e8f2fb; color: #2f6a99'],
+      prog: ['En curso', 'background: #efe9fb; color: #6b52a8'],
+      done: ['Completada', 'background: #e6f6ee; color: #2f7a57'],
+      canc: ['Cancelada', 'background: #fde8e6; color: #b23b34'],
+      nosh: ['No asistió', 'background: #fde8e6; color: #b23b34'],
+      resc: ['Reprogramada', 'background: #fbe6ed; color: #a63d64']
+    };
+    const data = [
+      ['8:30 a. m.', 'Paula Ríos', 'Manicure tradicional', 'Laura T.', 'Presencial', '$ 30.000', '—', 'done', '#f4c6d4'],
+      ['9:00 a. m.', 'Sara León', 'Pedicure spa', 'Daniela R.', 'Online', '$ 70.000', '$ 21.000', 'done', '#c5ead7'],
+      ['9:30 a. m.', 'Isabel Mora', 'Manicure semipermanente', 'Laura T.', 'WhatsApp', '$ 55.000', '—', 'done', '#f4c6d4'],
+      ['10:00 a. m.', 'Fernanda Ruiz', 'Diseño de cejas', 'Mariana L.', 'Teléfono', '$ 35.000', '—', 'nosh', '#fbd9bf'],
+      ['10:30 a. m.', 'Valentina Gómez', 'Manicure semipermanente', 'Laura T.', 'WhatsApp', '$ 55.000', '$ 16.500', 'prog', '#f4c6d4'],
+      ['11:00 a. m.', 'Camila Rojas', 'Pedicure spa', 'Daniela R.', 'Online', '$ 70.000', '$ 21.000', 'conf', '#c5ead7'],
+      ['11:30 a. m.', 'Sofía Martínez', 'Masaje relajante 60 min', 'Andrea P.', 'Teléfono', '$ 120.000', '—', 'pend', '#d9cdf3'],
+      ['12:00 m.', 'Ana Pardo', 'Limpieza facial profunda', 'Mariana L.', 'Online', '$ 95.000', '$ 28.500', 'conf', '#c9e2f5'],
+      ['1:00 p. m.', 'Lina Acosta', 'Manicure + pedicure', 'Laura T.', 'WhatsApp', '$ 110.000', '—', 'canc', '#f4c6d4'],
+      ['1:15 p. m.', 'Luisa Toro', 'Lifting de pestañas', 'Mariana L.', 'Online', '$ 90.000', '$ 27.000', 'pend', '#fbd9bf'],
+      ['2:00 p. m.', 'Natalia Vargas', 'Manicure semipermanente', 'Laura T.', 'Teléfono', '$ 55.000', '—', 'pend', '#f4c6d4'],
+      ['2:00 p. m.', 'Diana Castro', 'Masaje piedras calientes', 'Andrea P.', 'Online', '$ 150.000', '$ 45.000', 'conf', '#d9cdf3'],
+      ['3:00 p. m.', 'Carolina Pérez', 'Semi + diseño', 'Laura T.', 'WhatsApp', '$ 80.000', '—', 'resc', '#f4c6d4']
+    ];
+    const f = this.state.filter;
+    const all = data.map(([time, client, svc, tech, src, total, dep, st, bg]) => ({
+      time, date: 'Vie 23 oct', client, svc, tech, src, total, dep, st,
+      ini: client.split(' ').map((w) => w[0]).join('').slice(0, 2),
+      avst: 'background: ' + bg, status: S[st][0], bst: S[st][1]
+    }));
+    const rows = f === 'all' ? all : all.filter((r) => r.st === f);
+    const fl = [['all', 'Todas'], ['pend', 'Pendientes'], ['conf', 'Confirmadas'], ['prog', 'En curso'], ['done', 'Completadas'], ['canc', 'Canceladas'], ['nosh', 'No asistió']];
+    const filters = fl.map(([id, label]) => ({
+      label, n: id === 'all' ? all.length : all.filter((r) => r.st === id).length,
+      st: 'font: inherit; font-size: 13px; font-weight: 600; height: 34px; padding: 0 14px; border-radius: 999px; cursor: pointer; ' + (id === f ? 'background: #fbe6ed; color: #a63d64; border: 1px solid #e8a5bb' : 'background: #ffffff; color: #7a6672; border: 1px solid #eedfe6'),
+      pick: () => this.setState({ filter: id })
+    }));
+    const tabs = [['list', 'Todas las citas'], ['wait', 'Lista de espera (5)']].map(([id, label]) => ({
+      label,
+      st: 'font: inherit; font-weight: 600; height: 36px; padding: 0 16px; border-radius: 9px; border: 0; cursor: pointer; ' + (id === this.state.tab ? 'background: #ffffff; color: #a63d64; box-shadow: 0 1px 2px rgba(58,42,53,.08)' : 'background: transparent; color: #7a6672'),
+      pick: () => this.setState({ tab: id })
+    }));
+    return {
+      rows, filters, tabs, count: rows.length,
+      isList: this.state.tab === 'list', isWait: this.state.tab === 'wait',
+      panel: this.state.panel,
+      openNew: () => this.setState({ panel: true }),
+      closePanel: () => this.setState({ panel: false })
+    };
+  }
+}
+</script>
+</body>
+</html>

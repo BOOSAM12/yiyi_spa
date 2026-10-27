@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Configuración · YiYi Spa</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#fdf8fa;color:#3a2a35;font-family:"Plus Jakarta Sans",system-ui,sans-serif;font-size:14px;line-height:21px}
+a{color:#a63d64;text-decoration:none}a:hover{color:#7d2a4a}
+h1,h2,h3,p{margin:0}
+.ttl{font-family:Fraunces,Georgia,serif;font-weight:600}
+.card{background:#fff;border:1px solid #eedfe6;border-radius:18px;box-shadow:0 1px 2px rgba(58,42,53,.04),0 4px 16px rgba(58,42,53,.05)}
+.btn{font:inherit;font-weight:600;height:44px;padding:0 18px;border-radius:12px;border:1px solid transparent;cursor:pointer;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;text-decoration:none;box-sizing:border-box}
+.bp{background:#e8a5bb;color:#3a2a35}.bp:hover{background:#df93ad;color:#3a2a35}
+.bs{background:#efe9fb;color:#6b52a8;border-color:#d9cdf3}.bs:hover{color:#6b52a8}
+.bg{background:#fff;color:#7a6672;border-color:#eedfe6}
+.sm{height:34px;padding:0 12px;font-size:13px;border-radius:10px}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;line-height:22px;padding:0 10px;border-radius:999px;white-space:nowrap}
+.badge:before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.b-pend{background:#fdeee2;color:#9a5418}.b-conf{background:#e8f2fb;color:#2f6a99}.b-done{background:#e6f6ee;color:#2f7a57}.b-off{background:#f7eff3;color:#7a6672}
+.cap{font-size:11px;line-height:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7a6672}
+.mut{color:#7a6672}
+.tbl{width:100%;border-collapse:collapse}
+.tbl th{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7a6672;text-align:left;padding:12px 16px;border-bottom:1px solid #eedfe6;background:#fdf8fa;white-space:nowrap}
+.tbl td{padding:12px 16px;border-bottom:1px solid #f3e8ee;vertical-align:middle}
+.in{font:inherit;font-weight:400;height:40px;padding:0 12px;border:1px solid #dcc6d1;border-radius:8px;background:#fff;color:#3a2a35;box-sizing:border-box;width:100%}
+.lbl{font-size:13px;font-weight:600;display:flex;flex-direction:column;gap:6px;flex:1;min-width:0}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.sw{width:40px;height:24px;border-radius:999px;background:#c5ead7;position:relative;display:inline-block;flex:none}
+.sw:after{content:"";position:absolute;right:3px;top:3px;width:18px;height:18px;border-radius:50%;background:#2f7a57}
+.sw.off{background:#eadfe5}.sw.off:after{right:auto;left:3px;background:#ffffff}
+.ok{color:#2f7a57;font-weight:700;text-align:center}.no{color:#c9b5bf;font-weight:700;text-align:center}
+</style>
+</helmet>
+<div style="position: relative; min-height: 1300px; display: flex; flex-direction: column">
+<dc-import name="TopBar" hint-size="100%,64px"></dc-import>
+<div style="display: flex; flex-wrap: wrap; flex: 1; align-items: stretch">
+<dc-import name="NavNegocio" active="configuracion" hint-size="248px,1236px"></dc-import>
+<main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 28px 32px 48px; display: flex; flex-direction: column; gap: 22px">
+
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h1 class="ttl" style="font-size: 30px; line-height: 38px">Configuración</h1>
+<p class="mut">Datos del negocio, sedes, reglas y permisos. Plan Pro · 2 sedes · renueva el 1 nov.</p>
+</div>
+<button class="btn bp" style="margin-left: auto">Guardar cambios</button>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+<nav aria-label="Secciones de configuración" class="card" style="flex: 1 1 220px; max-width: 260px; padding: 8px; display: flex; flex-direction: column; gap: 2px">
+<sc-for list="{{secs}}" as="s" hint-placeholder-count="7"><button onClick="{{s.pick}}" style="{{s.st}}">{{s.label}}</button></sc-for>
+</nav>
+
+<div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+
+<sc-if value="{{sNeg}}" hint-placeholder-val="{{ true }}">
+<section class="card" style="padding: 24px; display: flex; flex-direction: column; gap: 18px">
+<h2 style="font-size: 18px; line-height: 26px">Datos del negocio</h2>
+<div style="display: flex; gap: 18px; align-items: center; flex-wrap: wrap">
+<span style="width: 88px; height: 88px; border-radius: 22px; background: #f4c6d4; display: inline-flex; align-items: center; justify-content: center; font-family: Fraunces, Georgia, serif; font-size: 36px; font-weight: 600">Y</span>
+<div style="display: flex; flex-direction: column; gap: 6px"><span style="font-weight: 600">Logo</span><span class="mut" style="font-size: 13px">PNG o SVG, mínimo 400 × 400 px</span><button class="btn bg sm" style="align-self: flex-start">Cambiar logo</button></div>
+</div>
+<div class="grid2">
+<label class="lbl">Nombre comercial<input class="in" value="YiYi Spa"></label>
+<label class="lbl">Razón social y NIT<input class="in" value="YiYi Belleza S.A.S. · 901.456.789-1"></label>
+<label class="lbl">Celular de contacto<input class="in" value="+57 300 555 0123"></label>
+<label class="lbl">Instagram<input class="in" value="@yiyispa"></label>
+</div>
+<label class="lbl">Descripción (se ve en tu página de reservas)<textarea class="in" rows="3" style="height: auto; padding: 10px 12px">Spa de uñas y bienestar en Bogotá. Manicure, pedicure, masajes y faciales con productos hipoalergénicos y protocolos de bioseguridad.</textarea></label>
+<div style="padding: 14px 16px; border-radius: 14px; background: #efe9fb; display: flex; flex-wrap: wrap; gap: 10px; align-items: center"><span style="font-weight: 600; color: #6b52a8">Enlace para reservar:</span><span style="font-weight: 700">reservas.yiyispa.co</span><a href="PortalLocal.dc.html" style="margin-left: auto; font-weight: 600; color: #6b52a8">Ver como cliente</a></div>
+</section>
+</sc-if>
+
+<sc-if value="{{sSedes}}" hint-placeholder-val="{{ false }}">
+<section class="card" style="padding: 24px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; align-items: center"><h2 style="font-size: 18px; line-height: 26px">Sedes y horarios</h2><button class="btn bs sm" style="margin-left: auto">+ Nueva sede</button></div>
+<div class="grid2">
+<div style="padding: 16px; border-radius: 14px; border: 1.5px solid #e8a5bb; background: #fbe6ed; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 700">Sede Chapinero</span><span class="mut" style="font-size: 13px">Cra. 9 # 60-12, Bogotá · 2 estaciones de manicure, 2 sillones de pedicure, 2 cabinas</span></div>
+<div style="padding: 16px; border-radius: 14px; border: 1px solid #eedfe6; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 700">Sede Usaquén</span><span class="mut" style="font-size: 13px">Calle 119 # 6-24, Bogotá · 3 estaciones, 1 sillón, 2 cabinas</span></div>
+</div>
+<span class="cap">Horario de atención · Chapinero</span>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<sc-for list="{{hours}}" as="h" hint-placeholder-count="7">
+<div style="display: grid; grid-template-columns: 110px 50px 1fr 1fr; gap: 10px; align-items: center">
+<span style="font-weight: 600">{{h.d}}</span><span class="{{h.sw}}" role="img" aria-label="{{h.aria}}"></span>
+<input class="in" value="{{h.a}}" aria-label="Abre"><input class="in" value="{{h.b}}" aria-label="Cierra">
+</div>
+</sc-for>
+</div>
+<span class="cap" style="margin-top: 6px">Festivos y fechas especiales</span>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<span class="badge b-pend">3 nov · Todos los Santos · 9:00 a 3:00</span>
+<span class="badge b-pend">17 nov · Independencia de Cartagena · 9:00 a 3:00</span>
+<span class="badge b-conf">8 dic · Inmaculada · cerrado</span>
+<span class="badge b-conf">24 dic · horario extendido 7:00 a 9:00 p. m.</span>
+<button class="btn bg sm">+ Agregar fecha</button>
+</div>
+</section>
+</sc-if>
+
+<sc-if value="{{sPol}}" hint-placeholder-val="{{ false }}">
+<section class="card" style="padding: 24px; display: flex; flex-direction: column; gap: 18px">
+<h2 style="font-size: 18px; line-height: 26px">Políticas de reserva</h2>
+<div class="grid2">
+<label class="lbl">Cancelar sin costo hasta<select class="in"><option>6 horas antes</option><option>12 horas antes</option><option>24 horas antes</option></select></label>
+<label class="lbl">Si no asiste<select class="in"><option>Se queda con el depósito</option><option>Cobrar 50% en la próxima cita</option><option>Solo registrar</option></select></label>
+<label class="lbl">Depósito para reservar online<select class="in"><option>30% del valor</option><option>50% del valor</option><option>No pedir depósito</option></select></label>
+<label class="lbl">Tolerancia de llegada tarde<select class="in"><option>15 minutos</option><option>10 minutos</option></select></label>
+<label class="lbl">Reservar con anticipación máxima<select class="in"><option>60 días</option><option>30 días</option></select></label>
+<label class="lbl">Tiempo mínimo antes de reservar<select class="in"><option>2 horas</option><option>1 hora</option><option>El mismo día no</option></select></label>
+</div>
+<label class="lbl">Texto de políticas que ve el cliente<textarea class="in" rows="3" style="height: auto; padding: 10px 12px">Puedes cancelar o mover tu cita sin costo hasta 6 horas antes. Si no llegas, el depósito no es reembolsable. Llegar 15 minutos tarde puede acortar tu servicio.</textarea></label>
+</section>
+</sc-if>
+
+<sc-if value="{{sRoles}}" hint-placeholder-val="{{ false }}">
+<section class="card" style="padding: 0; overflow-x: auto">
+<div style="padding: 20px 24px; display: flex; align-items: center"><h2 style="font-size: 18px; line-height: 26px">Usuarios y permisos</h2><button class="btn bs sm" style="margin-left: auto">+ Invitar usuario</button></div>
+<table class="tbl" style="min-width: 640px">
+<thead><tr><th>Permiso</th><th style="text-align: center">Dueño / Admin</th><th style="text-align: center">Recepcionista</th><th style="text-align: center">Técnico</th></tr></thead>
+<tbody>
+<tr><td>Ver y gestionar toda la agenda</td><td class="ok">✓</td><td class="ok">✓</td><td class="no">—</td></tr>
+<tr><td>Ver su propia agenda</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td></tr>
+<tr><td>Cobrar en punto de venta y abrir caja</td><td class="ok">✓</td><td class="ok">✓</td><td class="no">—</td></tr>
+<tr><td>Ver datos de contacto de clientes</td><td class="ok">✓</td><td class="ok">✓</td><td class="no">—</td></tr>
+<tr><td>Escribir en el historial clínico</td><td class="ok">✓</td><td class="no">—</td><td class="ok">✓</td></tr>
+<tr><td>Reportar productos usados</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td></tr>
+<tr><td>Ver finanzas, comisiones y reportes</td><td class="ok">✓</td><td class="no">—</td><td class="no">—</td></tr>
+<tr><td>Configurar negocio, servicios y personal</td><td class="ok">✓</td><td class="no">—</td><td class="no">—</td></tr>
+</tbody>
+</table>
+</section>
+</sc-if>
+
+<sc-if value="{{sFact}}" hint-placeholder-val="{{ false }}">
+<section class="card" style="padding: 24px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; align-items: center; gap: 10px"><h2 style="font-size: 18px; line-height: 26px">Facturación electrónica DIAN</h2><span class="badge b-done">Habilitada</span></div>
+<div class="grid2">
+<label class="lbl">Proveedor tecnológico<select class="in"><option>Alegra</option><option>Siigo</option></select></label>
+<label class="lbl">Resolución DIAN<input class="in" value="18764000001234 · vigente hasta jun 2027"></label>
+<label class="lbl">Prefijo y rango<input class="in" value="YIYI 1 al 50.000 · vamos en 482"></label>
+<label class="lbl">IVA<select class="in"><option>19% incluido en el precio</option><option>19% adicional al precio</option></select></label>
+<label class="lbl">Régimen<select class="in"><option>Responsable de IVA</option><option>No responsable</option></select></label>
+<label class="lbl">Enviar factura al cliente por<select class="in"><option>WhatsApp y correo</option><option>Solo correo</option></select></label>
+</div>
+</section>
+</sc-if>
+
+<sc-if value="{{sPagos}}" hint-placeholder-val="{{ false }}">
+<section class="card" style="padding: 24px; display: flex; flex-direction: column; gap: 14px">
+<h2 style="font-size: 18px; line-height: 26px">Pagos en línea</h2>
+<p class="mut">Para cobrar depósitos y reservas desde la página del cliente.</p>
+<div style="display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 14px; border: 1px solid #eedfe6"><span style="font-weight: 700; flex: 1">Wompi</span><span class="mut" style="font-size: 13px">PSE, Nequi, tarjetas</span><span class="badge b-done">Conectado</span><span class="sw" role="img" aria-label="Activo"></span></div>
+<div style="display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 14px; border: 1px solid #eedfe6"><span style="font-weight: 700; flex: 1">Mercado Pago</span><span class="mut" style="font-size: 13px">Tarjetas, efectivo</span><span class="badge b-off">Sin conectar</span><span class="sw off" role="img" aria-label="Inactivo"></span></div>
+<div style="display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 14px; border: 1px solid #eedfe6"><span style="font-weight: 700; flex: 1">PlacetoPay</span><span class="mut" style="font-size: 13px">PSE, tarjetas</span><span class="badge b-off">Sin conectar</span><span class="sw off" role="img" aria-label="Inactivo"></span></div>
+<span class="cap" style="margin-top: 8px">Métodos en caja</span>
+<div style="display: flex; flex-wrap: wrap; gap: 8px"><span class="badge b-done">Efectivo</span><span class="badge b-done">Tarjeta (datáfono)</span><span class="badge b-done">Nequi</span><span class="badge b-done">Daviplata</span><span class="badge b-done">PSE</span></div>
+</section>
+</sc-if>
+
+<sc-if value="{{sPriv}}" hint-placeholder-val="{{ false }}">
+<section class="card" style="padding: 24px; display: flex; flex-direction: column; gap: 14px">
+<h2 style="font-size: 18px; line-height: 26px">Privacidad y datos personales</h2>
+<p class="mut">Cumplimiento de la Ley 1581 de 2012. Los datos de salud se guardan cifrados y cada acceso queda registrado.</p>
+<label class="lbl">Enlace a tu política de tratamiento de datos<input class="in" value="yiyispa.co/privacidad"></label>
+<span class="cap" style="margin-top: 6px">Solicitudes de clientes sobre sus datos</span>
+<div style="overflow-x: auto"><table class="tbl" style="min-width: 560px">
+<thead><tr><th>Fecha</th><th>Cliente</th><th>Pide</th><th>Plazo</th><th>Estado</th></tr></thead>
+<tbody>
+<tr><td>20 oct</td><td>Jimena Molina</td><td>Copia de sus datos</td><td>15 días hábiles</td><td><span class="badge b-pend">En revisión</span></td></tr>
+<tr><td>2 oct</td><td>Carlos Díaz</td><td>Eliminar sus datos</td><td>Cumplido</td><td><span class="badge b-done">Resuelta</span></td></tr>
+</tbody></table></div>
+</section>
+</sc-if>
+
+</div>
+</div>
+
+</main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1300}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { sec: 'neg' }; }
+  renderVals() {
+    const sec = this.state.sec;
+    const secs = [['neg', 'Datos del negocio'], ['sedes', 'Sedes y horarios'], ['pol', 'Políticas de reserva'], ['roles', 'Usuarios y permisos'], ['fact', 'Facturación electrónica'], ['pagos', 'Pagos en línea'], ['priv', 'Privacidad']].map(([id, label]) => ({
+      label, pick: () => this.setState({ sec: id }),
+      st: 'font: inherit; text-align: left; height: 42px; padding: 0 14px; border-radius: 10px; border: 0; cursor: pointer; ' + (id === sec ? 'background: #fbe6ed; color: #a63d64; font-weight: 700' : 'background: transparent; color: #3a2a35; font-weight: 500')
+    }));
+    const hours = [['Lunes', '8:00 a. m.', '7:00 p. m.', true], ['Martes', '8:00 a. m.', '7:00 p. m.', true], ['Miércoles', '8:00 a. m.', '7:00 p. m.', true], ['Jueves', '8:00 a. m.', '7:00 p. m.', true], ['Viernes', '8:00 a. m.', '8:00 p. m.', true], ['Sábado', '8:00 a. m.', '6:00 p. m.', true], ['Domingo', '9:00 a. m.', '2:00 p. m.', false]].map(([d, a, b, on]) => ({ d, a, b, sw: on ? 'sw' : 'sw off', aria: on ? 'Abierto' : 'Cerrado' }));
+    return {
+      secs, hours,
+      sNeg: sec === 'neg', sSedes: sec === 'sedes', sPol: sec === 'pol', sRoles: sec === 'roles', sFact: sec === 'fact', sPagos: sec === 'pagos', sPriv: sec === 'priv'
+    };
+  }
+}
+</script>
+</body>
+</html>

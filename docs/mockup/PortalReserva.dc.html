@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Reservar · YiYi Spa</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#fdf8fa;color:#3a2a35;font-family:"Plus Jakarta Sans",system-ui,sans-serif;font-size:15px;line-height:23px}
+a{color:#a63d64;text-decoration:none}a:hover{color:#7d2a4a}
+h1,h2,h3,p{margin:0}
+.ttl{font-family:Fraunces,Georgia,serif;font-weight:600}
+.card{background:#fff;border:1px solid #eedfe6;border-radius:20px;box-shadow:0 1px 2px rgba(58,42,53,.04),0 4px 16px rgba(58,42,53,.05)}
+.btn{font:inherit;font-weight:600;height:48px;padding:0 22px;border-radius:14px;border:1px solid transparent;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap;text-decoration:none;box-sizing:border-box}
+.bp{background:#e8a5bb;color:#3a2a35}.bp:hover{background:#df93ad;color:#3a2a35}
+.bg{background:#fff;color:#3a2a35;border-color:#eedfe6}
+.cap{font-size:11px;line-height:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7a6672}
+.mut{color:#7a6672}
+.in{font:inherit;font-weight:400;height:46px;padding:0 14px;border:1px solid #dcc6d1;border-radius:10px;background:#fff;color:#3a2a35;box-sizing:border-box;width:100%}
+.lbl{font-size:14px;font-weight:600;display:flex;flex-direction:column;gap:6px;flex:1;min-width:0}
+.row{display:flex;justify-content:space-between;gap:12px}
+.av{width:56px;height:56px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:17px;flex:none;color:#3a2a35}
+</style>
+</helmet>
+<div style="min-height: 1000px; display: flex; flex-direction: column">
+<header style="background: #ffffff; border-bottom: 1px solid #eedfe6">
+<div style="max-width: 1160px; margin: 0 auto; padding: 0 24px; height: 72px; display: flex; align-items: center; gap: 20px; box-sizing: border-box; width: 100%">
+<a href="PortalLocal.dc.html" style="display: flex; align-items: center; gap: 10px; color: #3a2a35"><span style="width: 34px; height: 34px; border-radius: 10px; background: #f4c6d4; display: inline-flex; align-items: center; justify-content: center; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 18px">Y</span><span class="ttl" style="font-size: 22px">YiYi Spa</span></a>
+<span class="mut" style="font-size: 14px">Sede Chapinero</span>
+<span class="mut" style="margin-left: auto; font-size: 14px">Reserva en menos de 3 minutos</span>
+</div>
+</header>
+
+<div style="max-width: 1160px; margin: 0 auto; padding: 28px 24px 56px; box-sizing: border-box; width: 100%; display: flex; flex-direction: column; gap: 24px">
+
+<sc-if value="{{notDone}}" hint-placeholder-val="{{ true }}">
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px">
+<sc-for list="{{steps}}" as="s" hint-placeholder-count="4">
+<button onClick="{{s.go}}" style="{{s.st}}"><span style="{{s.num}}">{{s.n}}</span><span style="display: flex; flex-direction: column; text-align: left; line-height: 18px"><span style="font-size: 12px; opacity: .8">Paso {{s.n}}</span><span style="font-weight: 700">{{s.label}}</span></span></button>
+</sc-for>
+</div>
+</sc-if>
+
+<sc-if value="{{notDone}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+<section class="card" style="flex: 999 1 520px; min-width: 0; padding: 26px; display: flex; flex-direction: column; gap: 18px">
+
+<sc-if value="{{s1}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<h1 class="ttl" style="font-size: 28px; line-height: 34px">¿Qué te quieres hacer?</h1>
+<p class="mut">Puedes elegir varios servicios para la misma visita.</p>
+<sc-for list="{{svcs}}" as="v" hint-placeholder-count="6">
+<button onClick="{{v.toggle}}" style="{{v.st}}">
+<span style="{{v.dot}}"></span>
+<span style="display: flex; flex-direction: column; text-align: left; flex: 1"><span style="font-weight: 700">{{v.n}}</span><span class="mut" style="font-size: 13px">{{v.t}}</span></span>
+<span style="font-weight: 700">{{v.p}}</span>
+<span style="{{v.box}}">{{v.mark}}</span>
+</button>
+</sc-for>
+</div>
+</sc-if>
+
+<sc-if value="{{s2}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<h1 class="ttl" style="font-size: 28px; line-height: 34px">¿Con quién?</h1>
+<p class="mut">Si eliges “cualquier profesional” verás más horarios.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px">
+<sc-for list="{{pros}}" as="p" hint-placeholder-count="4">
+<button onClick="{{p.pick}}" style="{{p.st}}"><span class="av" style="{{p.avst}}">{{p.ini}}</span><span style="font-weight: 700">{{p.n}}</span><span class="mut" style="font-size: 13px">{{p.r}}</span></button>
+</sc-for>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{s3}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<h1 class="ttl" style="font-size: 28px; line-height: 34px">¿Cuándo te queda bien?</h1>
+<div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 8px">
+<sc-for list="{{days}}" as="d" hint-placeholder-count="7">
+<button onClick="{{d.pick}}" style="{{d.st}}"><span style="font-size: 12px; font-weight: 600">{{d.w}}</span><span class="ttl" style="font-size: 22px; line-height: 26px">{{d.n}}</span><span style="font-size: 11px">{{d.free}}</span></button>
+</sc-for>
+</div>
+<span class="cap">Horarios disponibles · {{dayLbl}}</span>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 8px">
+<sc-for list="{{slots}}" as="t" hint-placeholder-count="8"><button onClick="{{t.pick}}" style="{{t.st}}">{{t.t}}</button></sc-for>
+</div>
+<span class="mut" style="font-size: 13px">Solo te mostramos horas en las que el local está abierto, la profesional está en turno y la estación está libre.</span>
+</div>
+</sc-if>
+
+<sc-if value="{{s4}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<h1 class="ttl" style="font-size: 28px; line-height: 34px">Tus datos y depósito</h1>
+<div style="display: flex; gap: 12px; flex-wrap: wrap"><label class="lbl">Nombre completo<input class="in" value="Valentina Gómez"></label><label class="lbl">Celular (WhatsApp)<input class="in" value="310 456 7821"></label></div>
+<label class="lbl">Correo<input class="in" value="vale.gomez@correo.com"></label>
+<label class="lbl">¿Alguna alergia o algo que debamos saber?<input class="in" value="Alergia al acrilato"></label>
+<span class="cap" style="margin-top: 4px">Paga el depósito del 30%</span>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+<sc-for list="{{pays}}" as="m" hint-placeholder-count="3"><button onClick="{{m.pick}}" style="{{m.st}}">{{m.n}}</button></sc-for>
+</div>
+<label style="display: flex; gap: 10px; align-items: flex-start; font-size: 14px"><input type="checkbox" checked style="width: 18px; height: 18px; accent-color: #6b52a8; margin-top: 2px">Acepto la política de cancelación y el tratamiento de mis datos personales (Ley 1581 de 2012).</label>
+<label style="display: flex; gap: 10px; align-items: flex-start; font-size: 14px"><input type="checkbox" style="width: 18px; height: 18px; accent-color: #6b52a8; margin-top: 2px">Quiero recibir promociones por WhatsApp.</label>
+</div>
+</sc-if>
+
+<div style="display: flex; gap: 12px; justify-content: space-between; padding-top: 8px; border-top: 1px solid #f3e8ee">
+<button class="btn bg" onClick="{{back}}">Atrás</button>
+<button class="btn bp" onClick="{{next}}">{{nextLbl}}</button>
+</div>
+</section>
+
+<aside class="card" style="flex: 1 1 300px; max-width: 360px; padding: 22px; display: flex; flex-direction: column; gap: 12px">
+<span class="cap">Tu reserva</span>
+<sc-for list="{{chosen}}" as="c" hint-placeholder-count="2"><div class="row"><span>{{c.n}}</span><span style="font-weight: 600">{{c.p}}</span></div></sc-for>
+<div class="row"><span class="mut">Profesional</span><span style="font-weight: 600">{{proName}}</span></div>
+<div class="row"><span class="mut">Fecha y hora</span><span style="font-weight: 600">{{whenTxt}}</span></div>
+<div class="row"><span class="mut">Duración</span><span style="font-weight: 600">{{durTxt}}</span></div>
+<div class="row" style="padding-top: 10px; border-top: 1px dashed #dcc6d1; font-size: 17px"><span style="font-weight: 700">Total</span><span style="font-weight: 700">{{totalTxt}}</span></div>
+<div class="row" style="color: #6b52a8; font-weight: 600"><span>Depósito hoy (30%)</span><span>{{depTxt}}</span></div>
+<span class="mut" style="font-size: 13px">El resto lo pagas en el local. Puedes cancelar sin costo hasta 6 horas antes.</span>
+</aside>
+</div>
+</sc-if>
+
+<sc-if value="{{done}}" hint-placeholder-val="{{ false }}">
+<section class="card" style="max-width: 620px; margin: 24px auto 0; padding: 36px; display: flex; flex-direction: column; gap: 16px; align-items: center; text-align: center">
+<span style="width: 72px; height: 72px; border-radius: 50%; background: #e6f6ee; display: inline-flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#2f7a57" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></span>
+<h1 class="ttl" style="font-size: 32px; line-height: 38px">¡Listo, Valentina!</h1>
+<p class="mut">Tu cita quedó confirmada para el <b style="color: #3a2a35">{{whenTxt}}</b> con <b style="color: #3a2a35">{{proName}}</b>. Te enviamos los detalles por WhatsApp y te recordaremos 24 h y 2 h antes.</p>
+<div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center">
+<button class="btn bg">Agregar a mi calendario</button>
+<a href="PortalCuenta.dc.html" class="btn bp">Ver mis citas</a>
+</div>
+<button onClick="{{restart}}" style="font: inherit; border: 0; background: transparent; color: #a63d64; font-weight: 600; cursor: pointer">Hacer otra reserva</button>
+</section>
+</sc-if>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { step: 1, sel: { semi: true }, pro: 'LT', day: 1, slot: '10:30 a. m.', pay: 'Nequi' };
+  }
+  renderVals() {
+    const fmt = (n) => '$ ' + Math.round(n).toLocaleString('es-CO');
+    const st = this.state;
+    const labels = ['Servicio', 'Profesional', 'Fecha y hora', 'Datos y pago'];
+    const steps = labels.map((label, i) => {
+      const n = i + 1, cur = n === st.step, past = n < st.step;
+      return {
+        n, label, go: () => { if (past) this.setState({ step: n }); },
+        st: 'font: inherit; display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 14px; cursor: ' + (past ? 'pointer' : 'default') + '; color: #3a2a35; ' + (cur ? 'background: #fbe6ed; border: 1.5px solid #e8a5bb' : past ? 'background: #ffffff; border: 1px solid #c5ead7' : 'background: #ffffff; border: 1px solid #eedfe6; color: #7a6672'),
+        num: 'width: 30px; height: 30px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; flex: none; ' + (cur ? 'background: #e8a5bb' : past ? 'background: #c5ead7' : 'background: #f7eff3')
+      };
+    });
+    const list = [['semi', 'Manicure semipermanente', 45, 55000, '#f4c6d4'], ['dis', 'Diseño de uñas', 20, 25000, '#f4c6d4'], ['pedi', 'Pedicure spa', 60, 70000, '#c5ead7'], ['mas', 'Masaje relajante', 60, 120000, '#d9cdf3'], ['fac', 'Limpieza facial profunda', 60, 95000, '#c9e2f5'], ['lift', 'Lifting de pestañas', 45, 90000, '#fbd9bf']];
+    let total = 0, dur = 0; const chosen = [];
+    const svcs = list.map(([id, n, t, p, c]) => {
+      const on = !!st.sel[id];
+      if (on) { total += p; dur += t; chosen.push({ n, p: fmt(p) }); }
+      return {
+        n, t: t + ' min', p: fmt(p), mark: on ? '✓' : '',
+        dot: 'width: 12px; height: 40px; border-radius: 6px; flex: none; background: ' + c,
+        box: 'width: 26px; height: 26px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; flex: none; ' + (on ? 'background: #a63d64; color: #ffffff' : 'border: 1.5px solid #dcc6d1'),
+        st: 'font: inherit; display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 16px; cursor: pointer; color: #3a2a35; ' + (on ? 'background: #fdf3f6; border: 1.5px solid #e8a5bb' : 'background: #ffffff; border: 1px solid #eedfe6'),
+        toggle: () => this.setState({ sel: Object.assign({}, st.sel, { [id]: !on }) })
+      };
+    });
+    const P = [['ANY', 'Cualquier profesional', 'Más horarios disponibles', '#fdf8fa'], ['LT', 'Laura Torres', 'Manicurista · 4,9', '#f4c6d4'], ['DR', 'Daniela Ruiz', 'Pedicurista · 4,7', '#c5ead7'], ['KS', 'Karina Suárez', 'Vuelve el 3 de nov', '#efe9fb']];
+    const pros = P.map(([id, n, r, bg]) => ({
+      n, r, ini: id === 'ANY' ? '✦' : id, avst: 'background: ' + bg + (id === 'ANY' ? '; border: 1.5px dashed #dcc6d1' : ''),
+      st: 'font: inherit; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 18px 12px; border-radius: 16px; cursor: pointer; color: #3a2a35; ' + (id === st.pro ? 'background: #fdf3f6; border: 1.5px solid #e8a5bb' : 'background: #ffffff; border: 1px solid #eedfe6') + (id === 'KS' ? '; opacity: .5' : ''),
+      pick: () => { if (id !== 'KS') this.setState({ pro: id }); }
+    }));
+    const D = [['Vie', 23, 2], ['Sáb', 24, 6], ['Dom', 25, 3], ['Lun', 26, 9], ['Mar', 27, 11], ['Mié', 28, 8], ['Jue', 29, 7]];
+    const days = D.map(([w, n, f], i) => ({
+      w, n, free: f + ' libres',
+      st: 'font: inherit; display: flex; flex-direction: column; align-items: center; padding: 10px 4px; border-radius: 14px; cursor: pointer; color: #3a2a35; ' + (i === st.day ? 'background: #3a2a35; color: #ffffff; border: 1px solid #3a2a35' : 'background: #ffffff; border: 1px solid #eedfe6'),
+      pick: () => this.setState({ day: i, slot: null })
+    }));
+    const extra = st.pro === 'ANY' ? ['12:00 m.', '4:30 p. m.'] : [];
+    const times = ['9:00 a. m.', '10:30 a. m.', '11:00 a. m.', '2:00 p. m.', '3:30 p. m.', '5:00 p. m.'].concat(extra).slice(0, Math.max(2, D[st.day][2]));
+    const slots = times.map((t) => ({
+      t, pick: () => this.setState({ slot: t }),
+      st: 'font: inherit; font-weight: 600; height: 46px; border-radius: 12px; cursor: pointer; ' + (t === st.slot ? 'background: #6b52a8; color: #ffffff; border: 1px solid #6b52a8' : 'background: #ffffff; color: #3a2a35; border: 1px solid #dcc6d1')
+    }));
+    const pays = ['PSE', 'Nequi', 'Tarjeta'].map((n) => ({
+      n, pick: () => this.setState({ pay: n }),
+      st: 'font: inherit; font-weight: 600; height: 48px; border-radius: 12px; cursor: pointer; ' + (n === st.pay ? 'background: #3a2a35; color: #ffffff; border: 1px solid #3a2a35' : 'background: #ffffff; color: #3a2a35; border: 1px solid #eedfe6')
+    }));
+    const h = Math.floor(dur / 60), m = dur % 60;
+    const proName = P.find((p) => p[0] === st.pro)[1];
+    const dd = D[st.day];
+    return {
+      steps, svcs, pros, days, slots, pays, chosen,
+      s1: st.step === 1, s2: st.step === 2, s3: st.step === 3, s4: st.step === 4,
+      done: st.step === 5, notDone: st.step < 5,
+      dayLbl: dd[0] + ' ' + dd[1] + ' de octubre',
+      proName,
+      whenTxt: st.slot ? dd[0].toLowerCase() + ' ' + dd[1] + ' oct · ' + st.slot : 'Por elegir',
+      durTxt: dur ? (h ? h + ' h ' : '') + (m ? m + ' min' : '') : '—',
+      totalTxt: fmt(total), depTxt: fmt(total * 0.3),
+      nextLbl: st.step === 4 ? 'Pagar ' + fmt(total * 0.3) + ' y confirmar' : 'Continuar',
+      back: () => this.setState({ step: Math.max(1, st.step - 1) }),
+      next: () => this.setState({ step: Math.min(5, st.step + 1) }),
+      restart: () => this.setState({ step: 1 })
+    };
+  }
+}
+</script>
+</body>
+</html>

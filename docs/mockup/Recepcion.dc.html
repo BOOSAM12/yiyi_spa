@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Inicio de recepción · YiYi Spa</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#fdf8fa;color:#3a2a35;font-family:"Plus Jakarta Sans",system-ui,sans-serif;font-size:14px;line-height:21px}
+a{color:#a63d64;text-decoration:none}a:hover{color:#7d2a4a}
+h1,h2,h3,p{margin:0}
+.ttl{font-family:Fraunces,Georgia,serif;font-weight:600}
+.card{background:#fff;border:1px solid #eedfe6;border-radius:18px;box-shadow:0 1px 2px rgba(58,42,53,.04),0 4px 16px rgba(58,42,53,.05)}
+.btn{font:inherit;font-weight:600;height:44px;padding:0 18px;border-radius:12px;border:1px solid transparent;cursor:pointer;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;text-decoration:none;box-sizing:border-box}
+.bp{background:#e8a5bb;color:#3a2a35}.bp:hover{background:#df93ad;color:#3a2a35}
+.bs{background:#efe9fb;color:#6b52a8;border-color:#d9cdf3}.bs:hover{color:#6b52a8}
+.bg{background:#fff;color:#7a6672;border-color:#eedfe6}
+.sm{height:34px;padding:0 12px;font-size:13px;border-radius:10px}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;line-height:22px;padding:0 10px;border-radius:999px;white-space:nowrap}
+.badge:before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.cap{font-size:11px;line-height:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7a6672}
+.mut{color:#7a6672}
+.av{width:38px;height:38px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex:none;color:#3a2a35}
+.overlay{position:absolute;left:0;right:0;top:64px;bottom:0;background:rgba(58,42,53,.18);display:flex;justify-content:flex-end;z-index:20}
+.panel{width:440px;max-width:100%;background:#fff;border-radius:18px 0 0 18px;box-shadow:-12px 0 40px rgba(58,42,53,.12);display:flex;flex-direction:column;height:100%;box-sizing:border-box}
+.ph{padding:20px 24px;border-bottom:1px solid #eedfe6;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.pb{padding:20px 24px;display:flex;flex-direction:column;gap:14px;overflow:auto;flex:1}.pb>*{flex:none}
+.pf{padding:16px 24px;border-top:1px solid #eedfe6;display:flex;justify-content:flex-end;gap:12px}
+.xbtn{width:40px;height:40px;border-radius:12px;border:1px solid #eedfe6;background:#fff;color:#7a6672;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+.in{font:inherit;font-weight:400;height:40px;padding:0 12px;border:1px solid #dcc6d1;border-radius:8px;background:#fff;color:#3a2a35;box-sizing:border-box;width:100%}
+.lbl{font-size:13px;font-weight:600;display:flex;flex-direction:column;gap:6px;flex:1;min-width:0}
+.item{display:flex;align-items:center;gap:12px;padding:12px;border-radius:14px;border:1px solid #eedfe6;background:#fff}
+</style>
+</helmet>
+<div style="position: relative; min-height: 1100px; display: flex; flex-direction: column">
+<dc-import name="TopBar" hint-size="100%,64px" who="Paola Méndez" rol="Recepcionista" initials="PM"></dc-import>
+<div style="display: flex; flex-wrap: wrap; flex: 1; align-items: stretch">
+<dc-import name="NavRecepcion" active="inicio" hint-size="248px,1036px"></dc-import>
+<main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 28px 32px 48px; display: flex; flex-direction: column; gap: 22px">
+
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h1 class="ttl" style="font-size: 30px; line-height: 38px">Buenos días, Paola</h1>
+<p class="mut">Viernes 23 de octubre · 10:40 a. m. · Sede Chapinero</p>
+</div>
+<div style="margin-left: auto; display: flex; gap: 12px; flex-wrap: wrap">
+<button class="btn bs" onClick="{{openWalk}}">Cliente sin cita</button>
+<a href="POS.dc.html" class="btn bs">Cobrar</a>
+<button class="btn bp" onClick="{{openNew}}">+ Nueva cita</button>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px">
+<div class="card" style="padding: 18px; display: flex; flex-direction: column; gap: 4px"><span class="cap">Por llegar hoy</span><span class="ttl" style="font-size: 26px; line-height: 32px">{{nArr}}</span><span class="mut" style="font-size: 13px">la próxima en 20 min</span></div>
+<div class="card" style="padding: 18px; display: flex; flex-direction: column; gap: 4px; background: #fdeee2; border-color: #fbd9bf"><span class="cap" style="color: #9a5418">En sala de espera</span><span class="ttl" style="font-size: 26px; line-height: 32px">{{nWait}}</span><span style="font-size: 13px; font-weight: 600; color: #9a5418">{{waitNote}}</span></div>
+<div class="card" style="padding: 18px; display: flex; flex-direction: column; gap: 4px"><span class="cap">En servicio ahora</span><span class="ttl" style="font-size: 26px; line-height: 32px">{{nServ}}</span><span class="mut" style="font-size: 13px">de 4 profesionales</span></div>
+<div class="card" style="padding: 18px; display: flex; flex-direction: column; gap: 4px; background: #fbe6ed; border-color: #f4c6d4"><span class="cap" style="color: #a63d64">Por cobrar</span><span class="ttl" style="font-size: 26px; line-height: 32px">3</span><span style="font-size: 13px; font-weight: 600; color: #a63d64">$ 180.000</span></div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; align-items: start">
+
+<section class="card" style="padding: 18px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: center"><h2 style="font-size: 16px; line-height: 24px">Próximas llegadas</h2><a href="Agenda.dc.html" style="margin-left: auto; font-size: 13px; font-weight: 600">Ver agenda</a></div>
+<sc-for list="{{arrivals}}" as="a" hint-placeholder-count="4">
+<div class="item">
+<span style="width: 48px; font-weight: 700; font-size: 13px">{{a.t}}</span>
+<span class="av" style="{{a.avst}}">{{a.ini}}</span>
+<div style="display: flex; flex-direction: column; line-height: 18px; flex: 1; min-width: 0"><span style="font-weight: 600">{{a.c}}</span><span class="mut" style="font-size: 12px">{{a.s}}</span></div>
+<span class="badge" style="{{a.bst}}">{{a.status}}</span>
+<button class="btn bp sm" onClick="{{a.checkin}}">Llegó</button>
+</div>
+</sc-for>
+<sc-if value="{{noArr}}" hint-placeholder-val="{{ false }}"><span class="mut">No hay más llegadas en la próxima hora.</span></sc-if>
+</section>
+
+<section class="card" style="padding: 18px; display: flex; flex-direction: column; gap: 10px">
+<h2 style="font-size: 16px; line-height: 24px">Sala de espera</h2>
+<sc-for list="{{waiting}}" as="w" hint-placeholder-count="2">
+<div class="item" style="background: #fdf8fa">
+<span class="av" style="{{w.avst}}">{{w.ini}}</span>
+<div style="display: flex; flex-direction: column; line-height: 18px; flex: 1; min-width: 0"><span style="font-weight: 600">{{w.c}}</span><span class="mut" style="font-size: 12px">{{w.s}}</span></div>
+<span style="font-size: 13px; font-weight: 700; color: #9a5418">{{w.wait}}</span>
+<button class="btn bs sm" onClick="{{w.start}}">Pasar</button>
+</div>
+</sc-for>
+<sc-if value="{{noWait}}" hint-placeholder-val="{{ false }}"><span class="mut">Nadie esperando.</span></sc-if>
+<div style="padding: 10px 12px; border-radius: 12px; background: #fde8e6; color: #b23b34; font-size: 13px; font-weight: 600">Valentina Gómez es alérgica al acrilato: ya se avisó a Laura.</div>
+</section>
+
+<section class="card" style="padding: 18px; display: flex; flex-direction: column; gap: 10px">
+<h2 style="font-size: 16px; line-height: 24px">Equipo en este momento</h2>
+<sc-for list="{{team}}" as="e" hint-placeholder-count="4">
+<div style="display: flex; align-items: center; gap: 10px">
+<span class="av" style="{{e.avst}}">{{e.ini}}</span>
+<div style="display: flex; flex-direction: column; line-height: 18px; flex: 1"><span style="font-weight: 600">{{e.n}}</span><span class="mut" style="font-size: 12px">{{e.now}}</span></div>
+<span class="badge" style="{{e.bst}}">{{e.status}}</span>
+</div>
+</sc-for>
+</section>
+
+<section class="card" style="padding: 18px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: center"><h2 style="font-size: 16px; line-height: 24px">Terminados por cobrar</h2><a href="POS.dc.html" style="margin-left: auto; font-size: 13px; font-weight: 600">Ir a caja</a></div>
+<div class="item"><span class="av" style="background: #c9e2f5">IM</span><div style="display: flex; flex-direction: column; line-height: 18px; flex: 1"><span style="font-weight: 600">Isabel Mora</span><span class="mut" style="font-size: 12px">Manicure semi · Laura T.</span></div><span style="font-weight: 700">$ 55.000</span></div>
+<div class="item"><span class="av" style="background: #c5ead7">SL</span><div style="display: flex; flex-direction: column; line-height: 18px; flex: 1"><span style="font-weight: 600">Sara León</span><span class="mut" style="font-size: 12px">Pedicure spa · Daniela R. · depósito pagado</span></div><span style="font-weight: 700">$ 49.000</span></div>
+<div class="item"><span class="av" style="background: #d9cdf3">LG</span><div style="display: flex; flex-direction: column; line-height: 18px; flex: 1"><span style="font-weight: 600">Lorena Gil</span><span class="mut" style="font-size: 12px">Ritual spa · Andrea P. · membresía Spa Total</span></div><span style="font-weight: 700">$ 76.000</span></div>
+</section>
+
+</div>
+</main>
+</div>
+
+<sc-if value="{{showNew}}" hint-placeholder-val="{{ false }}">
+<div class="overlay"><dc-import name="PanelNuevaCita" on-close="{{close}}" hint-size="440px,100%"></dc-import></div>
+</sc-if>
+
+<sc-if value="{{showWalk}}" hint-placeholder-val="{{ false }}">
+<div class="overlay">
+<aside class="panel" aria-label="Cliente sin cita">
+<div class="ph"><div style="display: flex; flex-direction: column"><span style="font-size: 20px; line-height: 28px; font-weight: 700">Cliente sin cita</span><span class="mut" style="font-size: 13px">Te mostramos quién está libre ahora mismo</span></div><button class="xbtn" aria-label="Cerrar" onClick="{{close}}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+<div class="pb">
+<label class="lbl">Celular o nombre<input class="in" placeholder="Busca o crea un cliente"></label>
+<label class="lbl">Servicio<select class="in"><option>Diseño de cejas · 30 min</option><option>Manicure tradicional · 35 min</option><option>Masaje de pies · 15 min</option></select></label>
+<span style="font-size: 13px; font-weight: 600">Disponible ahora</span>
+<div class="item" style="border-color: #c5ead7; background: #e6f6ee"><span class="av" style="background: #c9e2f5">ML</span><div style="display: flex; flex-direction: column; flex: 1"><span style="font-weight: 600">Mariana López</span><span class="mut" style="font-size: 12px">Libre de 11:00 a 12:00 · Cabina 2</span></div><span style="font-weight: 700; color: #2f7a57">11:00</span></div>
+<div class="item"><span class="av" style="background: #c5ead7">DR</span><div style="display: flex; flex-direction: column; flex: 1"><span style="font-weight: 600">Daniela Ruiz</span><span class="mut" style="font-size: 12px">Libre después de 12:00</span></div><span style="font-weight: 700">12:00</span></div>
+<label style="display: flex; gap: 10px; align-items: center; font-size: 13px; font-weight: 600"><input type="checkbox" checked style="width: 18px; height: 18px; accent-color: #6b52a8">Hacer checklist de bioseguridad al iniciar</label>
+</div>
+<div class="pf"><button class="btn bg" onClick="{{close}}">Cancelar</button><button class="btn bp" onClick="{{close}}">Asignar y avisar</button></div>
+</aside>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1100}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { arrived: {}, started: {}, panel: null }; }
+  renderVals() {
+    const st = this.state;
+    const people = [
+      ['c1', '11:00', 'Camila Rojas', 'Pedicure spa · Daniela R.', '#c5ead7', 'conf'],
+      ['c2', '11:30', 'Juliana Díaz', 'Uñas acrílicas · Laura T. · primera vez', '#f4c6d4', 'conf'],
+      ['c3', '11:30', 'Sofía Martínez', 'Masaje relajante · Andrea P.', '#d9cdf3', 'pend'],
+      ['c4', '12:00', 'Ana Pardo', 'Limpieza facial · Mariana L.', '#c9e2f5', 'conf']
+    ];
+    const S = { conf: ['Confirmó', 'background: #e8f2fb; color: #2f6a99'], pend: ['Sin confirmar', 'background: #fdeee2; color: #9a5418'] };
+    const ini = (n) => n.split(' ').map((w) => w[0]).join('').slice(0, 2);
+    const arrivals = people.filter((p) => !st.arrived[p[0]]).map(([id, t, c, s, bg, k]) => ({
+      t, c, s, ini: ini(c), avst: 'background: ' + bg, status: S[k][0], bst: S[k][1],
+      checkin: () => this.setState({ arrived: Object.assign({}, st.arrived, { [id]: true }) })
+    }));
+    const base = [['w0', 'Mónica Reyes', 'Diseño de cejas · Mariana L.', '#fbd9bf', '12 min']];
+    const waitList = base.concat(people.filter((p) => st.arrived[p[0]]).map(([id, t, c, s, bg]) => [id, c, s, bg, 'Recién llegó']));
+    const waiting = waitList.filter((w) => !st.started[w[0]]).map(([id, c, s, bg, wait]) => ({
+      c, s, wait, ini: ini(c), avst: 'background: ' + bg,
+      start: () => this.setState({ started: Object.assign({}, st.started, { [id]: true }) })
+    }));
+    const team = [
+      ['LT', 'Laura Torres', 'Con Valentina G. hasta 11:15', 'busy', '#f4c6d4'],
+      ['DR', 'Daniela Ruiz', 'Libre hasta 11:00', 'free', '#c5ead7'],
+      ['AP', 'Andrea Patiño', 'Libre hasta 11:30', 'free', '#d9cdf3'],
+      ['ML', 'Mariana López', 'En descanso, vuelve 11:00', 'break', '#c9e2f5']
+    ].map(([i, n, now, k, bg]) => ({
+      ini: i, n, now, avst: 'background: ' + bg,
+      status: { busy: 'Ocupada', free: 'Libre', break: 'Descanso' }[k],
+      bst: { busy: 'background: #efe9fb; color: #6b52a8', free: 'background: #e6f6ee; color: #2f7a57', break: 'background: #fdeee2; color: #9a5418' }[k]
+    }));
+    const nStarted = Object.keys(st.started).length;
+    return {
+      arrivals, waiting, team,
+      nArr: arrivals.length, nWait: waiting.length, nServ: 1 + nStarted,
+      waitNote: waiting.length ? 'la que más espera: 12 min' : 'sala vacía',
+      noArr: arrivals.length === 0, noWait: waiting.length === 0,
+      showNew: st.panel === 'new', showWalk: st.panel === 'walk',
+      openNew: () => this.setState({ panel: 'new' }),
+      openWalk: () => this.setState({ panel: 'walk' }),
+      close: () => this.setState({ panel: null })
+    };
+  }
+}
+</script>
+</body>
+</html>

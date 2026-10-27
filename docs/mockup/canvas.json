@@ -1,0 +1,52 @@
+{
+ "v": 3,
+ "createdOnFiles": {"v": 1, "at": "2026-10-24T02:52:05Z"},
+ "title": "YiYi Spa — Mockup",
+ "launch": {"view": "canvas", "page": "negocio"},
+ "pages": [
+  {"id": "negocio", "name": "Panel del negocio"},
+  {"id": "recepcion", "name": "Recepcionista"},
+  {"id": "tecnico", "name": "Técnico"},
+  {"id": "cliente", "name": "Portal del cliente"},
+  {"id": "admin", "name": "Super Admin"},
+  {"id": "comp", "name": "Piezas compartidas"}
+ ],
+ "boards": {
+  "Main.dc.html": {"x": 0, "y": 0, "w": 1440, "h": 1100, "title": "Inicio · Dashboard", "page": "negocio", "expand": "fill", "is_interactive": true},
+  "Agenda.dc.html": {"x": 1520, "y": 0, "w": 1440, "h": 1150, "title": "Agenda + Nueva cita", "page": "negocio", "expand": "fill", "is_interactive": true},
+  "Citas.dc.html": {"x": 3040, "y": 0, "w": 1440, "h": 1100, "title": "Citas y lista de espera", "page": "negocio", "expand": "fill", "is_interactive": true},
+  "POS.dc.html": {"x": 4560, "y": 0, "w": 1440, "h": 1100, "title": "Punto de venta", "page": "negocio", "expand": "fill", "is_interactive": true},
+  "Clientes.dc.html": {"x": 6080, "y": 0, "w": 1440, "h": 1100, "title": "Clientes + Nuevo cliente", "page": "negocio", "expand": "fill", "is_interactive": true},
+  "FichaCliente.dc.html": {"x": 7600, "y": 0, "w": 1440, "h": 1300, "title": "Ficha del cliente e historial clínico", "page": "negocio", "expand": "fill", "is_interactive": true},
+  "Fidelizacion.dc.html": {"x": 9120, "y": 0, "w": 1440, "h": 1100, "title": "Fidelización y membresías", "page": "negocio", "expand": "fill", "is_interactive": true},
+  "Servicios.dc.html": {"x": 10640, "y": 0, "w": 1440, "h": 1100, "title": "Catálogo de servicios", "page": "negocio", "expand": "fill", "is_interactive": true},
+  "Personal.dc.html": {"x": 0, "y": 1700, "w": 1440, "h": 1100, "title": "Personal y horarios", "page": "negocio", "expand": "fill", "is_interactive": true},
+  "Comisiones.dc.html": {"x": 1520, "y": 1700, "w": 1440, "h": 1100, "title": "Comisiones, propinas y nómina", "page": "negocio", "expand": "fill", "is_interactive": true},
+  "Inventario.dc.html": {"x": 3040, "y": 1700, "w": 1440, "h": 1100, "title": "Inventario", "page": "negocio", "expand": "fill", "is_interactive": true},
+  "Finanzas.dc.html": {"x": 4560, "y": 1700, "w": 1440, "h": 1100, "title": "Finanzas y caja", "page": "negocio", "expand": "fill", "is_interactive": true},
+  "Reportes.dc.html": {"x": 6080, "y": 1700, "w": 1440, "h": 1100, "title": "Reportes", "page": "negocio", "expand": "fill", "is_interactive": true},
+  "Bioseguridad.dc.html": {"x": 7600, "y": 1700, "w": 1440, "h": 1100, "title": "Bioseguridad", "page": "negocio", "expand": "fill", "is_interactive": true},
+  "Notificaciones.dc.html": {"x": 9120, "y": 1700, "w": 1440, "h": 1100, "title": "Notificaciones", "page": "negocio", "expand": "fill", "is_interactive": true},
+  "Configuracion.dc.html": {"x": 10640, "y": 1700, "w": 1440, "h": 1300, "title": "Configuración del negocio", "page": "negocio", "expand": "fill", "is_interactive": true},
+  "Tecnico.dc.html": {"x": 0, "y": 0, "w": 1440, "h": 1100, "title": "Mi día (técnico)", "page": "tecnico", "expand": "fill", "is_interactive": true},
+  "PortalLocal.dc.html": {"x": 0, "y": 0, "w": 1440, "h": 1400, "title": "Página del local", "page": "cliente", "expand": "fill", "is_interactive": true},
+  "PortalReserva.dc.html": {"x": 1520, "y": 0, "w": 1440, "h": 1000, "title": "Reservar en 4 pasos", "page": "cliente", "expand": "fill", "is_interactive": true},
+  "PortalCuenta.dc.html": {"x": 3040, "y": 0, "w": 1440, "h": 1100, "title": "Mi cuenta", "page": "cliente", "expand": "fill", "is_interactive": true},
+  "SuperAdmin.dc.html": {"x": 0, "y": 0, "w": 1440, "h": 1100, "title": "Plataforma · Negocios y planes", "page": "admin", "expand": "fill", "is_interactive": true},
+  "TopBar.dc.html": {"x": 0, "y": 0, "w": 1440, "h": 64, "title": "Barra superior", "page": "comp"},
+  "NavNegocio.dc.html": {"x": 0, "y": 184, "w": 248, "h": 1000, "title": "Menú lateral", "page": "comp", "is_interactive": true},
+  "PanelNuevaCita.dc.html": {"x": 328, "y": 184, "w": 440, "h": 1000, "title": "Panel lateral · Nueva cita", "page": "comp", "is_interactive": true},
+  "Recepcion.dc.html": {"x": 0, "y": 0, "w": 1440, "h": 1100, "title": "Inicio de recepción", "page": "recepcion", "expand": "fill", "is_interactive": true},
+  "NavRecepcion.dc.html": {"x": 848, "y": 184, "w": 248, "h": 1000, "title": "Menú de recepción", "page": "comp", "is_interactive": true}
+ },
+ "order": ["Main.dc.html", "Agenda.dc.html", "Citas.dc.html", "POS.dc.html", "Clientes.dc.html", "FichaCliente.dc.html", "Fidelizacion.dc.html", "Servicios.dc.html", "Personal.dc.html", "Comisiones.dc.html", "Inventario.dc.html", "Finanzas.dc.html", "Reportes.dc.html", "Bioseguridad.dc.html", "Notificaciones.dc.html", "Configuracion.dc.html", "Tecnico.dc.html", "PortalLocal.dc.html", "PortalReserva.dc.html", "PortalCuenta.dc.html", "SuperAdmin.dc.html", "TopBar.dc.html", "NavNegocio.dc.html", "PanelNuevaCita.dc.html", "Recepcion.dc.html", "NavRecepcion.dc.html"],
+ "notes": {
+  "t1": {"x": 0, "y": -300, "text": "Operación diaria y clientes", "kind": "title1", "maxW": 12080, "page": "negocio"},
+  "t2": {"x": 0, "y": 1400, "text": "Gestión del negocio, calidad y configuración", "kind": "title1", "maxW": 12080, "page": "negocio"},
+  "t3": {"x": 0, "y": -300, "text": "Portal del cliente: descubrir, reservar y gestionar", "kind": "title1", "maxW": 4480, "page": "cliente"},
+  "t4": {"x": 0, "y": -300, "text": "Piezas compartidas por todas las pantallas", "kind": "title1", "maxW": 1100, "page": "comp"}
+ },
+ "designSystems": [
+  {"title": "YiYi Spa", "namespace": "yiyi", "artifact": "https://claude.ai/artifact/RFNMvrtnmD39uh2CqxtbE7", "version": "1792810242-1fc6", "copiedAt": "2026-10-24T02:52:05Z"}
+ ]
+}

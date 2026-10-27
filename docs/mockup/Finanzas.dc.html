@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Finanzas y caja · YiYi Spa</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#fdf8fa;color:#3a2a35;font-family:"Plus Jakarta Sans",system-ui,sans-serif;font-size:14px;line-height:21px}
+a{color:#a63d64;text-decoration:none}a:hover{color:#7d2a4a}
+h1,h2,h3,p{margin:0}
+.ttl{font-family:Fraunces,Georgia,serif;font-weight:600}
+.card{background:#fff;border:1px solid #eedfe6;border-radius:18px;box-shadow:0 1px 2px rgba(58,42,53,.04),0 4px 16px rgba(58,42,53,.05)}
+.btn{font:inherit;font-weight:600;height:44px;padding:0 18px;border-radius:12px;border:1px solid transparent;cursor:pointer;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;text-decoration:none;box-sizing:border-box}
+.bp{background:#e8a5bb;color:#3a2a35}.bp:hover{background:#df93ad;color:#3a2a35}
+.bs{background:#efe9fb;color:#6b52a8;border-color:#d9cdf3}.bs:hover{color:#6b52a8}
+.bg{background:#fff;color:#7a6672;border-color:#eedfe6}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;line-height:22px;padding:0 10px;border-radius:999px;white-space:nowrap}
+.badge:before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.b-pend{background:#fdeee2;color:#9a5418}.b-done{background:#e6f6ee;color:#2f7a57}
+.cap{font-size:11px;line-height:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7a6672}
+.mut{color:#7a6672}
+.tbl{width:100%;border-collapse:collapse}
+.tbl th{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7a6672;text-align:left;padding:12px 16px;border-bottom:1px solid #eedfe6;background:#fdf8fa;white-space:nowrap}
+.tbl td{padding:12px 16px;border-bottom:1px solid #f3e8ee;vertical-align:middle}
+.overlay{position:absolute;left:0;right:0;top:64px;bottom:0;background:rgba(58,42,53,.18);display:flex;justify-content:flex-end;z-index:20}
+.panel{width:440px;max-width:100%;background:#fff;border-radius:18px 0 0 18px;box-shadow:-12px 0 40px rgba(58,42,53,.12);display:flex;flex-direction:column;height:100%;box-sizing:border-box}
+.ph{padding:20px 24px;border-bottom:1px solid #eedfe6;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.pb{padding:20px 24px;display:flex;flex-direction:column;gap:14px;overflow:auto;flex:1}.pb>*{flex:none}
+.pf{padding:16px 24px;border-top:1px solid #eedfe6;display:flex;justify-content:flex-end;gap:12px}
+.xbtn{width:40px;height:40px;border-radius:12px;border:1px solid #eedfe6;background:#fff;color:#7a6672;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+.in{font:inherit;font-weight:400;height:40px;padding:0 12px;border:1px solid #dcc6d1;border-radius:8px;background:#fff;color:#3a2a35;box-sizing:border-box;width:100%}
+.lbl{font-size:13px;font-weight:600;display:flex;flex-direction:column;gap:6px;flex:1;min-width:0}
+.row{display:flex;justify-content:space-between;gap:12px}
+</style>
+</helmet>
+<div style="position: relative; min-height: 1100px; display: flex; flex-direction: column">
+<dc-import name="TopBar" hint-size="100%,64px"></dc-import>
+<div style="display: flex; flex-wrap: wrap; flex: 1; align-items: stretch">
+<dc-import name="NavNegocio" active="finanzas" hint-size="248px,1036px"></dc-import>
+<main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 28px 32px 48px; display: flex; flex-direction: column; gap: 22px">
+
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h1 class="ttl" style="font-size: 30px; line-height: 38px">Finanzas y caja</h1>
+<p class="mut">Octubre 2026 · Sede Chapinero · Valores en pesos colombianos</p>
+</div>
+<div style="margin-left: auto; display: flex; gap: 12px">
+<button class="btn bs" onClick="{{openCash}}">Cerrar caja</button>
+<button class="btn bp" onClick="{{openExp}}">+ Registrar gasto</button>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px">
+<div class="card" style="padding: 18px; display: flex; flex-direction: column; gap: 4px"><span class="cap">Ingresos del mes</span><span class="ttl" style="font-size: 26px; line-height: 32px">$ 48.320.000</span><span style="font-size: 13px; font-weight: 600; color: #2f7a57">+9% vs. septiembre</span></div>
+<div class="card" style="padding: 18px; display: flex; flex-direction: column; gap: 4px"><span class="cap">Gastos del mes</span><span class="ttl" style="font-size: 26px; line-height: 32px">$ 31.150.000</span><span class="mut" style="font-size: 13px">nómina, arriendo, insumos</span></div>
+<div class="card" style="padding: 18px; display: flex; flex-direction: column; gap: 4px; background: #e6f6ee; border-color: #c5ead7"><span class="cap" style="color: #2f7a57">Utilidad</span><span class="ttl" style="font-size: 26px; line-height: 32px">$ 17.170.000</span><span style="font-size: 13px; font-weight: 600; color: #2f7a57">Margen 35,5%</span></div>
+<div class="card" style="padding: 18px; display: flex; flex-direction: column; gap: 4px"><span class="cap">Cuentas por pagar</span><span class="ttl" style="font-size: 26px; line-height: 32px">$ 2.480.000</span><span style="font-size: 13px; font-weight: 600; color: #9a5418">2 vencen esta semana</span></div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 16px">
+<section class="card" style="padding: 22px; display: flex; flex-direction: column; gap: 16px; grid-column: span 2">
+<div style="display: flex; align-items: center; gap: 12px"><h2 style="font-size: 16px; line-height: 24px">Ingresos vs. gastos</h2>
+<span style="margin-left: auto; display: flex; gap: 14px; font-size: 12px; font-weight: 600" class="mut"><span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; border-radius: 3px; background: #e8a5bb"></span>Ingresos</span><span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; border-radius: 3px; background: #7a6672"></span>Gastos</span></span></div>
+<div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 18px; height: 210px; align-items: end; border-bottom: 1px solid #eedfe6">
+<sc-for list="{{months}}" as="m" hint-placeholder-count="6">
+<div style="display: flex; gap: 6px; align-items: flex-end; justify-content: center; height: 100%">
+<div style="{{m.i}}"></div><div style="{{m.g}}"></div>
+</div>
+</sc-for>
+</div>
+<div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 18px; margin-top: -8px"><sc-for list="{{months}}" as="m" hint-placeholder-count="6"><span class="cap" style="text-align: center">{{m.l}}</span></sc-for></div>
+</section>
+<section class="card" style="padding: 22px; display: flex; flex-direction: column; gap: 8px">
+<h2 style="font-size: 16px; line-height: 24px">Estado de resultados</h2>
+<div class="row"><span>Servicios</span><span style="font-weight: 600">$ 44.400.000</span></div>
+<div class="row"><span>Productos</span><span style="font-weight: 600">$ 3.920.000</span></div>
+<div class="row" style="padding-bottom: 8px; border-bottom: 1px solid #eedfe6"><span style="font-weight: 700">Ingresos</span><span style="font-weight: 700">$ 48.320.000</span></div>
+<div class="row"><span class="mut">Nómina y comisiones</span><span>$ 18.800.000</span></div>
+<div class="row"><span class="mut">Arriendo y servicios públicos</span><span>$ 6.200.000</span></div>
+<div class="row"><span class="mut">Insumos y productos</span><span>$ 4.150.000</span></div>
+<div class="row"><span class="mut">Marketing</span><span>$ 1.200.000</span></div>
+<div class="row"><span class="mut">Otros</span><span>$ 800.000</span></div>
+<div class="row" style="padding-top: 8px; border-top: 1px solid #eedfe6; font-size: 16px"><span style="font-weight: 700">Utilidad</span><span style="font-weight: 700; color: #2f7a57">$ 17.170.000</span></div>
+<span class="mut" style="font-size: 12px; margin-top: 6px">Campaña Instagram de octubre: costó $ 1.200.000 y trajo 38 clientes nuevas ($ 3,4 M en ventas). Retorno: 2,8 veces.</span>
+</section>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 16px">
+<section class="card" style="padding: 22px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: center"><h2 style="font-size: 16px; line-height: 24px">Caja de hoy</h2><span class="badge b-done" style="margin-left: auto">Abierta 8:02 a. m.</span></div>
+<div class="row"><span class="mut">Base inicial</span><span>$ 200.000</span></div>
+<div class="row"><span class="mut">Efectivo</span><span>$ 640.000</span></div>
+<div class="row"><span class="mut">Tarjeta</span><span>$ 980.000</span></div>
+<div class="row"><span class="mut">Nequi / Daviplata</span><span>$ 610.000</span></div>
+<div class="row"><span class="mut">PSE (depósitos online)</span><span>$ 250.000</span></div>
+<div class="row"><span class="mut">Salidas de caja</span><span style="color: #b23b34">−$ 45.000</span></div>
+<div class="row" style="padding-top: 8px; border-top: 1px dashed #dcc6d1; font-weight: 700"><span>Efectivo esperado en caja</span><span>$ 795.000</span></div>
+</section>
+<section class="card" style="overflow-x: auto; grid-column: span 2">
+<div style="padding: 18px 20px"><h2 style="font-size: 16px; line-height: 24px">Gastos recientes</h2></div>
+<table class="tbl" style="min-width: 640px">
+<thead><tr><th>Fecha</th><th>Concepto</th><th>Categoría</th><th>Pago</th><th>Valor</th><th>Estado</th></tr></thead>
+<tbody>
+<tr><td>23 oct</td><td>Compra acetona y toallas</td><td class="mut">Insumos</td><td class="mut">Efectivo</td><td style="font-weight: 600">$ 45.000</td><td><span class="badge b-done">Pagado</span></td></tr>
+<tr><td>22 oct</td><td>Distribuidora Nail Pro · factura 8812</td><td class="mut">Insumos</td><td class="mut">Transferencia</td><td style="font-weight: 600">$ 1.380.000</td><td><span class="badge b-pend">Vence 30 oct</span></td></tr>
+<tr><td>20 oct</td><td>Pauta Instagram</td><td class="mut">Marketing</td><td class="mut">Tarjeta</td><td style="font-weight: 600">$ 400.000</td><td><span class="badge b-done">Pagado</span></td></tr>
+<tr><td>15 oct</td><td>Nómina 1ª quincena</td><td class="mut">Nómina</td><td class="mut">Transferencia</td><td style="font-weight: 600">$ 9.120.000</td><td><span class="badge b-done">Pagado</span></td></tr>
+<tr><td>5 oct</td><td>Arriendo local Chapinero</td><td class="mut">Arriendo</td><td class="mut">Transferencia</td><td style="font-weight: 600">$ 4.800.000</td><td><span class="badge b-done">Pagado</span></td></tr>
+</tbody>
+</table>
+</section>
+</div>
+
+</main>
+</div>
+
+<sc-if value="{{showExp}}" hint-placeholder-val="{{ false }}">
+<div class="overlay">
+<aside class="panel" aria-label="Registrar gasto">
+<div class="ph"><span style="font-size: 20px; line-height: 28px; font-weight: 700">Registrar gasto</span><button class="xbtn" aria-label="Cerrar" onClick="{{close}}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+<div class="pb">
+<label class="lbl">Concepto<input class="in" placeholder="Ej. Compra de algodón"></label>
+<div style="display: flex; gap: 12px"><label class="lbl">Valor<input class="in" placeholder="$ 0"></label><label class="lbl">Fecha<input class="in" type="date" value="2026-10-23"></label></div>
+<div style="display: flex; gap: 12px"><label class="lbl">Categoría<select class="in"><option>Insumos</option><option>Arriendo</option><option>Servicios públicos</option><option>Nómina</option><option>Marketing</option><option>Equipos</option><option>Otros</option></select></label><label class="lbl">Método de pago<select class="in"><option>Efectivo (sale de caja)</option><option>Transferencia</option><option>Tarjeta</option></select></label></div>
+<label class="lbl">Proveedor (opcional)<input class="in" placeholder="Nombre o NIT"></label>
+<label class="lbl">Estado<select class="in"><option>Pagado</option><option>Por pagar</option></select></label>
+<div style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 13px; font-weight: 600">Soporte</span><button style="height: 72px; border-radius: 12px; border: 1.5px dashed #dcc6d1; background: #ffffff; color: #7a6672; font: inherit; font-weight: 600; cursor: pointer">+ Adjuntar factura o foto</button></div>
+</div>
+<div class="pf"><button class="btn bg" onClick="{{close}}">Cancelar</button><button class="btn bp" onClick="{{close}}">Guardar gasto</button></div>
+</aside>
+</div>
+</sc-if>
+
+<sc-if value="{{showCash}}" hint-placeholder-val="{{ false }}">
+<div class="overlay">
+<aside class="panel" aria-label="Cierre de caja">
+<div class="ph"><div style="display: flex; flex-direction: column"><span style="font-size: 20px; line-height: 28px; font-weight: 700">Cierre de caja</span><span class="mut" style="font-size: 13px">Cuenta el efectivo y compáralo con lo esperado</span></div><button class="xbtn" aria-label="Cerrar" onClick="{{close}}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+<div class="pb">
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<label class="lbl">Billetes de $ 100.000<input class="in" value="4"></label><label class="lbl">Billetes de $ 50.000<input class="in" value="5"></label>
+<label class="lbl">Billetes de $ 20.000<input class="in" value="6"></label><label class="lbl">Billetes de $ 10.000<input class="in" value="3"></label>
+<label class="lbl">Billetes de $ 5.000 y $ 2.000<input class="in" value="$ 12.000"></label><label class="lbl">Monedas<input class="in" value="$ 3.000"></label>
+</div>
+<div style="padding: 14px 16px; border-radius: 14px; background: #fdf8fa; border: 1px solid #eedfe6; display: flex; flex-direction: column; gap: 6px">
+<div class="row"><span class="mut">Efectivo esperado</span><span style="font-weight: 600">$ 795.000</span></div>
+<div class="row"><span class="mut">Efectivo contado</span><span style="font-weight: 600">$ 795.000</span></div>
+<div class="row" style="font-weight: 700; color: #2f7a57"><span>Diferencia</span><span>$ 0 · Cuadra</span></div>
+</div>
+<label class="lbl">Observaciones<textarea class="in" rows="2" style="height: auto; padding: 10px 12px"></textarea></label>
+</div>
+<div class="pf"><button class="btn bg" onClick="{{close}}">Cancelar</button><button class="btn bp" onClick="{{close}}">Cerrar caja</button></div>
+</aside>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1100}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { panel: null }; }
+  renderVals() {
+    const data = [['May', 38.2, 27.4], ['Jun', 40.1, 28.0], ['Jul', 42.8, 29.1], ['Ago', 41.5, 29.6], ['Sep', 44.3, 30.2], ['Oct', 48.3, 31.2]];
+    const months = data.map(([l, i, g]) => ({
+      l,
+      i: 'width: 34%; max-width: 30px; height: ' + Math.round(i / 50 * 190) + 'px; background: #e8a5bb; border-radius: 6px 6px 0 0',
+      g: 'width: 34%; max-width: 30px; height: ' + Math.round(g / 50 * 190) + 'px; background: #7a6672; border-radius: 6px 6px 0 0'
+    }));
+    return {
+      months,
+      showExp: this.state.panel === 'exp', showCash: this.state.panel === 'cash',
+      openExp: () => this.setState({ panel: 'exp' }),
+      openCash: () => this.setState({ panel: 'cash' }),
+      close: () => this.setState({ panel: null })
+    };
+  }
+}
+</script>
+</body>
+</html>

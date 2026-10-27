@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Inventario · YiYi Spa</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#fdf8fa;color:#3a2a35;font-family:"Plus Jakarta Sans",system-ui,sans-serif;font-size:14px;line-height:21px}
+a{color:#a63d64;text-decoration:none}a:hover{color:#7d2a4a}
+h1,h2,h3,p{margin:0}
+.ttl{font-family:Fraunces,Georgia,serif;font-weight:600}
+.card{background:#fff;border:1px solid #eedfe6;border-radius:18px;box-shadow:0 1px 2px rgba(58,42,53,.04),0 4px 16px rgba(58,42,53,.05)}
+.btn{font:inherit;font-weight:600;height:44px;padding:0 18px;border-radius:12px;border:1px solid transparent;cursor:pointer;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;text-decoration:none;box-sizing:border-box}
+.bp{background:#e8a5bb;color:#3a2a35}.bp:hover{background:#df93ad;color:#3a2a35}
+.bs{background:#efe9fb;color:#6b52a8;border-color:#d9cdf3}.bs:hover{color:#6b52a8}
+.bg{background:#fff;color:#7a6672;border-color:#eedfe6}
+.sm{height:34px;padding:0 12px;font-size:13px;border-radius:10px}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;line-height:22px;padding:0 10px;border-radius:999px;white-space:nowrap}
+.badge:before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.cap{font-size:11px;line-height:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7a6672}
+.mut{color:#7a6672}
+.tbl{width:100%;border-collapse:collapse}
+.tbl th{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7a6672;text-align:left;padding:12px 16px;border-bottom:1px solid #eedfe6;background:#fdf8fa;white-space:nowrap}
+.tbl td{padding:12px 16px;border-bottom:1px solid #f3e8ee;vertical-align:middle}
+.overlay{position:absolute;left:0;right:0;top:64px;bottom:0;background:rgba(58,42,53,.18);display:flex;justify-content:flex-end;z-index:20}
+.panel{width:440px;max-width:100%;background:#fff;border-radius:18px 0 0 18px;box-shadow:-12px 0 40px rgba(58,42,53,.12);display:flex;flex-direction:column;height:100%;box-sizing:border-box}
+.ph{padding:20px 24px;border-bottom:1px solid #eedfe6;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.pb{padding:20px 24px;display:flex;flex-direction:column;gap:14px;overflow:auto;flex:1}.pb>*{flex:none}
+.pf{padding:16px 24px;border-top:1px solid #eedfe6;display:flex;justify-content:flex-end;gap:12px}
+.xbtn{width:40px;height:40px;border-radius:12px;border:1px solid #eedfe6;background:#fff;color:#7a6672;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+.in{font:inherit;font-weight:400;height:40px;padding:0 12px;border:1px solid #dcc6d1;border-radius:8px;background:#fff;color:#3a2a35;box-sizing:border-box;width:100%}
+.lbl{font-size:13px;font-weight:600;display:flex;flex-direction:column;gap:6px;flex:1;min-width:0}
+.thumb{width:40px;height:40px;border-radius:10px;flex:none}
+</style>
+</helmet>
+<div style="position: relative; min-height: 1100px; display: flex; flex-direction: column">
+<dc-import name="TopBar" hint-size="100%,64px"></dc-import>
+<div style="display: flex; flex-wrap: wrap; flex: 1; align-items: stretch">
+<dc-import name="NavNegocio" active="inventario" hint-size="248px,1036px"></dc-import>
+<main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 28px 32px 48px; display: flex; flex-direction: column; gap: 22px">
+
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h1 class="ttl" style="font-size: 30px; line-height: 38px">Inventario</h1>
+<p class="mut">Productos para vender e insumos que usa el equipo en cada servicio.</p>
+</div>
+<div style="margin-left: auto; display: flex; gap: 12px">
+<button class="btn bg">Proveedores</button>
+<button class="btn bs">+ Producto</button>
+<button class="btn bp" onClick="{{open}}">Registrar movimiento</button>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 16px">
+<div class="card" style="padding: 18px; display: flex; flex-direction: column; gap: 4px"><span class="cap">Valor del inventario</span><span class="ttl" style="font-size: 26px; line-height: 32px">$ 18.640.000</span><span class="mut" style="font-size: 13px">a precio de costo</span></div>
+<div class="card" style="padding: 18px; display: flex; flex-direction: column; gap: 4px; background: #fde8e6; border-color: #f6c1bd"><span class="cap" style="color: #b23b34">Stock crítico</span><span class="ttl" style="font-size: 26px; line-height: 32px">4</span><span style="font-size: 13px; font-weight: 600; color: #b23b34">se acaban esta semana</span></div>
+<div class="card" style="padding: 18px; display: flex; flex-direction: column; gap: 4px"><span class="cap">Lotes por vencer</span><span class="ttl" style="font-size: 26px; line-height: 32px">2</span><span class="mut" style="font-size: 13px">en los próximos 30 días</span></div>
+<div class="card" style="padding: 18px; display: flex; flex-direction: column; gap: 4px"><span class="cap">Ventas de productos (mes)</span><span class="ttl" style="font-size: 26px; line-height: 32px">$ 3.920.000</span><span style="font-size: 13px; font-weight: 600; color: #2f7a57">+18% vs. septiembre</span></div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center">
+<div style="display: flex; gap: 4px; padding: 4px; background: #f7eff3; border-radius: 12px">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="3"><button onClick="{{t.pick}}" style="{{t.st}}">{{t.label}}</button></sc-for>
+</div>
+<input class="in" placeholder="Buscar por nombre o código" aria-label="Buscar producto" style="flex: 1 1 260px; width: auto">
+</div>
+
+<div class="card" style="overflow-x: auto">
+<table class="tbl" style="min-width: 1000px">
+<thead><tr><th>Producto</th><th>Tipo</th><th>Chapinero</th><th>Usaquén</th><th>Mínimo</th><th>Consumo semanal</th><th>Alcanza para</th><th>Estado</th></tr></thead>
+<tbody>
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="8">
+<tr>
+<td><div style="display: flex; align-items: center; gap: 12px"><span class="thumb" style="{{r.th}}"></span><div style="display: flex; flex-direction: column; line-height: 18px"><span style="font-weight: 600">{{r.n}}</span><span class="mut" style="font-size: 12px">{{r.sku}}</span></div></div></td>
+<td class="mut">{{r.type}}</td>
+<td style="font-weight: 700">{{r.s1}}</td><td>{{r.s2}}</td><td class="mut">{{r.min}}</td><td class="mut">{{r.use}}</td>
+<td>{{r.days}}</td>
+<td><span class="badge" style="{{r.bst}}">{{r.status}}</span></td>
+</tr>
+</sc-for>
+</tbody>
+</table>
+</div>
+
+<section class="card" style="padding: 20px; display: flex; flex-direction: column; gap: 12px">
+<h2 style="font-size: 16px; line-height: 24px">Lotes y vencimientos</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px">
+<div style="padding: 14px; border-radius: 14px; background: #fdeee2; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 700">Gel HEMA free transparente</span><span class="mut" style="font-size: 13px">Lote HF-2309-118 · 6 und</span><span style="font-size: 13px; font-weight: 600; color: #9a5418">Vence 12 nov 2026</span></div>
+<div style="padding: 14px; border-radius: 14px; background: #fdeee2; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 700">Sérum vitamina C</span><span class="mut" style="font-size: 13px">Lote VC-0412 · 2 und</span><span style="font-size: 13px; font-weight: 600; color: #9a5418">Vence 20 nov 2026</span></div>
+<div style="padding: 14px; border-radius: 14px; background: #f7eff3; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 700">Exfoliante menta</span><span class="mut" style="font-size: 13px">Lote EM-0826 · 3 und</span><span class="mut" style="font-size: 13px; font-weight: 600">Vence 3 mar 2027</span></div>
+</div>
+</section>
+
+</main>
+</div>
+
+<sc-if value="{{panel}}" hint-placeholder-val="{{ false }}">
+<div class="overlay">
+<aside class="panel" aria-label="Registrar movimiento">
+<div class="ph"><span style="font-size: 20px; line-height: 28px; font-weight: 700">Registrar movimiento</span><button class="xbtn" aria-label="Cerrar" onClick="{{close}}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+<div class="pb">
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<sc-for list="{{kinds}}" as="k" hint-placeholder-count="4"><button onClick="{{k.pick}}" style="{{k.st}}"><b>{{k.label}}</b><span style="font-size: 12px; font-weight: 500">{{k.hint}}</span></button></sc-for>
+</div>
+<label class="lbl">Producto<select class="in"><option>Acetona pura 1 L</option><option>Gel HEMA free transparente</option><option>Toallas desechables x100</option></select></label>
+<div style="display: flex; gap: 12px"><label class="lbl">Cantidad<input class="in" value="12"></label><label class="lbl">Costo unitario<input class="in" value="$ 18.500"></label></div>
+<div style="display: flex; gap: 12px"><label class="lbl">Lote<input class="in" value="AC-1026"></label><label class="lbl">Vencimiento<input class="in" type="date" value="2027-10-01"></label></div>
+<label class="lbl">Proveedor<select class="in"><option>Distribuidora Nail Pro S.A.S.</option><option>Belleza Total Mayorista</option></select></label>
+<label class="lbl">Sede<select class="in"><option>Chapinero</option><option>Usaquén</option></select></label>
+<label class="lbl">Nota<input class="in" placeholder="Factura de compra, motivo del ajuste…"></label>
+</div>
+<div class="pf"><button class="btn bg" onClick="{{close}}">Cancelar</button><button class="btn bp" onClick="{{close}}">Guardar movimiento</button></div>
+</aside>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1100}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { tab: 'all', panel: false, kind: 'in' }; }
+  renderVals() {
+    const ST = {
+      crit: ['Crítico', 'background: #fde8e6; color: #b23b34'],
+      low: ['Bajo', 'background: #fdeee2; color: #9a5418'],
+      ok: ['Suficiente', 'background: #e6f6ee; color: #2f7a57']
+    };
+    const data = [
+      ['Acetona pura 1 L', 'INS-001', 'Insumo', 2, 6, 4, '3 L', '4 días', 'crit', '#c9e2f5'],
+      ['Gel HEMA free transparente', 'INS-014', 'Insumo', 3, 4, 5, '2 und', '10 días', 'low', '#f4c6d4'],
+      ['Toallas desechables x100', 'INS-022', 'Insumo', 1, 3, 3, '2 paq', '3 días', 'crit', '#efe9fb'],
+      ['Limas 180/240 x50', 'INS-031', 'Insumo', 2, 2, 2, '1 paq', '14 días', 'low', '#fbd9bf'],
+      ['Esmalte gel OPI Bubble Bath', 'VEN-102', 'Venta', 12, 8, 4, '2 und', '6 semanas', 'ok', '#f4c6d4'],
+      ['Crema de manos karité 50 ml', 'VEN-118', 'Venta', 8, 5, 4, '2 und', '4 semanas', 'ok', '#d9cdf3'],
+      ['Exfoliante de pies menta', 'VEN-121', 'Venta', 3, 0, 4, '1 und', '3 semanas', 'crit', '#c5ead7'],
+      ['Sérum facial vitamina C', 'VEN-140', 'Venta', 2, 1, 2, '1 und', '2 semanas', 'crit', '#fbd9bf'],
+      ['Aceite de cutícula almendras', 'VEN-109', 'Venta', 15, 10, 5, '3 und', '5 semanas', 'ok', '#fbd9bf']
+    ];
+    const tab = this.state.tab;
+    const rows = data.filter((d) => tab === 'all' || (tab === 'ven' ? d[2] === 'Venta' : d[2] === 'Insumo')).map(([n, sku, type, s1, s2, min, use, days, st, bg]) => ({
+      n, sku, type, s1, s2, min, use, days, status: ST[st][0], bst: ST[st][1], th: 'background: ' + bg
+    }));
+    const tabs = [['all', 'Todo'], ['ven', 'Para vender'], ['ins', 'Insumos del equipo']].map(([id, label]) => ({
+      label, pick: () => this.setState({ tab: id }),
+      st: 'font: inherit; font-weight: 600; height: 36px; padding: 0 16px; border-radius: 9px; border: 0; cursor: pointer; ' + (id === tab ? 'background: #ffffff; color: #a63d64; box-shadow: 0 1px 2px rgba(58,42,53,.08)' : 'background: transparent; color: #7a6672')
+    }));
+    const kinds = [['in', 'Entrada', 'Compra a proveedor'], ['out', 'Salida', 'Uso en servicios'], ['move', 'Traslado', 'Entre sedes'], ['adj', 'Ajuste', 'Conteo o daño']].map(([id, label, hint]) => ({
+      label, hint, pick: () => this.setState({ kind: id }),
+      st: 'font: inherit; text-align: left; display: flex; flex-direction: column; padding: 10px 12px; border-radius: 12px; cursor: pointer; color: #3a2a35; ' + (id === this.state.kind ? 'background: #fbe6ed; border: 1.5px solid #e8a5bb' : 'background: #ffffff; border: 1px solid #eedfe6')
+    }));
+    return {
+      rows, tabs, kinds,
+      panel: this.state.panel,
+      open: () => this.setState({ panel: true }),
+      close: () => this.setState({ panel: false })
+    };
+  }
+}
+</script>
+</body>
+</html>
