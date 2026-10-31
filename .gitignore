@@ -1,0 +1,18 @@
+# Runtime state of the agent swarm and its worktrees
+.swarm/
+.worktrees/
+
+# Execution workspace of superpowers plans
+.superpowers/
+
+# Personal Claude Code overrides
+.claude/settings.local.json
+
+# Environment and dependencies
+.env
+node_modules/
+
+# OS and logs
+.DS_Store
+Thumbs.db
+*.log

@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Mi día · Técnico · YiYi Spa</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#fdf8fa;color:#3a2a35;font-family:"Plus Jakarta Sans",system-ui,sans-serif;font-size:14px;line-height:21px}
+a{color:#a63d64;text-decoration:none}a:hover{color:#7d2a4a}
+h1,h2,h3,p{margin:0}
+.ttl{font-family:Fraunces,Georgia,serif;font-weight:600}
+.card{background:#fff;border:1px solid #eedfe6;border-radius:18px;box-shadow:0 1px 2px rgba(58,42,53,.04),0 4px 16px rgba(58,42,53,.05)}
+.btn{font:inherit;font-weight:600;height:44px;padding:0 18px;border-radius:12px;border:1px solid transparent;cursor:pointer;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;text-decoration:none;box-sizing:border-box}
+.bp{background:#e8a5bb;color:#3a2a35}.bp:hover{background:#df93ad;color:#3a2a35}
+.bs{background:#efe9fb;color:#6b52a8;border-color:#d9cdf3}.bs:hover{color:#6b52a8}
+.bg{background:#fff;color:#7a6672;border-color:#eedfe6}
+.sm{height:34px;padding:0 12px;font-size:13px;border-radius:10px}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;line-height:22px;padding:0 10px;border-radius:999px;white-space:nowrap}
+.badge:before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.cap{font-size:11px;line-height:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7a6672}
+.mut{color:#7a6672}
+.av{width:44px;height:44px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex:none;color:#3a2a35}
+.in{font:inherit;font-weight:400;height:40px;padding:0 12px;border:1px solid #dcc6d1;border-radius:8px;background:#fff;color:#3a2a35;box-sizing:border-box;width:100%}
+.row{display:flex;justify-content:space-between;gap:12px}
+</style>
+</helmet>
+<div style="position: relative; min-height: 1100px; display: flex; flex-direction: column">
+<dc-import name="TopBar" hint-size="100%,64px" who="Laura Torres" rol="Manicurista · Técnico" initials="LT"></dc-import>
+<div style="display: flex; gap: 4px; padding: 10px 32px; background: #ffffff; border-bottom: 1px solid #eedfe6; flex-wrap: wrap">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="3"><button onClick="{{t.pick}}" style="{{t.st}}">{{t.label}}</button></sc-for>
+<a href="Main.dc.html" style="margin-left: auto; align-self: center; font-size: 13px; font-weight: 600">Ver panel del negocio</a>
+</div>
+<main style="box-sizing: border-box; padding: 28px 32px 48px; display: flex; flex-direction: column; gap: 22px; max-width: 1440px; width: 100%">
+
+<sc-if value="{{tDay}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h1 class="ttl" style="font-size: 30px; line-height: 38px">Hola, Laura</h1>
+<p class="mut">Viernes 23 de octubre · 7 citas hoy · Estación de manicure 1</p>
+</div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+
+<section class="card" style="flex: 1 1 280px; max-width: 340px; padding: 18px; display: flex; flex-direction: column; gap: 8px">
+<h2 style="font-size: 16px; line-height: 24px; margin-bottom: 4px">Mi agenda de hoy</h2>
+<sc-for list="{{appts}}" as="a" hint-placeholder-count="7">
+<div style="{{a.st}}">
+<span style="width: 64px; font-weight: 700; font-size: 13px">{{a.t}}</span>
+<div style="display: flex; flex-direction: column; line-height: 18px; flex: 1"><span style="font-weight: 600">{{a.c}}</span><span class="mut" style="font-size: 12px">{{a.s}}</span></div>
+<span class="badge" style="{{a.bst}}">{{a.status}}</span>
+</div>
+</sc-for>
+</section>
+
+<section class="card" style="flex: 999 1 460px; min-width: 0; padding: 22px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: center">
+<span class="av" style="width: 56px; height: 56px; font-size: 17px; background: #f4c6d4">VG</span>
+<div style="display: flex; flex-direction: column; flex: 1">
+<span class="cap">{{phaseLbl}}</span>
+<span style="font-weight: 700; font-size: 18px">Valentina Gómez · Manicure semipermanente</span>
+<span class="mut" style="font-size: 13px">10:30 – 11:15 a. m. · 14 visitas · Cliente VIP</span>
+</div>
+<div style="display: flex; flex-direction: column; align-items: flex-end"><span class="cap">Tiempo</span><span class="ttl" style="font-size: 26px; line-height: 32px">{{timer}}</span></div>
+</div>
+
+<div style="padding: 12px 14px; border-radius: 12px; background: #fde8e6; color: #b23b34; font-weight: 600; font-size: 13px">Alergia al acrilato. Usa gel HEMA free y guantes de nitrilo.</div>
+<div style="padding: 12px 14px; border-radius: 12px; background: #fdf8fa; border: 1px solid #eedfe6; font-size: 13px"><b>La última vez (9 oct):</b> diseño francés nude, forma almendra. Le gusta conversar poco y música suave.</div>
+
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span class="cap">Checklist de bioseguridad antes de empezar</span>
+<sc-for list="{{checks}}" as="c" hint-placeholder-count="4">
+<button onClick="{{c.toggle}}" style="{{c.st}}"><span style="{{c.box}}">{{c.mark}}</span>{{c.t}}</button>
+</sc-for>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span class="cap">Notas para la ficha</span>
+<select class="in" aria-label="Estado de la placa"><option>Placa: delgada, sin anomalías</option><option>Placa: sana</option><option>Placa: posible hongo</option></select>
+<textarea class="in" rows="3" style="height: auto; padding: 10px 12px" aria-label="Observaciones">Leve desprendimiento en índice derecho. Recomendé aceite de cutícula.</textarea>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span class="cap">Productos usados</span>
+<div class="row" style="padding: 8px 10px; border-radius: 10px; background: #f7eff3; font-size: 13px"><span>Gel HEMA free · lote HF-2309-118</span><span style="font-weight: 700">1 aplicación</span></div>
+<div class="row" style="padding: 8px 10px; border-radius: 10px; background: #f7eff3; font-size: 13px"><span>Esmalte semi nude #12</span><span style="font-weight: 700">1 aplicación</span></div>
+<div class="row" style="padding: 8px 10px; border-radius: 10px; background: #f7eff3; font-size: 13px"><span>Lima 180/240</span><span style="font-weight: 700">1 und</span></div>
+<button class="btn bg sm" style="align-self: flex-start">+ Agregar producto</button>
+</div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: flex-end; padding-top: 6px; border-top: 1px solid #f3e8ee">
+<sc-if value="{{notDone}}" hint-placeholder-val="{{ true }}">
+<button class="btn bs">Sugerir producto</button>
+</sc-if>
+<sc-if value="{{notDone}}" hint-placeholder-val="{{ true }}">
+<button class="btn bp" onClick="{{finish}}">Terminar servicio</button>
+</sc-if>
+<sc-if value="{{done}}" hint-placeholder-val="{{ false }}">
+<span style="align-self: center; color: #2f7a57; font-weight: 700">Listo. Recepción ya puede cobrar.</span>
+</sc-if>
+</div>
+</section>
+
+<aside style="flex: 1 1 260px; max-width: 320px; display: flex; flex-direction: column; gap: 16px">
+<div class="card" style="padding: 18px; display: flex; flex-direction: column; gap: 4px; background: #fbe6ed; border-color: #f4c6d4"><span class="cap" style="color: #a63d64">Mi comisión · quincena</span><span class="ttl" style="font-size: 26px; line-height: 32px">$ 1.787.200</span><span style="font-size: 13px; font-weight: 600; color: #2f7a57">Nivel 3 · 40% desde hoy</span></div>
+<div class="card" style="padding: 18px; display: flex; flex-direction: column; gap: 10px">
+<div class="row"><span class="mut">Propinas de hoy</span><span style="font-weight: 700">$ 18.000</span></div>
+<div class="row"><span class="mut">Servicios terminados</span><span style="font-weight: 700">2 de 7</span></div>
+<div class="row"><span class="mut">Calificación del mes</span><span style="font-weight: 700">4,9 de 5</span></div>
+<div class="row"><span class="mut">Productos vendidos</span><span style="font-weight: 700">34</span></div>
+</div>
+<div class="card" style="padding: 18px; display: flex; flex-direction: column; gap: 8px">
+<span class="cap">Próxima</span>
+<span style="font-weight: 700">11:30 · Juliana Díaz</span>
+<span class="mut" style="font-size: 13px">Uñas acrílicas · primera vez · sin alergias registradas</span>
+</div>
+</aside>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{tWeek}}" hint-placeholder-val="{{ false }}">
+<div class="card" style="padding: 22px; display: flex; flex-direction: column; gap: 12px">
+<h2 style="font-size: 18px; line-height: 26px">Mi semana · 19 – 25 oct</h2>
+<div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 10px">
+<sc-for list="{{week}}" as="d" hint-placeholder-count="7">
+<div style="{{d.st}}"><span class="cap">{{d.d}}</span><span class="ttl" style="font-size: 22px">{{d.n}}</span><span style="font-size: 13px; font-weight: 600">{{d.h}}</span><span class="mut" style="font-size: 12px">{{d.c}}</span></div>
+</sc-for>
+</div>
+<button class="btn bs" style="align-self: flex-start">Solicitar día libre o vacaciones</button>
+</div>
+</sc-if>
+
+<sc-if value="{{tMoney}}" hint-placeholder-val="{{ false }}">
+<div class="card" style="padding: 22px; display: flex; flex-direction: column; gap: 10px; max-width: 560px">
+<h2 style="font-size: 18px; line-height: 26px">Mis comisiones · 16 – 31 oct</h2>
+<div class="row"><span class="mut">Servicios vendidos</span><span>$ 4.380.000</span></div>
+<div class="row"><span class="mut">Comisión servicios (40%)</span><span>$ 1.752.000</span></div>
+<div class="row"><span class="mut">Productos (10% sobre ganancia)</span><span>$ 35.200</span></div>
+<div class="row"><span class="mut">Propinas</span><span>$ 210.000</span></div>
+<div class="row"><span class="mut">Sueldo base</span><span>$ 711.750</span></div>
+<div class="row" style="padding-top: 8px; border-top: 1px dashed #dcc6d1; font-weight: 700; font-size: 16px"><span>Total estimado</span><span>$ 2.708.950</span></div>
+<span class="mut" style="font-size: 12px">Se paga el 31 de octubre después de la aprobación de la administración.</span>
+</div>
+</sc-if>
+
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1100}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { tab: 'day', checks: { 0: true, 1: true }, done: false }; }
+  renderVals() {
+    const tab = this.state.tab;
+    const tabs = [['day', 'Mi día'], ['week', 'Mi semana'], ['money', 'Mis comisiones']].map(([id, label]) => ({
+      label, pick: () => this.setState({ tab: id }),
+      st: 'font: inherit; font-weight: 600; height: 38px; padding: 0 16px; border-radius: 10px; border: 0; cursor: pointer; ' + (id === tab ? 'background: #fbe6ed; color: #a63d64' : 'background: transparent; color: #7a6672')
+    }));
+    const S = { done: ['Lista', 'background: #e6f6ee; color: #2f7a57'], prog: ['Ahora', 'background: #efe9fb; color: #6b52a8'], conf: ['Confirmada', 'background: #e8f2fb; color: #2f6a99'], pend: ['Pendiente', 'background: #fdeee2; color: #9a5418'], off: ['', 'display: none'] };
+    const finished = this.state.done;
+    const appts = [['8:30', 'Paula Ríos', 'Manicure tradicional', 'done'], ['9:30', 'Isabel Mora', 'Manicure semipermanente', 'done'], ['10:30', 'Valentina Gómez', 'Manicure semipermanente', finished ? 'done' : 'prog'], ['11:30', 'Juliana Díaz', 'Uñas acrílicas', 'conf'], ['13:00', 'Almuerzo', '1 hora', 'off'], ['14:00', 'Natalia Vargas', 'Manicure semipermanente', 'pend'], ['15:00', 'Carolina Pérez', 'Semi + diseño', 'conf']].map(([t, c, s, st]) => ({
+      t, c, s, status: S[st][0], bst: S[st][1],
+      st: 'display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; ' + (st === 'prog' ? 'background: #fbe6ed; border: 1.5px solid #e8a5bb' : st === 'done' ? 'background: #fdf8fa; opacity: .7' : st === 'off' ? 'background: repeating-linear-gradient(45deg,#f7eff3 0 6px,#ffffff 6px 12px)' : 'background: #ffffff; border: 1px solid #eedfe6')
+    }));
+    const items = ['Herramientas esterilizadas (lote autoclave 231)', 'Manos del cliente y propias sanitizadas', 'Estación desinfectada después de la cita anterior', 'Revisión de placa ungueal y cutículas'];
+    const cs = this.state.checks;
+    const checks = items.map((t, i) => {
+      const on = !!cs[i];
+      return {
+        t, mark: on ? '✓' : '',
+        st: 'font: inherit; display: flex; align-items: center; gap: 12px; text-align: left; padding: 10px 12px; border-radius: 12px; cursor: pointer; color: #3a2a35; ' + (on ? 'background: #e6f6ee; border: 1px solid #c5ead7' : 'background: #ffffff; border: 1px solid #eedfe6'),
+        box: 'width: 22px; height: 22px; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; flex: none; ' + (on ? 'background: #2f7a57; color: #ffffff' : 'background: #ffffff; border: 1.5px solid #dcc6d1'),
+        toggle: () => this.setState({ checks: Object.assign({}, cs, { [i]: !on }) })
+      };
+    });
+    const week = [['Lun', 19, '8–5', '8 citas'], ['Mar', 20, '8–5', '7 citas'], ['Mié', 21, '8–5', '8 citas'], ['Jue', 22, '8–5', '9 citas'], ['Vie', 23, '8–6', '7 citas'], ['Sáb', 24, '9–3', '6 citas'], ['Dom', 25, 'Libre', '']].map(([d, n, h, c]) => ({
+      d, n, h, c,
+      st: 'padding: 14px; border-radius: 14px; display: flex; flex-direction: column; gap: 2px; ' + (n === 23 ? 'background: #fbe6ed; border: 1.5px solid #e8a5bb' : h === 'Libre' ? 'background: #f7eff3' : 'background: #ffffff; border: 1px solid #eedfe6')
+    }));
+    return {
+      tabs, appts, checks, week,
+      tDay: tab === 'day', tWeek: tab === 'week', tMoney: tab === 'money',
+      timer: finished ? '44 min' : '18 min',
+      phaseLbl: finished ? 'Servicio terminado' : 'En curso ahora',
+      done: finished, notDone: !finished,
+      finish: () => this.setState({ done: true })
+    };
+  }
+}
+</script>
+</body>
+</html>

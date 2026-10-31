@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Agenda · YiYi Spa</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#fdf8fa;color:#3a2a35;font-family:"Plus Jakarta Sans",system-ui,sans-serif;font-size:14px;line-height:21px}
+a{color:#a63d64;text-decoration:none}a:hover{color:#7d2a4a}
+h1,h2,h3,p{margin:0}
+.ttl{font-family:Fraunces,Georgia,serif;font-weight:600}
+.card{background:#fff;border:1px solid #eedfe6;border-radius:18px;box-shadow:0 1px 2px rgba(58,42,53,.04),0 4px 16px rgba(58,42,53,.05)}
+.btn{font:inherit;font-weight:600;height:44px;padding:0 18px;border-radius:12px;border:1px solid transparent;cursor:pointer;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;text-decoration:none;box-sizing:border-box}
+.bp{background:#e8a5bb;color:#3a2a35}.bp:hover{background:#df93ad;color:#3a2a35}
+.bs{background:#efe9fb;color:#6b52a8;border-color:#d9cdf3}.bs:hover{color:#6b52a8}
+.bg{background:#fff;color:#7a6672;border-color:#eedfe6}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;line-height:22px;padding:0 10px;border-radius:999px;white-space:nowrap}
+.badge:before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.cap{font-size:11px;line-height:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7a6672}
+.mut{color:#7a6672}
+.av{width:36px;height:36px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex:none;color:#3a2a35}
+.overlay{position:absolute;left:0;right:0;top:64px;bottom:0;background:rgba(58,42,53,.18);display:flex;justify-content:flex-end;z-index:20}
+.panel{width:440px;max-width:100%;background:#fff;border-radius:18px 0 0 18px;box-shadow:-12px 0 40px rgba(58,42,53,.12);display:flex;flex-direction:column;height:100%;box-sizing:border-box}
+.ph{padding:20px 24px;border-bottom:1px solid #eedfe6;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.pb{padding:20px 24px;display:flex;flex-direction:column;gap:14px;overflow:auto;flex:1}.pb>*{flex:none}
+.pf{padding:16px 24px;border-top:1px solid #eedfe6;display:flex;justify-content:flex-end;gap:12px;flex-wrap:wrap}
+.xbtn{width:40px;height:40px;border-radius:12px;border:1px solid #eedfe6;background:#fff;color:#7a6672;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+.appt{position:absolute;left:6px;right:6px;border-radius:8px;padding:6px 8px;box-sizing:border-box;overflow:hidden;font:inherit;font-size:12px;line-height:16px;text-align:left;color:#3a2a35;cursor:pointer;border:0;display:flex;flex-direction:column}
+.appt b{font-size:13px}
+</style>
+</helmet>
+<div style="position: relative; min-height: 1150px; display: flex; flex-direction: column">
+<dc-import name="TopBar" hint-size="100%,64px"></dc-import>
+<div style="display: flex; flex-wrap: wrap; flex: 1; align-items: stretch">
+<dc-import name="NavNegocio" active="agenda" hint-size="248px,1086px"></dc-import>
+<main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 28px 32px 48px; display: flex; flex-direction: column; gap: 20px">
+
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h1 class="ttl" style="font-size: 30px; line-height: 38px">Agenda</h1>
+<p class="mut">Toca una cita para ver el detalle. Arrástrala para reprogramar.</p>
+</div>
+<button class="btn bp" style="margin-left: auto" onClick="{{openNew}}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>Nueva cita</button>
+</div>
+
+<div class="card" style="padding: 12px 16px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px">
+<div style="display: flex; gap: 6px">
+<button class="xbtn" aria-label="Anterior"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m15 6-6 6 6 6"/></svg></button>
+<button class="btn bg" style="height: 40px">Hoy</button>
+<button class="xbtn" aria-label="Siguiente"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m9 6 6 6-6 6"/></svg></button>
+</div>
+<span style="font-weight: 700; font-size: 16px">{{rangeTxt}}</span>
+<div style="display: flex; gap: 4px; padding: 4px; background: #f7eff3; border-radius: 12px; margin-left: auto">
+<sc-for list="{{views}}" as="v" hint-placeholder-count="3"><button onClick="{{v.pick}}" style="{{v.st}}">{{v.label}}</button></sc-for>
+</div>
+<select aria-label="Profesional" style="font: inherit; height: 40px; padding: 0 10px; border: 1px solid #dcc6d1; border-radius: 10px; background: #fff; color: #3a2a35">
+<option>Todo el equipo</option><option>Laura Torres</option><option>Daniela Ruiz</option><option>Andrea Patiño</option><option>Mariana López</option>
+</select>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 16px; font-size: 12px; font-weight: 600" class="mut">
+<span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 4px; background: #f4c6d4"></span>Manicure</span>
+<span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 4px; background: #c5ead7"></span>Pedicure</span>
+<span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 4px; background: #d9cdf3"></span>Spa y masajes</span>
+<span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 4px; background: #c9e2f5"></span>Facial</span>
+<span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 4px; background: #fbd9bf"></span>Cejas y pestañas</span>
+<span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 4px; background: repeating-linear-gradient(45deg,#ffffff 0 3px,#dcc6d1 3px 5px)"></span>Procesamiento (profesional libre)</span>
+<span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 4px; background: #eadfe5"></span>Descanso / bloqueado</span>
+</div>
+
+<sc-if value="{{isDay}}" hint-placeholder-val="{{ true }}">
+<div class="card" style="padding: 0; overflow-x: auto">
+<div style="min-width: 820px">
+<div style="display: grid; grid-template-columns: 64px repeat(4, minmax(0, 1fr)); border-bottom: 1px solid #eedfe6">
+<span></span>
+<sc-for list="{{techs}}" as="t" hint-placeholder-count="4">
+<div style="display: flex; align-items: center; gap: 10px; padding: 14px 12px; border-left: 1px solid #eedfe6">
+<span class="av" style="{{t.avst}}">{{t.ini}}</span>
+<div style="display: flex; flex-direction: column; line-height: 17px"><span style="font-weight: 700">{{t.n}}</span><span class="mut" style="font-size: 12px">{{t.r}}</span></div>
+</div>
+</sc-for>
+</div>
+<div style="display: grid; grid-template-columns: 64px repeat(4, minmax(0, 1fr)); position: relative">
+<div style="display: flex; flex-direction: column">
+<sc-for list="{{hours}}" as="h" hint-placeholder-count="11"><span class="mut" style="height: 64px; font-size: 12px; font-weight: 600; text-align: right; padding: 0 10px; box-sizing: border-box; transform: translateY(-8px)">{{h}}</span></sc-for>
+</div>
+<sc-for list="{{techs}}" as="t" hint-placeholder-count="4">
+<div style="position: relative; height: 704px; border-left: 1px solid #eedfe6; background-image: repeating-linear-gradient(to bottom, transparent 0 63px, #f3e8ee 63px 64px)">
+<sc-for list="{{t.appts}}" as="a" hint-placeholder-count="4">
+<button class="appt" style="{{a.st}}" onClick="{{a.open}}" aria-label="{{a.aria}}">
+<b>{{a.client}}</b>
+<span>{{a.svc}}</span>
+<span class="mut" style="font-size: 11px">{{a.time}}</span>
+<sc-if value="{{a.hasProc}}" hint-placeholder-val="{{ false }}">
+<span style="{{a.procSt}}">Procesamiento · libre</span>
+</sc-if>
+</button>
+</sc-for>
+</div>
+</sc-for>
+<div style="position: absolute; left: 56px; right: 0; top: 171px; height: 2px; background: #a63d64; pointer-events: none"><span style="position: absolute; left: -4px; top: -4px; width: 10px; height: 10px; border-radius: 50%; background: #a63d64"></span></div>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isWeek}}" hint-placeholder-val="{{ false }}">
+<div class="card" style="padding: 0; overflow-x: auto">
+<div style="min-width: 820px; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr))">
+<sc-for list="{{week}}" as="d" hint-placeholder-count="7">
+<div style="{{d.colSt}}">
+<div style="display: flex; flex-direction: column; padding-bottom: 8px; border-bottom: 1px solid #eedfe6"><span class="cap">{{d.dow}}</span><span class="ttl" style="font-size: 22px; line-height: 30px">{{d.num}}</span><span class="mut" style="font-size: 12px">{{d.count}}</span></div>
+<sc-for list="{{d.items}}" as="i" hint-placeholder-count="4"><div style="{{i.st}}"><b style="font-size: 12px">{{i.t}}</b> {{i.c}}</div></sc-for>
+</div>
+</sc-for>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isMonth}}" hint-placeholder-val="{{ false }}">
+<div class="card" style="padding: 16px; overflow-x: auto">
+<div style="min-width: 760px; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 8px">
+<sc-for list="{{dows}}" as="w" hint-placeholder-count="7"><span class="cap" style="text-align: center; padding: 4px 0">{{w}}</span></sc-for>
+<sc-for list="{{month}}" as="m" hint-placeholder-count="35">
+<div style="{{m.st}}">
+<span style="font-weight: 700">{{m.d}}</span>
+<span style="font-size: 12px">{{m.c}}</span>
+<div style="height: 6px; border-radius: 999px; background: #f7eff3; overflow: hidden; margin-top: auto"><div style="{{m.bar}}"></div></div>
+</div>
+</sc-for>
+</div>
+</div>
+</sc-if>
+
+</main>
+</div>
+
+<sc-if value="{{showNew}}" hint-placeholder-val="{{ false }}">
+<div class="overlay"><dc-import name="PanelNuevaCita" on-close="{{closeAll}}" hint-size="440px,100%"></dc-import></div>
+</sc-if>
+
+<sc-if value="{{showDetail}}" hint-placeholder-val="{{ false }}">
+<div class="overlay">
+<aside class="panel" aria-label="Detalle de la cita">
+<div class="ph">
+<div style="display: flex; flex-direction: column"><span style="font-size: 20px; line-height: 28px; font-weight: 700">Detalle de la cita</span><span class="mut" style="font-size: 13px">{{d.time}} · Sede Chapinero</span></div>
+<button class="xbtn" aria-label="Cerrar" onClick="{{closeAll}}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+</div>
+<div class="pb">
+<div style="display: flex; align-items: center; gap: 12px">
+<span class="av" style="width: 48px; height: 48px; font-size: 15px; background: #f4c6d4">{{d.ini}}</span>
+<div style="display: flex; flex-direction: column; flex: 1"><span style="font-weight: 700; font-size: 16px">{{d.client}}</span><span class="mut" style="font-size: 13px">310 456 7821 · 14 visitas · Cliente VIP</span></div>
+<span class="badge" style="{{d.badgeSt}}">{{d.status}}</span>
+</div>
+<div style="padding: 12px 14px; border-radius: 12px; background: #fde8e6; color: #b23b34; font-weight: 600; font-size: 13px">Alergia registrada: acrilato. Usar línea hipoalergénica.</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<div style="display: flex; flex-direction: column"><span class="cap">Servicio</span><span style="font-weight: 600">{{d.svc}}</span></div>
+<div style="display: flex; flex-direction: column"><span class="cap">Profesional</span><span style="font-weight: 600">{{d.tech}}</span></div>
+<div style="display: flex; flex-direction: column"><span class="cap">Horario</span><span style="font-weight: 600">{{d.time}}</span></div>
+<div style="display: flex; flex-direction: column"><span class="cap">Origen</span><span style="font-weight: 600">WhatsApp</span></div>
+<div style="display: flex; flex-direction: column"><span class="cap">Precio</span><span style="font-weight: 600">$ 55.000</span></div>
+<div style="display: flex; flex-direction: column"><span class="cap">Depósito</span><span style="font-weight: 600; color: #2f7a57">$ 16.500 pagado (Nequi)</span></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px"><span class="cap">Notas</span><span>Quiere diseño francés en tono nude. Recordatorio enviado ayer 10:30 a. m. por WhatsApp; confirmó.</span></div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span class="cap">Checklist de bioseguridad</span>
+<label style="display: flex; gap: 10px; align-items: center"><input type="checkbox" checked style="width: 18px; height: 18px; accent-color: #2f7a57">Herramientas esterilizadas (lote autoclave 231)</label>
+<label style="display: flex; gap: 10px; align-items: center"><input type="checkbox" checked style="width: 18px; height: 18px; accent-color: #2f7a57">Sanitización de manos cliente y técnico</label>
+<label style="display: flex; gap: 10px; align-items: center"><input type="checkbox" style="width: 18px; height: 18px; accent-color: #2f7a57">Revisión de placa ungueal registrada</label>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<button class="btn bg" style="height: 40px; justify-content: center">Reprogramar</button>
+<button class="btn bg" style="height: 40px; justify-content: center">No asistió</button>
+<button class="btn bg" style="height: 40px; justify-content: center; color: #b23b34">Cancelar cita</button>
+<a href="FichaCliente.dc.html" class="btn bg" style="height: 40px; justify-content: center">Ver ficha</a>
+</div>
+</div>
+<div class="pf">
+<button class="btn bs" onClick="{{closeAll}}">Iniciar servicio</button>
+<a href="POS.dc.html" class="btn bp">Cobrar</a>
+</div>
+</aside>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1150}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { view: 'day', panel: null, detail: null }; }
+  renderVals() {
+    const cat = { mani: '#f4c6d4', pedi: '#c5ead7', spa: '#d9cdf3', facial: '#c9e2f5', brows: '#fbd9bf', off: '#eadfe5' };
+    const stat = {
+      done: ['Completada', 'background: #e6f6ee; color: #2f7a57'],
+      prog: ['En curso', 'background: #efe9fb; color: #6b52a8'],
+      conf: ['Confirmada', 'background: #e8f2fb; color: #2f6a99'],
+      pend: ['Pendiente', 'background: #fdeee2; color: #9a5418'],
+      off: ['', '']
+    };
+    const toMin = (t) => { const [h, m] = t.split(':').map(Number); return h * 60 + m; };
+    const lbl = (t) => { const [h, m] = t.split(':').map(Number); const hh = h > 12 ? h - 12 : h; return hh + ':' + String(m).padStart(2, '0') + (h >= 12 ? ' p. m.' : ' a. m.'); };
+    const raw = {
+      LT: [['8:30', '9:15', 'Paula Ríos', 'Manicure tradicional', 'mani', 'done'], ['9:30', '10:15', 'Isabel Mora', 'Manicure semipermanente', 'mani', 'done'], ['10:30', '11:15', 'Valentina Gómez', 'Manicure semipermanente', 'mani', 'prog'], ['11:30', '12:30', 'Juliana Díaz', 'Uñas acrílicas', 'mani', 'conf'], ['13:00', '14:00', 'Descanso', 'Almuerzo', 'off', 'off'], ['14:00', '14:45', 'Natalia Vargas', 'Manicure semipermanente', 'mani', 'pend'], ['15:00', '16:00', 'Carolina Pérez', 'Semi + diseño', 'mani', 'conf']],
+      DR: [['9:00', '10:00', 'Sara León', 'Pedicure spa', 'pedi', 'done'], ['11:00', '12:00', 'Camila Rojas', 'Pedicure spa', 'pedi', 'conf'], ['12:00', '13:00', 'Descanso', 'Almuerzo', 'off', 'off'], ['13:00', '14:00', 'María José Ortiz', 'Pedicure tradicional', 'pedi', 'conf'], ['15:30', '16:30', 'Gabriela Ríos', 'Pedicure semipermanente', 'pedi', 'pend']],
+      AP: [['8:00', '9:30', 'Lorena Gil', 'Ritual spa 90 min', 'spa', 'done'], ['11:30', '12:30', 'Sofía Martínez', 'Masaje relajante', 'spa', 'pend'], ['13:00', '14:00', 'Descanso', 'Almuerzo', 'off', 'off'], ['14:00', '15:30', 'Diana Castro', 'Masaje piedras calientes', 'spa', 'conf']],
+      ML: [['9:00', '10:00', 'Tatiana Silva', 'Limpieza facial', 'facial', 'done'], ['12:00', '13:00', 'Ana Pardo', 'Limpieza facial profunda', 'facial', 'conf', [25, 20]], ['13:15', '14:00', 'Luisa Toro', 'Lifting de pestañas', 'brows', 'pend'], ['14:30', '15:00', 'Mónica Reyes', 'Diseño de cejas', 'brows', 'conf']]
+    };
+    const info = [['LT', 'Laura Torres', 'Manicure · Estación 1', '#f4c6d4'], ['DR', 'Daniela Ruiz', 'Pedicure · Sillón 2', '#c5ead7'], ['AP', 'Andrea Patiño', 'Masajes · Cabina 1', '#d9cdf3'], ['ML', 'Mariana López', 'Facial · Cabina 2', '#c9e2f5']];
+    const techs = info.map(([ini, n, r, bg]) => ({
+      ini, n, r, avst: 'background: ' + bg,
+      appts: raw[ini].map(([s, e, client, svc, c, st, proc]) => {
+        const top = (toMin(s) - 480) * 64 / 60, h = (toMin(e) - toMin(s)) * 64 / 60;
+        const isOff = c === 'off';
+        const a = {
+          client, svc, time: isOff ? lbl(s) + ' – ' + lbl(e) : lbl(s) + ' – ' + lbl(e),
+          aria: client + ', ' + svc + ', ' + lbl(s),
+          st: 'top: ' + (top + 2) + 'px; height: ' + (h - 4) + 'px; background: ' + (isOff ? 'repeating-linear-gradient(45deg,#f7eff3 0 6px,#eadfe5 6px 12px)' : cat[c]) + (st === 'done' ? '; opacity: .62' : '') + (st === 'prog' ? '; box-shadow: 0 0 0 2px #6b52a8' : ''),
+          hasProc: !!proc,
+          procSt: proc ? 'position: absolute; left: 0; right: 0; top: ' + (proc[0] * 64 / 60) + 'px; height: ' + (proc[1] * 64 / 60) + 'px; background: repeating-linear-gradient(45deg,#ffffff 0 4px,#dcc6d1 4px 7px); font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; color: #3a2a35' : '',
+          open: isOff ? () => {} : () => this.setState({ detail: { client, svc, tech: n, time: lbl(s) + ' – ' + lbl(e), ini: client.split(' ').map((w) => w[0]).join('').slice(0, 2), status: stat[st][0], badgeSt: stat[st][1] } })
+        };
+        return a;
+      })
+    }));
+    const hours = []; for (let h = 8; h <= 18; h++) hours.push((h > 12 ? h - 12 : h) + (h >= 12 ? ' p. m.' : ' a. m.'));
+    const view = this.state.view;
+    const views = [['day', 'Día'], ['week', 'Semana'], ['month', 'Mes']].map(([id, label]) => ({
+      label,
+      st: 'font: inherit; font-weight: 600; height: 34px; padding: 0 16px; border-radius: 9px; border: 0; cursor: pointer; ' + (id === view ? 'background: #ffffff; color: #a63d64; box-shadow: 0 1px 2px rgba(58,42,53,.08)' : 'background: transparent; color: #7a6672'),
+      pick: () => this.setState({ view: id })
+    }));
+    const wk = [['Lun', 19, 18], ['Mar', 20, 21], ['Mié', 21, 17], ['Jue', 22, 23], ['Vie', 23, 24], ['Sáb', 24, 31], ['Dom', 25, 9]];
+    const sample = [['9:00', 'Manicure · Paula', 'mani'], ['10:00', 'Pedicure · Sara', 'pedi'], ['11:30', 'Masaje · Sofía', 'spa'], ['12:00', 'Facial · Ana', 'facial'], ['14:00', 'Cejas · Mónica', 'brows'], ['15:00', 'Semi · Carolina', 'mani']];
+    const week = wk.map(([dow, num, c], i) => ({
+      dow, num, count: c + ' citas',
+      colSt: 'padding: 14px 10px; display: flex; flex-direction: column; gap: 6px; min-height: 520px; ' + (i ? 'border-left: 1px solid #eedfe6; ' : '') + (num === 23 ? 'background: #fdf3f6;' : ''),
+      items: sample.slice(0, Math.min(6, Math.ceil(c / 4))).map(([t, cc, k]) => ({ t, c: cc, st: 'padding: 6px 8px; border-radius: 8px; font-size: 12px; line-height: 16px; background: ' + cat[k] }))
+    }));
+    const dows = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
+    const month = [];
+    for (let i = 0; i < 35; i++) {
+      const d = i - 2; const inM = d >= 1 && d <= 31;
+      const c = inM ? [12, 18, 21, 17, 24, 31, 9][i % 7] : 0;
+      const occ = Math.min(100, Math.round(c / 32 * 100));
+      month.push({
+        d: inM ? d : '', c: inM ? (d > 23 ? c - 6 : c) + ' citas' : '',
+        st: 'min-height: 84px; padding: 8px 10px; border-radius: 12px; display: flex; flex-direction: column; gap: 2px; box-sizing: border-box; ' + (d === 23 ? 'background: #fbe6ed; border: 1.5px solid #e8a5bb;' : inM ? 'background: #ffffff; border: 1px solid #eedfe6;' : 'background: transparent; border: 1px dashed #eedfe6;'),
+        bar: inM ? 'width: ' + occ + '%; height: 6px; background: ' + (occ > 85 ? '#e8a5bb' : '#d9cdf3') : 'width: 0'
+      });
+    }
+    const rangeTxt = view === 'day' ? 'Viernes 23 de octubre de 2026' : view === 'week' ? '19 – 25 de octubre de 2026' : 'Octubre de 2026';
+    return {
+      techs, hours, views, week, dows, month, rangeTxt,
+      isDay: view === 'day', isWeek: view === 'week', isMonth: view === 'month',
+      showNew: this.state.panel === 'new',
+      showDetail: !!this.state.detail,
+      d: this.state.detail || {},
+      openNew: () => this.setState({ panel: 'new', detail: null }),
+      closeAll: () => this.setState({ panel: null, detail: null })
+    };
+  }
+}
+</script>
+</body>
+</html>

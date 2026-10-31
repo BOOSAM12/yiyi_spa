@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Servicios · YiYi Spa</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#fdf8fa;color:#3a2a35;font-family:"Plus Jakarta Sans",system-ui,sans-serif;font-size:14px;line-height:21px}
+a{color:#a63d64;text-decoration:none}a:hover{color:#7d2a4a}
+h1,h2,h3,p{margin:0}
+.ttl{font-family:Fraunces,Georgia,serif;font-weight:600}
+.card{background:#fff;border:1px solid #eedfe6;border-radius:18px;box-shadow:0 1px 2px rgba(58,42,53,.04),0 4px 16px rgba(58,42,53,.05)}
+.btn{font:inherit;font-weight:600;height:44px;padding:0 18px;border-radius:12px;border:1px solid transparent;cursor:pointer;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;text-decoration:none;box-sizing:border-box}
+.bp{background:#e8a5bb;color:#3a2a35}.bp:hover{background:#df93ad;color:#3a2a35}
+.bs{background:#efe9fb;color:#6b52a8;border-color:#d9cdf3}.bs:hover{color:#6b52a8}
+.bg{background:#fff;color:#7a6672;border-color:#eedfe6}
+.sm{height:34px;padding:0 12px;font-size:13px;border-radius:10px}
+.cap{font-size:11px;line-height:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7a6672}
+.mut{color:#7a6672}
+.tbl{width:100%;border-collapse:collapse}
+.tbl th{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7a6672;text-align:left;padding:12px 16px;border-bottom:1px solid #eedfe6;background:#fdf8fa;white-space:nowrap}
+.tbl td{padding:12px 16px;border-bottom:1px solid #f3e8ee;vertical-align:middle}
+.av{width:28px;height:28px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;flex:none;color:#3a2a35;border:2px solid #fff;margin-left:-6px}
+.overlay{position:absolute;left:0;right:0;top:64px;bottom:0;background:rgba(58,42,53,.18);display:flex;justify-content:flex-end;z-index:20}
+.panel{width:440px;max-width:100%;background:#fff;border-radius:18px 0 0 18px;box-shadow:-12px 0 40px rgba(58,42,53,.12);display:flex;flex-direction:column;height:100%;box-sizing:border-box}
+.ph{padding:20px 24px;border-bottom:1px solid #eedfe6;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.pb{padding:20px 24px;display:flex;flex-direction:column;gap:14px;overflow:auto;flex:1}.pb>*{flex:none}
+.pf{padding:16px 24px;border-top:1px solid #eedfe6;display:flex;justify-content:flex-end;gap:12px}
+.xbtn{width:40px;height:40px;border-radius:12px;border:1px solid #eedfe6;background:#fff;color:#7a6672;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+.in{font:inherit;font-weight:400;height:40px;padding:0 12px;border:1px solid #dcc6d1;border-radius:8px;background:#fff;color:#3a2a35;box-sizing:border-box;width:100%}
+.lbl{font-size:13px;font-weight:600;display:flex;flex-direction:column;gap:6px;flex:1;min-width:0}
+.sw{width:40px;height:24px;border-radius:999px;background:#c5ead7;position:relative;display:inline-block;flex:none}
+.sw:after{content:"";position:absolute;right:3px;top:3px;width:18px;height:18px;border-radius:50%;background:#2f7a57}
+.sw.off{background:#eadfe5}.sw.off:after{right:auto;left:3px;background:#ffffff}
+.ck{display:flex;gap:10px;align-items:center;font-size:13px;font-weight:500}
+.ck input{width:18px;height:18px;accent-color:#6b52a8}
+</style>
+</helmet>
+<div style="position: relative; min-height: 1100px; display: flex; flex-direction: column">
+<dc-import name="TopBar" hint-size="100%,64px"></dc-import>
+<div style="display: flex; flex-wrap: wrap; flex: 1; align-items: stretch">
+<dc-import name="NavNegocio" active="servicios" hint-size="248px,1036px"></dc-import>
+<main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 28px 32px 48px; display: flex; flex-direction: column; gap: 20px">
+
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h1 class="ttl" style="font-size: 30px; line-height: 38px">Catálogo de servicios</h1>
+<p class="mut">Precio, duración, tiempo de procesamiento y preparación de cada servicio.</p>
+</div>
+<div style="margin-left: auto; display: flex; gap: 12px">
+<button class="btn bg">Categorías</button>
+<button class="btn bp" onClick="{{open}}">+ Nuevo servicio</button>
+</div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<sc-for list="{{cats}}" as="c" hint-placeholder-count="6">
+<button onClick="{{c.pick}}" style="{{c.st}}"><span style="{{c.dot}}"></span>{{c.label}} <span style="opacity: .7">{{c.n}}</span></button>
+</sc-for>
+</div>
+
+<div class="card" style="overflow-x: auto">
+<table class="tbl" style="min-width: 1000px">
+<thead><tr><th>Servicio</th><th>Tiempo en agenda</th><th>Precio Chapinero</th><th>Precio Usaquén</th><th>Quién lo hace</th><th>Reserva online</th><th></th></tr></thead>
+<tbody>
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="8">
+<tr>
+<td><div style="display: flex; align-items: center; gap: 12px"><span style="{{r.dot}}"></span><div style="display: flex; flex-direction: column; line-height: 18px"><span style="font-weight: 600">{{r.n}}</span><span class="mut" style="font-size: 12px">{{r.cat}}</span></div></div></td>
+<td>
+<div style="display: flex; flex-direction: column; gap: 4px; min-width: 190px">
+<div style="display: flex; height: 10px; border-radius: 999px; overflow: hidden; background: #f7eff3"><span style="{{r.bA}}"></span><span style="{{r.bP}}"></span><span style="{{r.bB}}"></span></div>
+<span class="mut" style="font-size: 12px">{{r.timeTxt}}</span>
+</div>
+</td>
+<td style="font-weight: 600">{{r.p1}}</td>
+<td style="font-weight: 600">{{r.p2}}</td>
+<td><div style="display: flex; padding-left: 6px"><sc-for list="{{r.techs}}" as="t" hint-placeholder-count="2"><span class="av" style="{{t.st}}">{{t.i}}</span></sc-for></div></td>
+<td><span class="{{r.sw}}" role="img" aria-label="{{r.onlineTxt}}"></span></td>
+<td><button class="btn bg sm" onClick="{{r.open}}">Editar</button></td>
+</tr>
+</sc-for>
+</tbody>
+</table>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 18px; font-size: 12px; font-weight: 600" class="mut">
+<span style="display: inline-flex; gap: 6px; align-items: center"><span style="width: 12px; height: 12px; border-radius: 3px; background: #e8a5bb"></span>Profesional ocupado</span>
+<span style="display: inline-flex; gap: 6px; align-items: center"><span style="width: 12px; height: 12px; border-radius: 3px; background: repeating-linear-gradient(45deg,#ffffff 0 3px,#dcc6d1 3px 5px)"></span>Procesamiento (el profesional queda libre)</span>
+<span style="display: inline-flex; gap: 6px; align-items: center"><span style="width: 12px; height: 12px; border-radius: 3px; background: #d9cdf3"></span>Preparación y limpieza</span>
+</div>
+
+</main>
+</div>
+
+<sc-if value="{{panel}}" hint-placeholder-val="{{ false }}">
+<div class="overlay">
+<aside class="panel" aria-label="Nuevo servicio">
+<div class="ph"><div style="display: flex; flex-direction: column"><span style="font-size: 20px; line-height: 28px; font-weight: 700">Nuevo servicio</span><span class="mut" style="font-size: 13px">Así aparecerá en la agenda y en la reserva online</span></div><button class="xbtn" aria-label="Cerrar" onClick="{{close}}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+<div class="pb">
+<label class="lbl">Nombre<input class="in" value="Pedicure semipermanente"></label>
+<label class="lbl">Categoría<select class="in"><option>Pedicure</option><option>Manicure</option><option>Spa y masajes</option><option>Facial</option><option>Cejas y pestañas</option></select></label>
+<label class="lbl">Descripción para clientes<textarea class="in" rows="2" style="height: auto; padding: 10px 12px">Limpieza, limado, cutícula y esmalte semipermanente de larga duración.</textarea></label>
+<div style="display: flex; gap: 12px"><label class="lbl">Duración (min)<input class="in" value="50"></label><label class="lbl">Procesamiento<input class="in" value="10"></label><label class="lbl">Preparación<input class="in" value="10"></label></div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; height: 14px; border-radius: 999px; overflow: hidden"><span style="width: 50%; background: #e8a5bb"></span><span style="width: 17%; background: repeating-linear-gradient(45deg,#ffffff 0 4px,#dcc6d1 4px 7px)"></span><span style="width: 16%; background: #e8a5bb"></span><span style="width: 17%; background: #d9cdf3"></span></div>
+<span class="mut" style="font-size: 12px">Ocupa 70 min en la agenda; 10 min de secado en los que el profesional puede atender otra cita corta.</span>
+</div>
+<div style="display: flex; gap: 12px"><label class="lbl">Precio Chapinero<input class="in" value="$ 65.000"></label><label class="lbl">Precio Usaquén<input class="in" value="$ 70.000"></label></div>
+<label class="lbl">Recurso necesario<select class="in"><option>Sillón de pedicure</option><option>Estación de manicure</option><option>Cabina de masajes</option><option>Ninguno</option></select></label>
+<div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 13px; font-weight: 600">Profesionales que lo pueden hacer</span>
+<label class="ck"><input type="checkbox" checked>Daniela Ruiz</label>
+<label class="ck"><input type="checkbox" checked>Laura Torres</label>
+<label class="ck"><input type="checkbox">Andrea Patiño</label>
+</div>
+<label class="ck" style="font-weight: 600"><input type="checkbox" checked>Mostrar en la reserva online</label>
+<label class="ck" style="font-weight: 600"><input type="checkbox">Pedir depósito para reservar</label>
+</div>
+<div class="pf"><button class="btn bg" onClick="{{close}}">Cancelar</button><button class="btn bp" onClick="{{close}}">Guardar servicio</button></div>
+</aside>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1100}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { cat: 'all', panel: false }; }
+  renderVals() {
+    const fmt = (n) => '$ ' + n.toLocaleString('es-CO');
+    const C = { mani: ['Manicure', '#f4c6d4'], pedi: ['Pedicure', '#c5ead7'], spa: ['Spa y masajes', '#d9cdf3'], facial: ['Facial', '#c9e2f5'], brows: ['Cejas y pestañas', '#fbd9bf'] };
+    const T = { LT: '#f4c6d4', DR: '#c5ead7', AP: '#d9cdf3', ML: '#c9e2f5' };
+    const data = [
+      ['Manicure tradicional', 'mani', 35, 0, 10, 30000, 32000, ['LT', 'DR'], true],
+      ['Manicure semipermanente', 'mani', 45, 0, 10, 55000, 58000, ['LT', 'DR'], true],
+      ['Uñas acrílicas', 'mani', 75, 15, 15, 120000, 125000, ['LT'], true],
+      ['Diseño de uñas (10)', 'mani', 20, 0, 0, 25000, 25000, ['LT'], true],
+      ['Pedicure spa', 'pedi', 60, 0, 10, 70000, 75000, ['DR'], true],
+      ['Pedicure semipermanente', 'pedi', 50, 10, 10, 65000, 70000, ['DR', 'LT'], true],
+      ['Masaje relajante 60 min', 'spa', 60, 0, 15, 120000, 130000, ['AP'], true],
+      ['Masaje piedras calientes', 'spa', 75, 0, 15, 150000, 160000, ['AP'], true],
+      ['Ritual spa 90 min', 'spa', 90, 0, 15, 210000, 220000, ['AP'], false],
+      ['Limpieza facial profunda', 'facial', 40, 20, 10, 95000, 98000, ['ML'], true],
+      ['Lifting de pestañas', 'brows', 30, 15, 10, 90000, 90000, ['ML'], true],
+      ['Diseño de cejas', 'brows', 30, 0, 5, 35000, 38000, ['ML'], true]
+    ];
+    const cat = this.state.cat;
+    const all = data.filter((d) => cat === 'all' || d[1] === cat);
+    const rows = all.map(([n, c, a, p, b, p1, p2, tech, online]) => {
+      const tot = a + p + b;
+      return {
+        n, cat: C[c][0],
+        dot: 'width: 12px; height: 36px; border-radius: 6px; background: ' + C[c][1],
+        bA: 'width: ' + (a / tot * 100) + '%; background: #e8a5bb',
+        bP: 'width: ' + (p / tot * 100) + '%; background: repeating-linear-gradient(45deg,#ffffff 0 3px,#dcc6d1 3px 5px)',
+        bB: 'width: ' + (b / tot * 100) + '%; background: #d9cdf3',
+        timeTxt: a + ' min' + (p ? ' + ' + p + ' procesamiento' : '') + (b ? ' + ' + b + ' preparación' : ''),
+        p1: fmt(p1), p2: fmt(p2),
+        techs: tech.map((t) => ({ i: t, st: 'background: ' + T[t] })),
+        sw: online ? 'sw' : 'sw off', onlineTxt: online ? 'Visible online' : 'Oculto online',
+        open: () => this.setState({ panel: true })
+      };
+    });
+    const cats = [['all', 'Todos', '#3a2a35']].concat(Object.keys(C).map((k) => [k, C[k][0], C[k][1]])).map(([id, label, color]) => ({
+      label, n: id === 'all' ? data.length : data.filter((d) => d[1] === id).length,
+      dot: 'width: 10px; height: 10px; border-radius: 50%; background: ' + color,
+      st: 'font: inherit; font-weight: 600; font-size: 13px; height: 36px; padding: 0 14px; border-radius: 999px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; ' + (id === cat ? 'background: #fbe6ed; color: #a63d64; border: 1px solid #e8a5bb' : 'background: #ffffff; color: #3a2a35; border: 1px solid #eedfe6'),
+      pick: () => this.setState({ cat: id })
+    }));
+    return {
+      rows, cats,
+      panel: this.state.panel,
+      open: () => this.setState({ panel: true }),
+      close: () => this.setState({ panel: false })
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Punto de venta · YiYi Spa</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#fdf8fa;color:#3a2a35;font-family:"Plus Jakarta Sans",system-ui,sans-serif;font-size:14px;line-height:21px}
+a{color:#a63d64;text-decoration:none}a:hover{color:#7d2a4a}
+h1,h2,h3,p{margin:0}
+.ttl{font-family:Fraunces,Georgia,serif;font-weight:600}
+.card{background:#fff;border:1px solid #eedfe6;border-radius:18px;box-shadow:0 1px 2px rgba(58,42,53,.04),0 4px 16px rgba(58,42,53,.05)}
+.btn{font:inherit;font-weight:600;height:44px;padding:0 18px;border-radius:12px;border:1px solid transparent;cursor:pointer;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;text-decoration:none;box-sizing:border-box}
+.bp{background:#e8a5bb;color:#3a2a35}.bp:hover{background:#df93ad;color:#3a2a35}
+.bs{background:#efe9fb;color:#6b52a8;border-color:#d9cdf3}.bs:hover{color:#6b52a8}
+.bg{background:#fff;color:#7a6672;border-color:#eedfe6}
+.cap{font-size:11px;line-height:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7a6672}
+.mut{color:#7a6672}
+.av{width:36px;height:36px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex:none;color:#3a2a35}
+.in{font:inherit;height:40px;padding:0 12px;border:1px solid #dcc6d1;border-radius:8px;background:#fff;color:#3a2a35;box-sizing:border-box}
+.qty{width:28px;height:28px;border-radius:8px;border:1px solid #eedfe6;background:#fff;color:#3a2a35;cursor:pointer;font:inherit;font-weight:700}
+.row{display:flex;justify-content:space-between;gap:12px}
+</style>
+</helmet>
+<div style="position: relative; min-height: 1100px; display: flex; flex-direction: column">
+<dc-import name="TopBar" hint-size="100%,64px" who="Paola Méndez" rol="Recepción" initials="PM"></dc-import>
+<div style="display: flex; flex-wrap: wrap; flex: 1; align-items: stretch">
+<dc-import name="NavNegocio" active="pos" hint-size="248px,1036px"></dc-import>
+<main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 28px 32px 48px; display: flex; flex-direction: column; gap: 20px">
+
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h1 class="ttl" style="font-size: 30px; line-height: 38px">Punto de venta</h1>
+<p class="mut">Cobra servicios terminados y suma productos en el mismo ticket.</p>
+</div>
+<div style="margin-left: auto; display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-radius: 14px; background: #e6f6ee; color: #2f7a57; font-weight: 600; font-size: 13px">
+<span style="width: 8px; height: 8px; border-radius: 50%; background: #2f7a57"></span>Caja abierta desde 8:02 a. m. · Base $ 200.000
+<a href="Finanzas.dc.html" style="color: #2f7a57; text-decoration: underline">Cerrar caja</a>
+</div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+
+<div style="flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+<section class="card" style="padding: 18px; display: flex; flex-direction: column; gap: 12px">
+<h2 style="font-size: 16px; line-height: 24px">Servicios terminados por cobrar</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px">
+<sc-for list="{{pending}}" as="p" hint-placeholder-count="3">
+<button onClick="{{p.pick}}" style="{{p.st}}">
+<span class="av" style="{{p.avst}}">{{p.ini}}</span>
+<span style="display: flex; flex-direction: column; text-align: left; line-height: 18px"><span style="font-weight: 700">{{p.client}}</span><span class="mut" style="font-size: 12px">{{p.svc}}</span></span>
+<span style="margin-left: auto; font-weight: 700">{{p.priceTxt}}</span>
+</button>
+</sc-for>
+</div>
+</section>
+
+<section class="card" style="padding: 18px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center">
+<h2 style="font-size: 16px; line-height: 24px">Agregar al ticket</h2>
+<div style="display: flex; gap: 4px; padding: 4px; background: #f7eff3; border-radius: 12px; margin-left: auto">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="2"><button onClick="{{t.pick}}" style="{{t.st}}">{{t.label}}</button></sc-for>
+</div>
+<input class="in" placeholder="Buscar producto o servicio" aria-label="Buscar en catálogo" style="flex: 1 1 200px">
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 12px">
+<sc-for list="{{catalog}}" as="c" hint-placeholder-count="8">
+<button onClick="{{c.add}}" style="font: inherit; text-align: left; cursor: pointer; border: 1px solid #eedfe6; background: #ffffff; border-radius: 14px; padding: 10px; display: flex; flex-direction: column; gap: 8px; color: #3a2a35">
+<span style="{{c.thumb}}">{{c.tag}}</span>
+<span style="font-weight: 600; line-height: 18px">{{c.n}}</span>
+<span style="display: flex; justify-content: space-between; align-items: center; width: 100%"><span style="font-weight: 700">{{c.priceTxt}}</span><span class="mut" style="font-size: 12px">{{c.stock}}</span></span>
+</button>
+</sc-for>
+</div>
+</section>
+</div>
+
+<aside class="card" style="flex: 1 1 360px; max-width: 440px; padding: 0; display: flex; flex-direction: column" aria-label="Ticket">
+<sc-if value="{{paid}}" hint-placeholder-val="{{ false }}">
+<div style="padding: 32px 24px; display: flex; flex-direction: column; gap: 14px; align-items: center; text-align: center">
+<span style="width: 64px; height: 64px; border-radius: 50%; background: #e6f6ee; display: inline-flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#2f7a57" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></span>
+<span class="ttl" style="font-size: 24px; line-height: 30px">Venta registrada</span>
+<span class="mut">V-000482 · {{totalTxt}} · {{method}}</span>
+<div style="width: 100%; display: flex; flex-direction: column; gap: 8px; text-align: left; padding: 14px; border-radius: 14px; background: #fdf8fa; border: 1px solid #eedfe6">
+<span style="display: flex; gap: 8px"><span style="color: #2f7a57; font-weight: 700">✓</span>Factura electrónica enviada a la DIAN</span>
+<span style="display: flex; gap: 8px"><span style="color: #2f7a57; font-weight: 700">✓</span>Recibo enviado por WhatsApp a {{clientName}}</span>
+<span style="display: flex; gap: 8px"><span style="color: #2f7a57; font-weight: 700">✓</span>Propina asignada a {{techName}}</span>
+<span style="display: flex; gap: 8px"><span style="color: #2f7a57; font-weight: 700">✓</span>+{{points}} puntos de lealtad sumados</span>
+</div>
+<button class="btn bp" onClick="{{reset}}" style="width: 100%; justify-content: center">Nueva venta</button>
+</div>
+</sc-if>
+<sc-if value="{{notPaid}}" hint-placeholder-val="{{ true }}">
+<div style="padding: 18px 20px; border-bottom: 1px solid #eedfe6; display: flex; align-items: center; gap: 10px">
+<span class="av" style="background: #f4c6d4">{{clientIni}}</span>
+<div style="display: flex; flex-direction: column; line-height: 18px; flex: 1"><span style="font-weight: 700">{{clientName}}</span><span class="mut" style="font-size: 12px">1.240 puntos · Membresía Manos Lindas</span></div>
+<span class="cap">Ticket</span>
+</div>
+<div style="padding: 16px 20px; display: flex; flex-direction: column; gap: 12px">
+<sc-for list="{{cart}}" as="i" hint-placeholder-count="2">
+<div style="display: flex; align-items: center; gap: 10px">
+<div style="display: flex; flex-direction: column; line-height: 18px; flex: 1"><span style="font-weight: 600">{{i.n}}</span><span class="mut" style="font-size: 12px">{{i.sub}}</span></div>
+<button class="qty" onClick="{{i.dec}}" aria-label="Quitar uno">−</button>
+<span style="width: 18px; text-align: center; font-weight: 700">{{i.q}}</span>
+<button class="qty" onClick="{{i.inc}}" aria-label="Agregar uno">+</button>
+<span style="width: 84px; text-align: right; font-weight: 700">{{i.totTxt}}</span>
+</div>
+</sc-for>
+<div style="padding: 10px 12px; border-radius: 12px; background: #efe9fb; color: #6b52a8; font-size: 13px; display: flex; gap: 8px; align-items: center">
+<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7 4.7 1.8-4.7 1.8L12 16l-1.8-4.7-4.7-1.8 4.7-1.8z"/></svg>
+<span style="flex: 1">Valentina compró aceite de cutícula hace 2 meses.</span>
+<button onClick="{{addOil}}" style="font: inherit; font-weight: 700; border: 0; background: transparent; color: #6b52a8; cursor: pointer; text-decoration: underline">Sugerir</button>
+</div>
+</div>
+<div style="padding: 0 20px 16px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; gap: 8px"><input class="in" placeholder="Cupón o puntos" aria-label="Cupón" style="flex: 1" value="OCTUBRE10"><button class="btn bg" style="height: 40px">Aplicar</button></div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<span class="cap">Propina para Laura T.</span>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px">
+<sc-for list="{{tips}}" as="t" hint-placeholder-count="4"><button onClick="{{t.pick}}" style="{{t.st}}">{{t.label}}</button></sc-for>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px; padding-top: 12px; border-top: 1px dashed #dcc6d1">
+<div class="row"><span class="mut">Subtotal</span><span>{{subTxt}}</span></div>
+<div class="row"><span class="mut">Descuento cupón OCTUBRE10</span><span style="color: #2f7a57">−{{discTxt}}</span></div>
+<div class="row"><span class="mut">Propina</span><span>{{tipTxt}}</span></div>
+<div class="row"><span class="mut">IVA incluido (19%)</span><span class="mut">{{ivaTxt}}</span></div>
+<div class="row" style="font-size: 18px; margin-top: 6px"><span style="font-weight: 700">Total</span><span class="ttl" style="font-size: 24px; line-height: 30px">{{totalTxt}}</span></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<span class="cap">Método de pago</span>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px">
+<sc-for list="{{methods}}" as="m" hint-placeholder-count="6"><button onClick="{{m.pick}}" style="{{m.st}}">{{m.label}}</button></sc-for>
+</div>
+</div>
+<button class="btn bp" onClick="{{pay}}" style="width: 100%; justify-content: center; height: 52px; font-size: 16px">Cobrar {{totalTxt}}</button>
+</div>
+</sc-if>
+</aside>
+</div>
+
+</main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1100}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { who: 0, tab: 'prod', cart: { s0: 1, p3: 1 }, tip: 1, method: 'Nequi', paid: false };
+  }
+  renderVals() {
+    const fmt = (n) => '$ ' + Math.round(n).toLocaleString('es-CO');
+    const pend = [
+      ['Valentina Gómez', 'Manicure semipermanente · Laura T.', 55000, '#f4c6d4', 'Laura T.'],
+      ['Isabel Mora', 'Manicure semipermanente · Laura T.', 55000, '#c9e2f5', 'Laura T.'],
+      ['Sara León', 'Pedicure spa · Daniela R.', 70000, '#c5ead7', 'Daniela R.']
+    ];
+    const who = this.state.who;
+    const pending = pend.map(([client, svc, price, bg], i) => ({
+      client, svc, priceTxt: fmt(price), avst: 'background: ' + bg,
+      ini: client.split(' ').map((w) => w[0]).join(''),
+      st: 'font: inherit; display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 14px; cursor: pointer; color: #3a2a35; ' + (i === who ? 'background: #fbe6ed; border: 1.5px solid #e8a5bb' : 'background: #ffffff; border: 1px solid #eedfe6'),
+      pick: () => this.setState({ who: i, cart: { ['s' + i]: 1 } })
+    }));
+    const prods = [
+      ['p0', 'Esmalte gel OPI Bubble Bath', 48000, '12 und', '#f4c6d4', 'Esmalte'],
+      ['p1', 'Crema de manos karité 50 ml', 32000, '8 und', '#d9cdf3', 'Cuidado'],
+      ['p2', 'Exfoliante de pies menta', 38000, '3 und', '#c5ead7', 'Pies'],
+      ['p3', 'Aceite de cutícula almendras', 22000, '15 und', '#fbd9bf', 'Cuidado'],
+      ['p4', 'Kit lima + pulidor', 18000, '20 und', '#c9e2f5', 'Herramienta'],
+      ['p5', 'Sérum facial vitamina C', 89000, '2 und', '#f4c6d4', 'Facial']
+    ];
+    const servs = [
+      ['v0', 'Diseño de uñas (10)', 25000, '20 min', '#f4c6d4', 'Manicure'],
+      ['v1', 'Parafina de manos', 20000, '15 min', '#d9cdf3', 'Spa'],
+      ['v2', 'Retiro de gel', 15000, '15 min', '#f4c6d4', 'Manicure'],
+      ['v3', 'Masaje de pies 15 min', 30000, '15 min', '#c5ead7', 'Pedicure']
+    ];
+    const all = {};
+    pend.forEach(([client, svc, price], i) => { all['s' + i] = [svc.split(' · ')[0], price, 'Servicio · ' + svc.split(' · ')[1]]; });
+    prods.forEach(([id, n, p]) => { all[id] = [n, p, 'Producto']; });
+    servs.forEach(([id, n, p]) => { all[id] = [n, p, 'Servicio adicional']; });
+    const cartS = this.state.cart;
+    const setQ = (id, q) => { const c = Object.assign({}, cartS); if (q <= 0) delete c[id]; else c[id] = q; this.setState({ cart: c }); };
+    const list = this.state.tab === 'prod' ? prods : servs;
+    const catalog = list.map(([id, n, p, stock, bg, tag]) => ({
+      n, priceTxt: fmt(p), stock, tag,
+      thumb: 'height: 64px; border-radius: 10px; background: ' + bg + '; display: flex; align-items: flex-end; padding: 6px 8px; box-sizing: border-box; font-size: 11px; font-weight: 700; color: #3a2a35',
+      add: () => setQ(id, (cartS[id] || 0) + 1)
+    }));
+    let sub = 0;
+    const cart = Object.keys(cartS).map((id) => {
+      const [n, p, s] = all[id]; const q = cartS[id]; sub += p * q;
+      return { n, sub: s + ' · ' + fmt(p), q, totTxt: fmt(p * q), inc: () => setQ(id, q + 1), dec: () => setQ(id, q - 1) };
+    });
+    const disc = Math.round(sub * 0.10);
+    const tipPct = [0, 0.10, 0.15, 0.20][this.state.tip];
+    const tip = Math.round((sub - disc) * tipPct / 100) * 100;
+    const total = sub - disc + tip;
+    const iva = (sub - disc) - (sub - disc) / 1.19;
+    const tips = ['Sin', '10%', '15%', '20%'].map((label, i) => ({
+      label, pick: () => this.setState({ tip: i }),
+      st: 'font: inherit; font-weight: 600; height: 36px; border-radius: 10px; cursor: pointer; ' + (i === this.state.tip ? 'background: #efe9fb; color: #6b52a8; border: 1.5px solid #d9cdf3' : 'background: #ffffff; color: #3a2a35; border: 1px solid #eedfe6')
+    }));
+    const methods = ['Efectivo', 'Tarjeta', 'Nequi', 'Daviplata', 'PSE', 'Mixto'].map((label) => ({
+      label, pick: () => this.setState({ method: label }),
+      st: 'font: inherit; font-weight: 600; height: 40px; border-radius: 10px; cursor: pointer; ' + (label === this.state.method ? 'background: #3a2a35; color: #ffffff; border: 1px solid #3a2a35' : 'background: #ffffff; color: #3a2a35; border: 1px solid #eedfe6')
+    }));
+    const tabs = [['prod', 'Productos'], ['serv', 'Servicios']].map(([id, label]) => ({
+      label, pick: () => this.setState({ tab: id }),
+      st: 'font: inherit; font-weight: 600; height: 34px; padding: 0 14px; border-radius: 9px; border: 0; cursor: pointer; ' + (id === this.state.tab ? 'background: #ffffff; color: #a63d64; box-shadow: 0 1px 2px rgba(58,42,53,.08)' : 'background: transparent; color: #7a6672')
+    }));
+    const client = pend[who];
+    return {
+      pending, catalog, cart, tips, methods, tabs,
+      subTxt: fmt(sub), discTxt: fmt(disc), tipTxt: fmt(tip), ivaTxt: fmt(iva), totalTxt: fmt(total),
+      clientName: client[0], clientIni: client[0].split(' ').map((w) => w[0]).join(''), techName: client[4],
+      method: this.state.method, points: Math.floor(total / 1000),
+      paid: this.state.paid, notPaid: !this.state.paid,
+      addOil: () => setQ('p3', (cartS.p3 || 0) + 1),
+      pay: () => this.setState({ paid: true }),
+      reset: () => this.setState({ paid: false, cart: { s0: 1 }, who: 0 })
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Reportes · YiYi Spa</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#fdf8fa;color:#3a2a35;font-family:"Plus Jakarta Sans",system-ui,sans-serif;font-size:14px;line-height:21px}
+a{color:#a63d64;text-decoration:none}a:hover{color:#7d2a4a}
+h1,h2,h3,p{margin:0}
+.ttl{font-family:Fraunces,Georgia,serif;font-weight:600}
+.card{background:#fff;border:1px solid #eedfe6;border-radius:18px;box-shadow:0 1px 2px rgba(58,42,53,.04),0 4px 16px rgba(58,42,53,.05)}
+.btn{font:inherit;font-weight:600;height:44px;padding:0 18px;border-radius:12px;border:1px solid transparent;cursor:pointer;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;text-decoration:none;box-sizing:border-box}
+.bp{background:#e8a5bb;color:#3a2a35}.bp:hover{background:#df93ad;color:#3a2a35}
+.bg{background:#fff;color:#7a6672;border-color:#eedfe6}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;line-height:22px;padding:0 10px;border-radius:999px;white-space:nowrap}
+.cap{font-size:11px;line-height:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7a6672}
+.mut{color:#7a6672}
+.tbl{width:100%;border-collapse:collapse}
+.tbl th{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7a6672;text-align:left;padding:12px 16px;border-bottom:1px solid #eedfe6;background:#fdf8fa;white-space:nowrap}
+.tbl td{padding:12px 16px;border-bottom:1px solid #f3e8ee;vertical-align:middle}
+.av{width:32px;height:32px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex:none;color:#3a2a35}
+.in{font:inherit;height:44px;padding:0 12px;border:1px solid #dcc6d1;border-radius:10px;background:#fff;color:#3a2a35;box-sizing:border-box}
+.hm{height:28px;border-radius:6px}
+.hd{font-size:11px;font-weight:700;color:#7a6672;text-align:center}
+</style>
+</helmet>
+<div style="position: relative; min-height: 1100px; display: flex; flex-direction: column">
+<dc-import name="TopBar" hint-size="100%,64px"></dc-import>
+<div style="display: flex; flex-wrap: wrap; flex: 1; align-items: stretch">
+<dc-import name="NavNegocio" active="reportes" hint-size="248px,1036px"></dc-import>
+<main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 28px 32px 48px; display: flex; flex-direction: column; gap: 22px">
+
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h1 class="ttl" style="font-size: 30px; line-height: 38px">Reportes</h1>
+<p class="mut">Cómo va el negocio por profesional, servicio, sede y cliente.</p>
+</div>
+<div style="margin-left: auto; display: flex; gap: 10px; flex-wrap: wrap">
+<select class="in" aria-label="Periodo"><option>Últimos 30 días</option><option>Este mes</option><option>Este año</option></select>
+<select class="in" aria-label="Sede"><option>Todas las sedes</option><option>Chapinero</option><option>Usaquén</option></select>
+<button class="btn bg">Descargar Excel</button>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px">
+<div class="card" style="padding: 18px; display: flex; flex-direction: column; gap: 4px"><span class="cap">Ocupación</span><span class="ttl" style="font-size: 26px; line-height: 32px">79%</span><span style="font-size: 13px; font-weight: 600; color: #2f7a57">+5 puntos</span></div>
+<div class="card" style="padding: 18px; display: flex; flex-direction: column; gap: 4px"><span class="cap">Ticket promedio</span><span class="ttl" style="font-size: 26px; line-height: 32px">$ 103.300</span><span style="font-size: 13px; font-weight: 600; color: #2f7a57">+4%</span></div>
+<div class="card" style="padding: 18px; display: flex; flex-direction: column; gap: 4px"><span class="cap">No asistieron</span><span class="ttl" style="font-size: 26px; line-height: 32px">4,2%</span><span style="font-size: 13px; font-weight: 600; color: #2f7a57">−3 puntos con recordatorios</span></div>
+<div class="card" style="padding: 18px; display: flex; flex-direction: column; gap: 4px"><span class="cap">Clientes recurrentes</span><span class="ttl" style="font-size: 26px; line-height: 32px">68%</span><span class="mut" style="font-size: 13px">32% nuevas</span></div>
+<div class="card" style="padding: 18px; display: flex; flex-direction: column; gap: 4px"><span class="cap">Calificación</span><span class="ttl" style="font-size: 26px; line-height: 32px">4,8 de 5</span><span class="mut" style="font-size: 13px">412 reseñas</span></div>
+</div>
+
+<div style="display: flex; gap: 4px; padding: 4px; background: #f7eff3; border-radius: 12px; align-self: flex-start; flex-wrap: wrap">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="3"><button onClick="{{t.pick}}" style="{{t.st}}">{{t.label}}</button></sc-for>
+</div>
+
+<sc-if value="{{tPro}}" hint-placeholder-val="{{ true }}">
+<div class="card" style="overflow-x: auto">
+<table class="tbl" style="min-width: 860px">
+<thead><tr><th>Profesional</th><th>Ingresos</th><th>Citas</th><th>Ocupación</th><th>Ticket promedio</th><th>Productos vendidos</th><th>Calificación</th></tr></thead>
+<tbody>
+<tr><td><div style="display: flex; align-items: center; gap: 10px"><span class="av" style="background: #f4c6d4">LT</span><span style="font-weight: 600">Laura Torres</span></div></td><td style="font-weight: 700">$ 9.240.000</td><td>148</td><td><div style="display: flex; align-items: center; gap: 8px"><div style="width: 90px; height: 8px; background: #f7eff3; border-radius: 999px; overflow: hidden"><div style="width: 91%; height: 8px; background: #e8a5bb"></div></div>91%</div></td><td>$ 62.400</td><td>34</td><td>4,9</td></tr>
+<tr><td><div style="display: flex; align-items: center; gap: 10px"><span class="av" style="background: #d9cdf3">AP</span><span style="font-weight: 600">Andrea Patiño</span></div></td><td style="font-weight: 700">$ 7.580.000</td><td>56</td><td><div style="display: flex; align-items: center; gap: 8px"><div style="width: 90px; height: 8px; background: #f7eff3; border-radius: 999px; overflow: hidden"><div style="width: 70%; height: 8px; background: #d9cdf3"></div></div>70%</div></td><td>$ 135.300</td><td>9</td><td>4,9</td></tr>
+<tr><td><div style="display: flex; align-items: center; gap: 10px"><span class="av" style="background: #c5ead7">DR</span><span style="font-weight: 600">Daniela Ruiz</span></div></td><td style="font-weight: 700">$ 6.420.000</td><td>92</td><td><div style="display: flex; align-items: center; gap: 8px"><div style="width: 90px; height: 8px; background: #f7eff3; border-radius: 999px; overflow: hidden"><div style="width: 78%; height: 8px; background: #c5ead7"></div></div>78%</div></td><td>$ 69.800</td><td>21</td><td>4,7</td></tr>
+<tr><td><div style="display: flex; align-items: center; gap: 10px"><span class="av" style="background: #c9e2f5">ML</span><span style="font-weight: 600">Mariana López</span></div></td><td style="font-weight: 700">$ 5.910.000</td><td>81</td><td><div style="display: flex; align-items: center; gap: 8px"><div style="width: 90px; height: 8px; background: #f7eff3; border-radius: 999px; overflow: hidden"><div style="width: 84%; height: 8px; background: #c9e2f5"></div></div>84%</div></td><td>$ 73.000</td><td>40</td><td>4,8</td></tr>
+</tbody>
+</table>
+</div>
+</sc-if>
+
+<sc-if value="{{tSvc}}" hint-placeholder-val="{{ false }}">
+<div class="card" style="padding: 22px; display: flex; flex-direction: column; gap: 14px">
+<h2 style="font-size: 16px; line-height: 24px">Ingresos por categoría de servicio</h2>
+<sc-for list="{{cats}}" as="c" hint-placeholder-count="5">
+<div style="display: grid; grid-template-columns: 160px 1fr 120px; gap: 12px; align-items: center">
+<span style="font-weight: 600">{{c.n}}</span>
+<div style="height: 14px; background: #f7eff3; border-radius: 999px; overflow: hidden"><div style="{{c.bar}}"></div></div>
+<span style="text-align: right; font-weight: 700">{{c.v}}</span>
+</div>
+</sc-for>
+</div>
+</sc-if>
+
+<sc-if value="{{tSede}}" hint-placeholder-val="{{ false }}">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px">
+<div class="card" style="padding: 22px; display: flex; flex-direction: column; gap: 8px; background: #fbe6ed; border-color: #f4c6d4"><span class="ttl" style="font-size: 22px">Sede Chapinero</span><span>Ingresos $ 48,3 M · 468 citas · Ocupación 82%</span><span class="mut">Más fuerte en manicure y pedicure</span></div>
+<div class="card" style="padding: 22px; display: flex; flex-direction: column; gap: 8px; background: #efe9fb; border-color: #d9cdf3"><span class="ttl" style="font-size: 22px">Sede Usaquén</span><span>Ingresos $ 36,9 M · 301 citas · Ocupación 74%</span><span class="mut">Más fuerte en spa y masajes</span></div>
+</div>
+</sc-if>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 16px">
+<section class="card" style="padding: 22px; display: flex; flex-direction: column; gap: 12px; overflow-x: auto">
+<h2 style="font-size: 16px; line-height: 24px">¿Cuándo se llena la agenda?</h2>
+<div style="display: grid; grid-template-columns: 44px repeat(10, minmax(28px, 1fr)); gap: 4px; min-width: 440px; align-items: center">
+<span></span><sc-for list="{{hrs}}" as="h" hint-placeholder-count="10"><span class="hd">{{h}}</span></sc-for>
+<sc-for list="{{heat}}" as="r" hint-placeholder-count="7">
+<span class="hd" style="text-align: left">{{r.d}}</span>
+<sc-for list="{{r.c}}" as="c" hint-placeholder-count="10"><span class="hm" style="{{c}}"></span></sc-for>
+</sc-for>
+</div>
+<div style="display: flex; gap: 10px; align-items: center; font-size: 12px" class="mut">Menos<span style="width: 18px; height: 10px; border-radius: 3px; background: #fbf3f6"></span><span style="width: 18px; height: 10px; border-radius: 3px; background: #f4c6d4"></span><span style="width: 18px; height: 10px; border-radius: 3px; background: #e8a5bb"></span><span style="width: 18px; height: 10px; border-radius: 3px; background: #a63d64"></span>Más</div>
+</section>
+<section class="card" style="padding: 22px; display: flex; flex-direction: column; gap: 12px; background: #efe9fb; border-color: #d9cdf3">
+<div style="display: flex; align-items: center; gap: 10px"><h2 style="font-size: 16px; line-height: 24px">Sugerencias inteligentes</h2><span class="badge" style="background: #ffffff; color: #6b52a8">Próximamente</span></div>
+<div style="padding: 14px; border-radius: 14px; background: #ffffff; display: flex; flex-direction: column; gap: 4px"><span style="font-weight: 700">Los sábados de noviembre se llenarán al 95%</span><span class="mut" style="font-size: 13px">Considera abrir una hora antes o sumar a Karina cuando regrese de vacaciones.</span></div>
+<div style="padding: 14px; border-radius: 14px; background: #ffffff; display: flex; flex-direction: column; gap: 4px"><span style="font-weight: 700">Martes en la tarde con 40% de espacios libres</span><span class="mut" style="font-size: 13px">Un cupón de 15% para martes 2:00 a 5:00 p. m. podría llenar 12 citas más al mes.</span></div>
+<div style="padding: 14px; border-radius: 14px; background: #ffffff; display: flex; flex-direction: column; gap: 4px"><span style="font-weight: 700">3 reseñas mencionan demoras en recepción</span><span class="mut" style="font-size: 13px">Todas son de sábados entre 10 y 12 del día.</span></div>
+</section>
+</div>
+
+</main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1100}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { tab: 'pro' }; }
+  renderVals() {
+    const tab = this.state.tab;
+    const tabs = [['pro', 'Por profesional'], ['svc', 'Por servicio'], ['sede', 'Por sede']].map(([id, label]) => ({
+      label, pick: () => this.setState({ tab: id }),
+      st: 'font: inherit; font-weight: 600; height: 36px; padding: 0 16px; border-radius: 9px; border: 0; cursor: pointer; ' + (id === tab ? 'background: #ffffff; color: #a63d64; box-shadow: 0 1px 2px rgba(58,42,53,.08)' : 'background: transparent; color: #7a6672')
+    }));
+    const cats = [['Manicure', 15.2, '#f4c6d4'], ['Spa y masajes', 12.4, '#d9cdf3'], ['Pedicure', 9.8, '#c5ead7'], ['Facial', 4.1, '#c9e2f5'], ['Cejas y pestañas', 2.9, '#fbd9bf']].map(([n, v, c]) => ({
+      n, v: '$ ' + String(v).replace('.', ',') + ' M', bar: 'width: ' + Math.round(v / 15.2 * 100) + '%; height: 14px; background: ' + c + '; border-radius: 999px'
+    }));
+    const hrs = ['8', '9', '10', '11', '12', '1', '2', '3', '4', '5'];
+    const base = [
+      ['Lun', [1, 2, 2, 2, 1, 1, 2, 2, 2, 1]], ['Mar', [1, 1, 2, 2, 1, 0, 0, 1, 1, 1]], ['Mié', [1, 2, 2, 2, 1, 1, 1, 2, 2, 1]],
+      ['Jue', [1, 2, 3, 2, 2, 1, 2, 2, 3, 2]], ['Vie', [2, 2, 3, 3, 2, 2, 3, 3, 3, 3]], ['Sáb', [3, 3, 3, 3, 3, 3, 3, 3, 2, 2]], ['Dom', [0, 1, 2, 2, 1, 1, 0, 0, 0, 0]]
+    ];
+    const col = ['#fbf3f6', '#f4c6d4', '#e8a5bb', '#a63d64'];
+    const heat = base.map(([d, arr]) => ({ d, c: arr.map((v) => 'background: ' + col[v]) }));
+    return { tabs, cats, hrs, heat, tPro: tab === 'pro', tSvc: tab === 'svc', tSede: tab === 'sede' };
+  }
+}
+</script>
+</body>
+</html>

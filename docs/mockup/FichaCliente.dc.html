@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Ficha del cliente · YiYi Spa</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#fdf8fa;color:#3a2a35;font-family:"Plus Jakarta Sans",system-ui,sans-serif;font-size:14px;line-height:21px}
+a{color:#a63d64;text-decoration:none}a:hover{color:#7d2a4a}
+h1,h2,h3,p{margin:0}
+.ttl{font-family:Fraunces,Georgia,serif;font-weight:600}
+.card{background:#fff;border:1px solid #eedfe6;border-radius:18px;box-shadow:0 1px 2px rgba(58,42,53,.04),0 4px 16px rgba(58,42,53,.05)}
+.btn{font:inherit;font-weight:600;height:44px;padding:0 18px;border-radius:12px;border:1px solid transparent;cursor:pointer;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;text-decoration:none;box-sizing:border-box}
+.bp{background:#e8a5bb;color:#3a2a35}.bp:hover{background:#df93ad;color:#3a2a35}
+.bs{background:#efe9fb;color:#6b52a8;border-color:#d9cdf3}.bs:hover{color:#6b52a8}
+.bg{background:#fff;color:#7a6672;border-color:#eedfe6}
+.sm{height:34px;padding:0 12px;font-size:13px;border-radius:10px}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;line-height:22px;padding:0 10px;border-radius:999px;white-space:nowrap}
+.badge:before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.b-pend{background:#fdeee2;color:#9a5418}.b-conf{background:#e8f2fb;color:#2f6a99}.b-prog{background:#efe9fb;color:#6b52a8}.b-done{background:#e6f6ee;color:#2f7a57}.b-canc{background:#fde8e6;color:#b23b34}.b-brand{background:#fbe6ed;color:#a63d64}
+.cap{font-size:11px;line-height:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7a6672}
+.mut{color:#7a6672}
+.tbl{width:100%;border-collapse:collapse}
+.tbl th{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7a6672;text-align:left;padding:12px 16px;border-bottom:1px solid #eedfe6;background:#fdf8fa;white-space:nowrap}
+.tbl td{padding:12px 16px;border-bottom:1px solid #f3e8ee;vertical-align:middle}
+.av{width:36px;height:36px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex:none;color:#3a2a35}
+.overlay{position:absolute;left:0;right:0;top:64px;bottom:0;background:rgba(58,42,53,.18);display:flex;justify-content:flex-end;z-index:20}
+.panel{width:440px;max-width:100%;background:#fff;border-radius:18px 0 0 18px;box-shadow:-12px 0 40px rgba(58,42,53,.12);display:flex;flex-direction:column;height:100%;box-sizing:border-box}
+.ph{padding:20px 24px;border-bottom:1px solid #eedfe6;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.pb{padding:20px 24px;display:flex;flex-direction:column;gap:14px;overflow:auto;flex:1}.pb>*{flex:none}
+.pf{padding:16px 24px;border-top:1px solid #eedfe6;display:flex;justify-content:flex-end;gap:12px}
+.xbtn{width:40px;height:40px;border-radius:12px;border:1px solid #eedfe6;background:#fff;color:#7a6672;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+.in{font:inherit;font-weight:400;height:40px;padding:0 12px;border:1px solid #dcc6d1;border-radius:8px;background:#fff;color:#3a2a35;box-sizing:border-box;width:100%}
+.lbl{font-size:13px;font-weight:600;display:flex;flex-direction:column;gap:6px;flex:1;min-width:0}
+.kv{display:flex;flex-direction:column;gap:2px}
+.ph-img{border-radius:12px;display:flex;align-items:flex-end;padding:8px;box-sizing:border-box;font-size:11px;font-weight:700;color:#3a2a35;height:110px}
+</style>
+</helmet>
+<div style="position: relative; min-height: 1300px; display: flex; flex-direction: column">
+<dc-import name="TopBar" hint-size="100%,64px"></dc-import>
+<div style="display: flex; flex-wrap: wrap; flex: 1; align-items: stretch">
+<dc-import name="NavNegocio" active="clientes" hint-size="248px,1236px"></dc-import>
+<main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 24px 32px 48px; display: flex; flex-direction: column; gap: 20px">
+
+<a href="Clientes.dc.html" style="font-weight: 600; font-size: 13px; display: inline-flex; align-items: center; gap: 6px"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m15 6-6 6 6 6"/></svg>Volver a clientes</a>
+
+<section class="card" style="padding: 24px; display: flex; flex-wrap: wrap; gap: 24px; align-items: center">
+<span class="av" style="width: 84px; height: 84px; font-size: 26px; background: #f4c6d4; font-family: Fraunces, Georgia, serif">VG</span>
+<div style="display: flex; flex-direction: column; gap: 6px; flex: 1 1 280px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px"><h1 class="ttl" style="font-size: 28px; line-height: 34px">Valentina Gómez</h1><span class="badge b-brand">VIP</span><span class="badge b-prog">Membresía Manos Lindas</span></div>
+<span class="mut">310 456 7821 · vale.gomez@correo.com · Cumpleaños 14 de marzo · Cliente desde feb 2025</span>
+<span class="mut">Prefiere a <b style="color: #3a2a35">Laura Torres</b> · Contacto por <b style="color: #3a2a35">WhatsApp</b></span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(90px, 1fr)); gap: 12px">
+<div class="kv"><span class="cap">Visitas</span><span class="ttl" style="font-size: 24px; line-height: 30px">14</span></div>
+<div class="kv"><span class="cap">Gastado</span><span class="ttl" style="font-size: 24px; line-height: 30px">$ 1,18 M</span></div>
+<div class="kv"><span class="cap">Puntos</span><span class="ttl" style="font-size: 24px; line-height: 30px">1.240</span></div>
+<div class="kv"><span class="cap">No asistió</span><span class="ttl" style="font-size: 24px; line-height: 30px">0</span></div>
+</div>
+<div style="display: flex; gap: 10px; flex-wrap: wrap">
+<button class="btn bs">WhatsApp</button>
+<a href="Agenda.dc.html" class="btn bp">Agendar cita</a>
+</div>
+</section>
+
+<div style="padding: 14px 18px; border-radius: 14px; background: #fde8e6; color: #b23b34; display: flex; gap: 12px; align-items: center; font-weight: 600">
+<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17h.01"/></svg>
+Alergia al acrilato y sensibilidad a fragancias fuertes. Usar línea hipoalergénica y guantes de nitrilo.
+</div>
+
+<div style="display: flex; gap: 4px; padding: 4px; background: #f7eff3; border-radius: 12px; align-self: flex-start; flex-wrap: wrap">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="5"><button onClick="{{t.pick}}" style="{{t.st}}">{{t.label}}</button></sc-for>
+</div>
+
+<sc-if value="{{tResumen}}" hint-placeholder-val="{{ true }}">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px">
+<section class="card" style="padding: 22px; display: flex; flex-direction: column; gap: 14px">
+<h2 style="font-size: 16px; line-height: 24px">Ficha de belleza</h2>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px">
+<div class="kv"><span class="cap">Tipo de piel</span><span style="font-weight: 600">Mixta</span></div>
+<div class="kv"><span class="cap">Tipo de uña</span><span style="font-weight: 600">Quebradiza</span></div>
+<div class="kv"><span class="cap">Forma preferida</span><span style="font-weight: 600">Almendra, largo medio</span></div>
+<div class="kv"><span class="cap">Tonos favoritos</span><span style="display: flex; gap: 6px; margin-top: 2px"><span style="width: 22px; height: 22px; border-radius: 50%; background: #e9c9b8; border: 1px solid #dcc6d1"></span><span style="width: 22px; height: 22px; border-radius: 50%; background: #b4466e"></span><span style="width: 22px; height: 22px; border-radius: 50%; background: #f6dfe6; border: 1px solid #dcc6d1"></span></span></div>
+</div>
+<div class="kv"><span class="cap">Notas del equipo</span><span>Le gusta conversar poco durante el servicio. Prefiere música suave. Siempre pide agua con limón.</span></div>
+</section>
+<section class="card" style="padding: 22px; display: flex; flex-direction: column; gap: 12px">
+<h2 style="font-size: 16px; line-height: 24px">Próximas citas</h2>
+<div style="display: flex; gap: 12px; align-items: center; padding: 12px; border-radius: 14px; background: #fbe6ed"><div style="display: flex; flex-direction: column; align-items: center; width: 52px"><span class="cap" style="color: #a63d64">Nov</span><span class="ttl" style="font-size: 22px; line-height: 26px">7</span></div><div style="display: flex; flex-direction: column; flex: 1"><span style="font-weight: 600">Manicure semipermanente</span><span class="mut" style="font-size: 13px">Sáb · 10:30 a. m. · Laura T.</span></div><span class="badge b-conf">Confirmada</span></div>
+<div style="display: flex; gap: 12px; align-items: center; padding: 12px; border-radius: 14px; background: #e6f6ee"><div style="display: flex; flex-direction: column; align-items: center; width: 52px"><span class="cap" style="color: #2f7a57">Nov</span><span class="ttl" style="font-size: 22px; line-height: 26px">21</span></div><div style="display: flex; flex-direction: column; flex: 1"><span style="font-weight: 600">Pedicure spa</span><span class="mut" style="font-size: 13px">Sáb · 11:00 a. m. · Daniela R.</span></div><span class="badge b-pend">Pendiente</span></div>
+<h2 style="font-size: 16px; line-height: 24px; margin-top: 8px">Fidelización</h2>
+<div style="display: flex; flex-direction: column; gap: 6px"><div style="display: flex; justify-content: space-between"><span>1.240 puntos</span><span class="mut">Faltan 260 para un spa de manos gratis</span></div><div style="height: 8px; border-radius: 999px; background: #f7eff3; overflow: hidden"><div style="width: 83%; height: 8px; background: #e8a5bb"></div></div></div>
+<span class="mut" style="font-size: 13px">Membresía Manos Lindas · 2 de 4 manicures usadas este mes · renueva el 1 nov</span>
+</section>
+</div>
+</sc-if>
+
+<sc-if value="{{tClinico}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; align-items: center"><h2 style="font-size: 16px; line-height: 24px">Historial clínico</h2><button class="btn bp sm" style="margin-left: auto" onClick="{{openRec}}">+ Nueva entrada</button></div>
+<sc-for list="{{records}}" as="r" hint-placeholder-count="3">
+<section class="card" style="padding: 20px; display: flex; flex-wrap: wrap; gap: 20px">
+<div style="flex: 1 1 320px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center"><span style="font-weight: 700">{{r.date}}</span><span class="mut">· {{r.svc}} · {{r.tech}}</span></div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<div class="kv"><span class="cap">Placa ungueal</span><span>{{r.nail}}</span></div>
+<div class="kv"><span class="cap">Cutículas</span><span>{{r.cut}}</span></div>
+<div class="kv"><span class="cap">Producto y lote</span><span>{{r.lot}}</span></div>
+<div class="kv"><span class="cap">Tiempo de exposición</span><span>{{r.exp}}</span></div>
+</div>
+<div class="kv"><span class="cap">Observaciones</span><span>{{r.obs}}</span></div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, 130px); gap: 10px">
+<div class="ph-img" style="background: #f7eff3">Foto antes</div>
+<div class="ph-img" style="background: #fbe6ed">Foto después</div>
+</div>
+</section>
+</sc-for>
+</div>
+</sc-if>
+
+<sc-if value="{{tServicios}}" hint-placeholder-val="{{ false }}">
+<div class="card" style="overflow-x: auto">
+<table class="tbl" style="min-width: 760px">
+<thead><tr><th>Fecha</th><th>Servicio</th><th>Profesional</th><th>Valor</th><th>Propina</th><th>Calificación</th></tr></thead>
+<tbody>
+<tr><td>23 oct 2026</td><td>Manicure semipermanente</td><td>Laura T.</td><td>$ 55.000</td><td>$ 5.000</td><td>—</td></tr>
+<tr><td>9 oct 2026</td><td>Manicure semipermanente + diseño</td><td>Laura T.</td><td>$ 80.000</td><td>$ 8.000</td><td>5 de 5</td></tr>
+<tr><td>25 sep 2026</td><td>Pedicure spa</td><td>Daniela R.</td><td>$ 70.000</td><td>$ 7.000</td><td>5 de 5</td></tr>
+<tr><td>11 sep 2026</td><td>Retiro de gel + manicure</td><td>Laura T.</td><td>$ 70.000</td><td>—</td><td>4 de 5</td></tr>
+<tr><td>28 ago 2026</td><td>Limpieza facial</td><td>Mariana L.</td><td>$ 95.000</td><td>$ 10.000</td><td>5 de 5</td></tr>
+</tbody>
+</table>
+</div>
+</sc-if>
+
+<sc-if value="{{tCompras}}" hint-placeholder-val="{{ false }}">
+<div class="card" style="overflow-x: auto">
+<table class="tbl" style="min-width: 680px">
+<thead><tr><th>Fecha</th><th>Producto</th><th>Cantidad</th><th>Valor</th><th>Sugerencia</th></tr></thead>
+<tbody>
+<tr><td>9 oct 2026</td><td>Crema de manos karité 50 ml</td><td>1</td><td>$ 32.000</td><td class="mut">Recompra en ~45 días</td></tr>
+<tr><td>28 ago 2026</td><td>Aceite de cutícula almendras</td><td>1</td><td>$ 22.000</td><td><span class="badge b-prog">Ofrecer hoy</span></td></tr>
+<tr><td>28 ago 2026</td><td>Esmalte gel OPI Bubble Bath</td><td>1</td><td>$ 48.000</td><td class="mut">—</td></tr>
+</tbody>
+</table>
+</div>
+</sc-if>
+
+<sc-if value="{{tPrivacidad}}" hint-placeholder-val="{{ false }}">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px">
+<section class="card" style="padding: 22px; display: flex; flex-direction: column; gap: 12px">
+<h2 style="font-size: 16px; line-height: 24px">Consentimientos</h2>
+<div style="display: flex; justify-content: space-between; gap: 10px"><span>Tratamiento de datos personales</span><span class="badge b-done">Aceptado 3 feb 2025</span></div>
+<div style="display: flex; justify-content: space-between; gap: 10px"><span>Fotos en historial clínico</span><span class="badge b-done">Aceptado 3 feb 2025</span></div>
+<div style="display: flex; justify-content: space-between; gap: 10px"><span>Promociones por WhatsApp</span><span class="badge b-canc">No autorizado</span></div>
+<button class="btn bg sm" style="align-self: flex-start">Descargar datos del cliente</button>
+</section>
+<section class="card" style="padding: 22px; display: flex; flex-direction: column; gap: 10px">
+<h2 style="font-size: 16px; line-height: 24px">Quién vio o cambió esta ficha</h2>
+<span class="mut" style="font-size: 13px">Hoy 10:31 a. m. · Laura Torres vio el historial clínico</span>
+<span class="mut" style="font-size: 13px">Hoy 9:58 a. m. · Paola Méndez (recepción) abrió la ficha</span>
+<span class="mut" style="font-size: 13px">9 oct · Laura Torres agregó una entrada clínica</span>
+<span class="mut" style="font-size: 13px">2 sep · Yiyi Ramírez actualizó el celular</span>
+</section>
+</div>
+</sc-if>
+
+</main>
+</div>
+
+<sc-if value="{{panel}}" hint-placeholder-val="{{ false }}">
+<div class="overlay">
+<aside class="panel" aria-label="Nueva entrada clínica">
+<div class="ph">
+<div style="display: flex; flex-direction: column"><span style="font-size: 20px; line-height: 28px; font-weight: 700">Nueva entrada clínica</span><span class="mut" style="font-size: 13px">Valentina Gómez · cita de hoy 10:30 a. m.</span></div>
+<button class="xbtn" aria-label="Cerrar" onClick="{{close}}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+</div>
+<div class="pb">
+<div style="display: flex; gap: 12px"><label class="lbl">Estado de la placa<select class="in"><option>Sana</option><option>Delgada</option><option>Con estrías</option><option>Posible hongo</option></select></label><label class="lbl">Cutículas<select class="in"><option>Normales</option><option>Secas</option><option>Inflamadas</option></select></label></div>
+<div style="display: flex; gap: 12px"><label class="lbl">Producto aplicado<select class="in"><option>Gel hipoalergénico HEMA free</option><option>Esmalte semipermanente</option></select></label><label class="lbl">Lote<input class="in" value="HF-2309-118"></label></div>
+<div style="display: flex; gap: 12px"><label class="lbl">Exposición en lámpara<input class="in" value="60 s por capa"></label><label class="lbl">Capas<input class="in" value="3"></label></div>
+<label class="lbl">Observaciones<textarea class="in" rows="3" style="height: auto; padding: 10px 12px">Uña índice derecha con leve desprendimiento. Se recomendó aceite de cutícula diario.</textarea></label>
+<div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 13px; font-weight: 600">Fotos de referencia</span>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+<div class="ph-img" style="height: 90px; background: #f7eff3">Antes</div>
+<div class="ph-img" style="height: 90px; background: #fbe6ed">Después</div>
+<button style="height: 90px; border-radius: 12px; border: 1.5px dashed #dcc6d1; background: #ffffff; color: #7a6672; font: inherit; font-weight: 600; cursor: pointer">+ Subir</button>
+</div></div>
+</div>
+<div class="pf"><button class="btn bg" onClick="{{close}}">Cancelar</button><button class="btn bp" onClick="{{close}}">Guardar entrada</button></div>
+</aside>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1300}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { tab: 'resumen', panel: false }; }
+  renderVals() {
+    const tab = this.state.tab;
+    const tabs = [['resumen', 'Resumen'], ['clinico', 'Historial clínico'], ['servicios', 'Servicios'], ['compras', 'Compras'], ['privacidad', 'Privacidad']].map(([id, label]) => ({
+      label, pick: () => this.setState({ tab: id }),
+      st: 'font: inherit; font-weight: 600; height: 36px; padding: 0 16px; border-radius: 9px; border: 0; cursor: pointer; ' + (id === tab ? 'background: #ffffff; color: #a63d64; box-shadow: 0 1px 2px rgba(58,42,53,.08)' : 'background: transparent; color: #7a6672')
+    }));
+    const records = [
+      { date: '9 oct 2026', svc: 'Semipermanente + diseño', tech: 'Laura T.', nail: 'Delgada, sin anomalías', cut: 'Secas', lot: 'Gel HEMA free · HF-2309-118', exp: '60 s por capa, 3 capas', obs: 'Buena tolerancia a la línea hipoalergénica. Sin enrojecimiento.' },
+      { date: '25 sep 2026', svc: 'Pedicure spa', tech: 'Daniela R.', nail: 'Sana', cut: 'Normales', lot: 'Exfoliante menta · EM-0826', exp: 'Remojo 10 min', obs: 'Callosidad leve en talón. Se sugirió crema de urea en casa.' },
+      { date: '11 sep 2026', svc: 'Retiro de gel + manicure', tech: 'Laura T.', nail: 'Con estrías por retiro anterior', cut: 'Inflamadas', lot: 'Removedor sin acetona · RS-0711', exp: '12 min con algodón', obs: 'Reacción a gel con acrilato del otro salón. Se registró la alergia.' }
+    ];
+    return {
+      tabs, records,
+      tResumen: tab === 'resumen', tClinico: tab === 'clinico', tServicios: tab === 'servicios', tCompras: tab === 'compras', tPrivacidad: tab === 'privacidad',
+      panel: this.state.panel,
+      openRec: () => this.setState({ panel: true }),
+      close: () => this.setState({ panel: false })
+    };
+  }
+}
+</script>
+</body>
+</html>

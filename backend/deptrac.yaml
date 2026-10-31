@@ -1,0 +1,31 @@
+# Layer boundaries (spec §5). Rules between individual modules are added
+# when the first module exists (step 2).
+deptrac:
+  paths:
+    - ./app
+  layers:
+    - name: Shared
+      collectors:
+        - type: classLike
+          value: ^App\\Shared\\.*
+    - name: Platform
+      collectors:
+        - type: classLike
+          value: ^App\\Platform\\.*
+    - name: Modules
+      collectors:
+        - type: classLike
+          value: ^App\\Modules\\.*
+    - name: Framework
+      collectors:
+        - type: classLike
+          value: ^Illuminate\\.*
+  ruleset:
+    Shared:
+      - Framework
+    Platform:
+      - Shared
+      - Framework
+    Modules:
+      - Shared
+      - Framework

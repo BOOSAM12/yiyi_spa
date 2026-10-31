@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Personal · YiYi Spa</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#fdf8fa;color:#3a2a35;font-family:"Plus Jakarta Sans",system-ui,sans-serif;font-size:14px;line-height:21px}
+a{color:#a63d64;text-decoration:none}a:hover{color:#7d2a4a}
+h1,h2,h3,p{margin:0}
+.ttl{font-family:Fraunces,Georgia,serif;font-weight:600}
+.card{background:#fff;border:1px solid #eedfe6;border-radius:18px;box-shadow:0 1px 2px rgba(58,42,53,.04),0 4px 16px rgba(58,42,53,.05)}
+.btn{font:inherit;font-weight:600;height:44px;padding:0 18px;border-radius:12px;border:1px solid transparent;cursor:pointer;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;text-decoration:none;box-sizing:border-box}
+.bp{background:#e8a5bb;color:#3a2a35}.bp:hover{background:#df93ad;color:#3a2a35}
+.bs{background:#efe9fb;color:#6b52a8;border-color:#d9cdf3}.bs:hover{color:#6b52a8}
+.bg{background:#fff;color:#7a6672;border-color:#eedfe6}
+.sm{height:34px;padding:0 12px;font-size:13px;border-radius:10px}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;line-height:22px;padding:0 10px;border-radius:999px;white-space:nowrap}
+.badge:before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.b-pend{background:#fdeee2;color:#9a5418}.b-conf{background:#e8f2fb;color:#2f6a99}.b-prog{background:#efe9fb;color:#6b52a8}.b-done{background:#e6f6ee;color:#2f7a57}.b-canc{background:#fde8e6;color:#b23b34}.b-brand{background:#fbe6ed;color:#a63d64}
+.cap{font-size:11px;line-height:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7a6672}
+.mut{color:#7a6672}
+.av{width:52px;height:52px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;flex:none;color:#3a2a35}
+.chip{display:inline-flex;align-items:center;height:26px;padding:0 10px;border-radius:999px;font-size:12px;font-weight:600;background:#f7eff3;color:#3a2a35}
+.overlay{position:absolute;left:0;right:0;top:64px;bottom:0;background:rgba(58,42,53,.18);display:flex;justify-content:flex-end;z-index:20}
+.panel{width:440px;max-width:100%;background:#fff;border-radius:18px 0 0 18px;box-shadow:-12px 0 40px rgba(58,42,53,.12);display:flex;flex-direction:column;height:100%;box-sizing:border-box}
+.ph{padding:20px 24px;border-bottom:1px solid #eedfe6;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.pb{padding:20px 24px;display:flex;flex-direction:column;gap:14px;overflow:auto;flex:1}.pb>*{flex:none}
+.pf{padding:16px 24px;border-top:1px solid #eedfe6;display:flex;justify-content:flex-end;gap:12px}
+.xbtn{width:40px;height:40px;border-radius:12px;border:1px solid #eedfe6;background:#fff;color:#7a6672;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+.in{font:inherit;font-weight:400;height:40px;padding:0 12px;border:1px solid #dcc6d1;border-radius:8px;background:#fff;color:#3a2a35;box-sizing:border-box;width:100%}
+.lbl{font-size:13px;font-weight:600;display:flex;flex-direction:column;gap:6px;flex:1;min-width:0}
+.ck{display:flex;gap:10px;align-items:center;font-size:13px;font-weight:500}
+.ck input{width:18px;height:18px;accent-color:#6b52a8}
+.sh{font-size:12px;font-weight:600;border-radius:8px;padding:6px 4px;text-align:center}
+.hd{font-size:11px;font-weight:700;letter-spacing:.06em;color:#7a6672;text-align:center}
+</style>
+</helmet>
+<div style="position: relative; min-height: 1100px; display: flex; flex-direction: column">
+<dc-import name="TopBar" hint-size="100%,64px"></dc-import>
+<div style="display: flex; flex-wrap: wrap; flex: 1; align-items: stretch">
+<dc-import name="NavNegocio" active="personal" hint-size="248px,1036px"></dc-import>
+<main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 28px 32px 48px; display: flex; flex-direction: column; gap: 22px">
+
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h1 class="ttl" style="font-size: 30px; line-height: 38px">Personal</h1>
+<p class="mut">6 personas en Sede Chapinero · 4 trabajando ahora</p>
+</div>
+<div style="margin-left: auto; display: flex; gap: 12px">
+<button class="btn bs">Registrar ausencia</button>
+<button class="btn bp" onClick="{{open}}">+ Nuevo empleado</button>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px">
+<sc-for list="{{team}}" as="e" hint-placeholder-count="6">
+<div class="card" style="padding: 20px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; gap: 12px; align-items: center">
+<span class="av" style="{{e.avst}}">{{e.ini}}</span>
+<div style="display: flex; flex-direction: column; line-height: 19px; flex: 1"><span style="font-weight: 700; font-size: 15px">{{e.n}}</span><span class="mut" style="font-size: 13px">{{e.rol}}</span></div>
+</div>
+<div style="display: flex; justify-content: space-between; align-items: center"><span class="badge" style="{{e.bst}}">{{e.status}}</span><span class="mut" style="font-size: 12px">{{e.att}}</span></div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px"><sc-for list="{{e.skills}}" as="s" hint-placeholder-count="3"><span class="chip">{{s}}</span></sc-for></div>
+<div style="display: flex; justify-content: space-between; padding-top: 10px; border-top: 1px solid #f3e8ee; font-size: 13px"><span class="mut">Ocupación semana</span><span style="font-weight: 700">{{e.occ}}</span></div>
+</div>
+</sc-for>
+</div>
+
+<section class="card" style="padding: 20px; display: flex; flex-direction: column; gap: 14px; overflow-x: auto">
+<div style="display: flex; align-items: center"><h2 style="font-size: 16px; line-height: 24px">Horarios de la semana</h2><span class="mut" style="margin-left: auto; font-size: 13px">19 – 25 de octubre</span></div>
+<div style="display: grid; grid-template-columns: 170px repeat(7, minmax(84px, 1fr)); gap: 6px; min-width: 820px; align-items: center">
+<span></span><span class="hd">LUN</span><span class="hd">MAR</span><span class="hd">MIÉ</span><span class="hd">JUE</span><span class="hd">VIE</span><span class="hd">SÁB</span><span class="hd">DOM</span>
+<sc-for list="{{sched}}" as="r" hint-placeholder-count="6">
+<span style="font-weight: 600">{{r.n}}</span>
+<sc-for list="{{r.days}}" as="d" hint-placeholder-count="7"><span class="sh" style="{{d.st}}">{{d.t}}</span></sc-for>
+</sc-for>
+</div>
+</section>
+
+</main>
+</div>
+
+<sc-if value="{{panel}}" hint-placeholder-val="{{ false }}">
+<div class="overlay">
+<aside class="panel" aria-label="Nuevo empleado">
+<div class="ph"><span style="font-size: 20px; line-height: 28px; font-weight: 700">Nuevo empleado</span><button class="xbtn" aria-label="Cerrar" onClick="{{close}}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+<div class="pb">
+<div style="display: flex; gap: 12px"><label class="lbl">Nombres<input class="in" placeholder="Ej. Juliana"></label><label class="lbl">Apellidos<input class="in" placeholder="Ej. Restrepo"></label></div>
+<div style="display: flex; gap: 12px"><label class="lbl">Celular<input class="in" placeholder="300 000 0000"></label><label class="lbl">Cédula<input class="in" placeholder="Número"></label></div>
+<div style="display: flex; gap: 12px"><label class="lbl">Rol en el sistema<select class="in"><option>Técnico / Estilista</option><option>Recepcionista</option><option>Dueño / Admin</option></select></label><label class="lbl">Sede<select class="in"><option>Chapinero</option><option>Usaquén</option></select></label></div>
+<div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 13px; font-weight: 600">Servicios que puede hacer</span>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<label class="ck"><input type="checkbox" checked>Manicure</label><label class="ck"><input type="checkbox" checked>Pedicure</label><label class="ck"><input type="checkbox">Spa y masajes</label><label class="ck"><input type="checkbox">Facial</label><label class="ck"><input type="checkbox">Cejas y pestañas</label>
+</div></div>
+<div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 13px; font-weight: 600">Horario base</span>
+<div style="display: flex; gap: 8px; align-items: center"><select class="in" style="flex: 1"><option>Lunes a viernes</option><option>Martes a sábado</option></select><input class="in" value="8:00 a. m." style="flex: 1"><span class="mut">a</span><input class="in" value="5:00 p. m." style="flex: 1"></div>
+<div style="display: flex; gap: 8px; align-items: center"><span class="mut" style="font-size: 13px; flex: 1">Descanso</span><input class="in" value="12:00 m." style="flex: 1"><span class="mut">a</span><input class="in" value="1:00 p. m." style="flex: 1"></div>
+</div>
+<div style="display: flex; gap: 12px"><label class="lbl">Modelo de comisión<select class="in"><option>Por niveles (según ventas)</option><option>Porcentaje fijo</option><option>Partes y mano de obra</option></select></label><label class="lbl">Sueldo base<input class="in" value="$ 1.423.500"></label></div>
+<label class="ck" style="font-weight: 600"><input type="checkbox" checked>Enviar invitación para entrar al sistema</label>
+</div>
+<div class="pf"><button class="btn bg" onClick="{{close}}">Cancelar</button><button class="btn bp" onClick="{{close}}">Guardar empleado</button></div>
+</aside>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1100}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { panel: false }; }
+  renderVals() {
+    const S = {
+      work: ['Trabajando', 'background: #e6f6ee; color: #2f7a57'],
+      brk: ['En descanso', 'background: #fdeee2; color: #9a5418'],
+      vac: ['Vacaciones', 'background: #e8f2fb; color: #2f6a99'],
+      off: ['Libre hoy', 'background: #f7eff3; color: #7a6672']
+    };
+    const team = [
+      ['LT', 'Laura Torres', 'Manicurista senior', '#f4c6d4', 'work', 'Entró 7:58 a. m.', ['Manicure', 'Acrílicas', 'Diseño'], '91%'],
+      ['DR', 'Daniela Ruiz', 'Pedicurista', '#c5ead7', 'work', 'Entró 8:55 a. m.', ['Pedicure', 'Manicure'], '78%'],
+      ['AP', 'Andrea Patiño', 'Masajista terapéutica', '#d9cdf3', 'work', 'Entró 7:50 a. m.', ['Masajes', 'Spa'], '70%'],
+      ['ML', 'Mariana López', 'Esteticista', '#c9e2f5', 'brk', 'Vuelve 11:00 a. m.', ['Facial', 'Cejas', 'Pestañas'], '84%'],
+      ['PM', 'Paola Méndez', 'Recepcionista', '#fbd9bf', 'work', 'Entró 7:45 a. m.', ['Agenda', 'Caja'], '—'],
+      ['KS', 'Karina Suárez', 'Manicurista', '#f4c6d4', 'vac', 'Regresa 3 nov', ['Manicure', 'Pedicure'], '—']
+    ].map(([ini, n, rol, bg, st, att, skills, occ]) => ({ ini, n, rol, avst: 'background: ' + bg, status: S[st][0], bst: S[st][1], att, skills, occ }));
+    const W = 'background: #e6f6ee; color: #2f7a57';
+    const OFF = 'background: #f7eff3; color: #7a6672';
+    const V = 'background: #e8f2fb; color: #2f6a99';
+    const mk = (arr) => arr.map((t) => ({ t, st: t === 'Libre' ? OFF : t === 'Vacaciones' ? V : W }));
+    const sched = [
+      { n: 'Laura Torres', days: mk(['8–5', '8–5', '8–5', '8–5', '8–6', '9–3', 'Libre']) },
+      { n: 'Daniela Ruiz', days: mk(['Libre', '9–6', '9–6', '9–6', '9–5', '8–4', '9–2']) },
+      { n: 'Andrea Patiño', days: mk(['10–7', '10–7', 'Libre', '10–7', '8–7', '9–5', 'Libre']) },
+      { n: 'Mariana López', days: mk(['8–4', '8–4', '8–4', 'Libre', '8–4', '8–4', 'Libre']) },
+      { n: 'Paola Méndez', days: mk(['7:30–4', '7:30–4', '7:30–4', '7:30–4', '7:30–4', '8–2', 'Libre']) },
+      { n: 'Karina Suárez', days: mk(['Vacaciones', 'Vacaciones', 'Vacaciones', 'Vacaciones', 'Vacaciones', 'Vacaciones', 'Libre']) }
+    ];
+    return {
+      team, sched,
+      panel: this.state.panel,
+      open: () => this.setState({ panel: true }),
+      close: () => this.setState({ panel: false })
+    };
+  }
+}
+</script>
+</body>
+</html>
